@@ -30,9 +30,10 @@
 
       <ul class="nav-links">
         <li><a href="#pillars" data-i18n="nav.how">Как работает</a></li>
-        <li><a href="#features" data-i18n="nav.features">Возможности</a></li>
+        <li><a href="#benefits" data-i18n="nav.benefits">Преимущества</a></li>
         <li><a href="#stack" data-i18n="nav.stack">Стек</a></li>
         <li><a href="#demo" data-i18n="nav.demo">Демо</a></li>
+        <li><a href="#install" data-i18n="nav.install">Установка</a></li>
       </ul>
 
       <div class="nav-controls">
@@ -179,7 +180,7 @@
           <div class="chip chip--br"><span class="dot"></span><span data-i18n="p3.chip3">Fitness ↑</span></div>
           <div class="mascot-stage mascot-stage--scene" data-mood="success">
             <div class="mascot-float"><div class="mascot-body">
-              <img class="mascot-img" src="assets/evoc-evolve.webp" width="560" height="189" alt="EVOC эволюционирует: три поколения становятся сильнее" decoding="async">
+              <img class="mascot-img mascot-img--gif" src="assets/evo1-3.gif" width="256" height="256" alt="EVOC эволюционирует: три поколения становятся сильнее" decoding="async">
             </div></div>
             <span class="mascot-shadow" aria-hidden="true"></span>
             <div class="mascot-particles" aria-hidden="true"></div>
@@ -195,42 +196,67 @@
     </div>
   </section>
 
-  <section id="features" class="features">
+  <section id="benefits" class="benefits">
+    <div class="benefits-aurora" aria-hidden="true"></div>
     <div class="container">
       <div class="section-header reveal">
-        <h2 data-i18n="features.title">Возможности</h2>
-        <p data-i18n="features.subtitle">Всё, что нужно для полного жизненного цикла агентов</p>
+        <span class="section-eyebrow" data-i18n="benefits.eyebrow">Почему именно CARE</span>
+        <h2 data-i18n="benefits.title">Агент, который собирает себя сам</h2>
+        <p data-i18n="benefits.subtitle">Меньше рутины, больше результата — вот что ты получаешь с первого запуска</p>
       </div>
-      <div class="features-grid">
-        <article class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true">✦</div>
-          <h3 data-i18n="features.f1.title">NL → цепочки</h3>
-          <p data-i18n="features.f1.desc">Задача на естественном языке превращается в воспроизводимую CARL-цепочку.</p>
+      <div class="benefits-grid">
+        <article class="benefit-card">
+          <span class="benefit-tag" data-i18n="benefits.b1.tag">≈ 60 секунд</span>
+          <span class="benefit-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10.5H13z"/></svg>
+          </span>
+          <h3 data-i18n="benefits.b1.title">Агент за минуту</h3>
+          <p data-i18n="benefits.b1.desc">Опиши задачу словами — цепочка соберётся и запустится, пока ты наливаешь кофе.</p>
         </article>
-        <article class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon" aria-hidden="true">⇄</div>
-          <h3 data-i18n="features.f2.title">Ad-Hoc / Production</h3>
-          <p data-i18n="features.f2.desc">Быстрые эксперименты или сохранение в Memory с baseline и эволюцией.</p>
+
+        <article class="benefit-card">
+          <span class="benefit-tag" data-i18n="benefits.b3.tag">0 чёрных ящиков</span>
+          <span class="benefit-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+          <h3 data-i18n="benefits.b3.title">Видно каждый ход</h3>
+          <p data-i18n="benefits.b3.desc">Live-токены, trail стадий и изолированный sandbox — полный контроль над тем, что делает агент.</p>
         </article>
-        <article class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon" aria-hidden="true">▣</div>
-          <h3 data-i18n="features.f3.title">18+ экранов TUI</h3>
-          <p data-i18n="features.f3.desc">Library, Evolution, Catalog, Replay — полный lifecycle в терминале.</p>
+
+        <article class="benefit-card benefit-card--accent">
+          <span class="benefit-tag" data-i18n="benefits.b4.tag">GA + Pareto</span>
+          <span class="benefit-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7.5"/><path d="M17 7.5h4v4"/></svg>
+          </span>
+          <h3 data-i18n="benefits.b4.title">Сегодня работает, завтра — лучше</h3>
+          <p data-i18n="benefits.b4.desc">Эволюция сама улучшает агента поколение за поколением и продвигает лучшего в stable.</p>
         </article>
-        <article class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true">◈</div>
-          <h3 data-i18n="features.f4.title">Memory & Library</h3>
-          <p data-i18n="features.f4.desc">Цепочки, агенты и skills в GigaEvo Memory с поиском и lineage.</p>
+
+        <article class="benefit-card">
+          <span class="benefit-tag" data-i18n="benefits.b2.tag">chain_id навсегда</span>
+          <span class="benefit-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v4h4"/><path d="M12 8v4l3 2"/></svg>
+          </span>
+          <h3 data-i18n="benefits.b2.title">Ничего не теряется</h3>
+          <p data-i18n="benefits.b2.desc">Memory хранит цепочки с baseline и lineage — повтори, сравни или откатись в один клик.</p>
         </article>
-        <article class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon" aria-hidden="true">🧬</div>
-          <h3 data-i18n="features.f5.title">Эволюция (GA)</h3>
-          <p data-i18n="features.f5.desc">Pareto-front, SSE-прогресс и accept-and-promote лучших индивидов.</p>
+
+        <article class="benefit-card">
+          <span class="benefit-tag" data-i18n="benefits.b5.tag">TUI + CLI</span>
+          <span class="benefit-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3"/><path d="M13 15h4"/></svg>
+          </span>
+          <h3 data-i18n="benefits.b5.title">Из терминала — в прод</h3>
+          <p data-i18n="benefits.b5.desc">Тот же CARE в TUI и в CI: автоматизируй агентов в пайплайнах без переписывания.</p>
         </article>
-        <article class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon" aria-hidden="true">⬡</div>
-          <h3 data-i18n="features.f6.title">Изолированный sandbox</h3>
-          <p data-i18n="features.f6.desc">AgentSkill в local, Docker, e2b или firejail с network policy.</p>
+
+        <article class="benefit-card">
+          <span class="benefit-tag" data-i18n="benefits.b6.tag">Open source</span>
+          <span class="benefit-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+          </span>
+          <h3 data-i18n="benefits.b6.title">Твой стек, твои правила</h3>
+          <p data-i18n="benefits.b6.desc">Кастомные tools и skills, MCP и ребрендинг одним токеном. Никакого вендор-лока.</p>
         </article>
       </div>
     </div>
@@ -246,22 +272,22 @@
         <div class="stack-care" data-i18n="stack.care.label">CARE TUI / CLI</div>
         <div class="stack-connector" aria-hidden="true"></div>
         <div class="stack-modules">
-          <div class="stack-module">
+          <div class="stack-module stack-module--mage">
             <h4 data-i18n="stack.mage.name">MAGE</h4>
             <div class="role" data-i18n="stack.mage.role">Генерация</div>
             <p data-i18n="stack.mage.desc">Mesh Agent Generation Engine — query → CARL chain.</p>
           </div>
-          <div class="stack-module">
+          <div class="stack-module stack-module--carl">
             <h4 data-i18n="stack.carl.name">CARL</h4>
             <div class="role" data-i18n="stack.carl.role">Исполнение</div>
             <p data-i18n="stack.carl.desc">Collaborative Agent Reasoning Library — sandbox runtime.</p>
           </div>
-          <div class="stack-module">
+          <div class="stack-module stack-module--memory">
             <h4 data-i18n="stack.memory.name">GigaEvo Memory</h4>
             <div class="role" data-i18n="stack.memory.role">Персистентность</div>
             <p data-i18n="stack.memory.desc">Entities, library, SSE, lineage DAG.</p>
           </div>
-          <div class="stack-module">
+          <div class="stack-module stack-module--platform">
             <h4 data-i18n="stack.platform.name">GigaEvo Platform</h4>
             <div class="role" data-i18n="stack.platform.role">Эволюция</div>
             <p data-i18n="stack.platform.desc">GA over chains, accept-and-promote.</p>
@@ -303,6 +329,96 @@
     </div>
   </section>
 
+  <section id="install" class="install">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 data-i18n="install.title">Установка за минуту</h2>
+        <p data-i18n="install.subtitle">Три команды — и CARE запущен. Никакого билд-степа.</p>
+      </div>
+
+      <div class="install-grid reveal">
+        <ol class="install-steps">
+          <li class="install-step">
+            <span class="install-step-num">1</span>
+            <div class="install-step-body">
+              <h3 data-i18n="install.s1.title">Синхронизируй зависимости</h3>
+              <p data-i18n="install.s1.desc">uv создаст окружение и поставит весь стек CARE.</p>
+              <div class="code-block">
+                <code><span class="code-prompt">$</span> <span class="code-text">uv sync</span></code>
+                <button class="copy-btn" type="button" data-cmd="uv sync" data-i18n-title="install.copy" title="Скопировать">
+                  <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="11" height="11" rx="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span class="copy-label" data-i18n="install.copy">Копировать</span>
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li class="install-step">
+            <span class="install-step-num">2</span>
+            <div class="install-step-body">
+              <h3 data-i18n="install.s2.title">Запиши креды MAGE</h3>
+              <p data-i18n="install.s2.desc">care init создаст минимальный .env: base URL, API-ключ и модель.</p>
+              <div class="code-block">
+                <code><span class="code-prompt">$</span> <span class="code-text">uv run care init</span></code>
+                <button class="copy-btn" type="button" data-cmd="uv run care init" data-i18n-title="install.copy" title="Скопировать">
+                  <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="11" height="11" rx="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span class="copy-label" data-i18n="install.copy">Копировать</span>
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li class="install-step">
+            <span class="install-step-num">3</span>
+            <div class="install-step-body">
+              <h3 data-i18n="install.s3.title">Запусти TUI</h3>
+              <p data-i18n="install.s3.desc">Откроется chat-поверхность — опиши задачу и собери первого агента.</p>
+              <div class="code-block">
+                <code><span class="code-prompt">$</span> <span class="code-text">uv run care</span></code>
+                <button class="copy-btn" type="button" data-cmd="uv run care" data-i18n-title="install.copy" title="Скопировать">
+                  <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="11" height="11" rx="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span class="copy-label" data-i18n="install.copy">Копировать</span>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ol>
+
+        <aside class="install-aside">
+          <h4 data-i18n="install.aside.title">Что нужно</h4>
+          <ul class="install-reqs">
+            <li><span class="req-dot"></span><span data-i18n="install.req1">Python 3.12+ и uv</span></li>
+            <li><span class="req-dot"></span><span data-i18n="install.req2">Доступ к MAGE-совместимой LLM</span></li>
+            <li><span class="req-dot"></span><span data-i18n="install.req3">Memory/Platform — опционально, для Production</span></li>
+          </ul>
+          <div class="install-oneliner">
+            <span class="install-oneliner-label" data-i18n="install.oneliner">Одной строкой:</span>
+            <div class="code-block code-block--compact">
+              <code><span class="code-prompt">$</span> <span class="code-text">uv sync &amp;&amp; uv run care init &amp;&amp; uv run care</span></code>
+              <button class="copy-btn" type="button" data-cmd="uv sync && uv run care init && uv run care" data-i18n-title="install.copy" title="Скопировать">
+                <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="11" height="11" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span class="copy-label" data-i18n="install.copy">Копировать</span>
+              </button>
+            </div>
+          </div>
+          <a href="../README.md" class="pillar-link" data-i18n="install.docs">Полная документация</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-section">
     <div class="container">
       <div class="cta-card reveal">
@@ -332,6 +448,56 @@
     </div>
   </section>
 
+  <section id="contribute" class="contribute">
+    <div class="container">
+      <div class="contribute-card reveal">
+        <div class="contribute-head">
+          <span class="contribute-eyebrow" data-i18n="contribute.eyebrow">Open source</span>
+          <h2 data-i18n="contribute.title">Развивай CARE вместе с нами</h2>
+          <p data-i18n="contribute.subtitle">CARE открыт для контрибьюторов. Пулреквесты, идеи и баг-репорты — всё в дело.</p>
+        </div>
+
+        <div class="contribute-ways">
+          <a class="contribute-way" href="https://github.com/Glazkoff/care/fork" target="_blank" rel="noopener">
+            <span class="way-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="7" cy="6" r="2.4"/><circle cx="7" cy="18" r="2.4"/><circle cx="17" cy="18" r="2.4"/>
+                <path d="M7 8.4v7.2"/><path d="M17 15.6V13a3 3 0 0 0-3-3h-3l1.8 1.8M11 10l1.8-1.8"/>
+              </svg>
+            </span>
+            <h3 data-i18n="contribute.w1.title">Форк и Pull Request</h3>
+            <p data-i18n="contribute.w1.desc">Возьми задачу, внеси правку и открой PR — мы ревьюим быстро.</p>
+          </a>
+
+          <a class="contribute-way" href="https://github.com/Glazkoff/care/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22" target="_blank" rel="noopener">
+            <span class="way-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l2.6 5.5 6 .7-4.4 4.1 1.1 5.9L12 16.9 6.7 19.2l1.1-5.9L3.4 9.2l6-.7z"/>
+              </svg>
+            </span>
+            <h3 data-i18n="contribute.w2.title">Good first issues</h3>
+            <p data-i18n="contribute.w2.desc">Начни с задач, помеченных для новичков — мягкий вход в кодовую базу.</p>
+          </a>
+
+          <a class="contribute-way" href="https://github.com/Glazkoff/care/discussions" target="_blank" rel="noopener">
+            <span class="way-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5z"/>
+              </svg>
+            </span>
+            <h3 data-i18n="contribute.w3.title">Идеи и обсуждения</h3>
+            <p data-i18n="contribute.w3.desc">Предложи фичу или обсуди архитектуру в GitHub Discussions.</p>
+          </a>
+        </div>
+
+        <div class="contribute-actions">
+          <a href="https://github.com/Glazkoff/care" class="btn btn-primary btn-lg" data-i18n="contribute.repo" target="_blank" rel="noopener">Открыть репозиторий</a>
+          <a href="https://github.com/Glazkoff/care/issues" class="btn btn-secondary btn-lg" data-i18n="contribute.issues" target="_blank" rel="noopener">Все issues</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -346,6 +512,7 @@
       <ul class="footer-links">
         <li><a href="../README.md" data-i18n="footer.docs">Документация</a></li>
         <li><a href="../docs/ARCHITECTURE.md" data-i18n="footer.arch">Архитектура</a></li>
+        <li><a href="#contribute" data-i18n="footer.contribute">Контрибьютинг</a></li>
         <li><a href="?theme=aqua" data-i18n="theme.aqua">Aqua Bloom</a></li>
         <li><a href="?theme=crystal" data-i18n="theme.crystal">Deep Crystal</a></li>
         <li><a href="?theme=warm" data-i18n="theme.warm">Warm Sand</a></li>

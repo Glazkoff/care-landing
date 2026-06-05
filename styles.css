@@ -97,7 +97,15 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    var(--bg-alt) 34%,
+    var(--bg) 64%,
+    var(--bg-alt) 100%
+  );
+  background-repeat: no-repeat;
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -519,8 +527,8 @@ a:hover {
 .scene--gen .mascot-stage--scene { width: min(440px, 96%); }
 /* Runtime is a landscape start-chain illustration, so it needs more width. */
 .scene--run .mascot-stage--scene { width: min(430px, 96%); }
-/* Evolution is a wide growth strip (three generations) — let it stretch. */
-.scene--evo .mascot-stage--scene { width: min(470px, 100%); }
+/* Evolution GIF is square, so keep it close to the visual height of the other scenes. */
+.scene--evo .mascot-stage--scene { width: min(300px, 72%); }
 .mascot-stage--calm { width: min(208px, 56%); }
 .cta-visual .mascot-stage { width: min(286px, 80%); }
 
@@ -670,10 +678,6 @@ section {
 }
 
 /* Features */
-.features {
-  background: var(--bg-alt);
-}
-
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -694,15 +698,33 @@ section {
 }
 
 .feature-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), var(--crystal));
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--card-hover);
+  border: 1px solid var(--border);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.feature-icon .feat-ico {
+  width: 26px;
+  height: 26px;
+}
+
+.feature-card:hover .feature-icon {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+:root[data-theme="crystal"] .feature-card:hover .feature-icon {
+  color: #0f1115;
 }
 
 .feature-card h3 {
@@ -716,26 +738,412 @@ section {
   font-size: 0.9rem;
 }
 
+/* Benefits */
+.benefits {
+  position: relative;
+  overflow: hidden;
+}
+
+.benefits-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.benefits-aurora::before,
+.benefits-aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.benefits-aurora::before {
+  width: 460px;
+  height: 460px;
+  background: var(--accent-glow);
+  opacity: 0.5;
+  top: -160px;
+  left: -120px;
+  animation: aurora 18s ease-in-out infinite;
+}
+
+.benefits-aurora::after {
+  width: 380px;
+  height: 380px;
+  background: var(--crystal);
+  opacity: 0.28;
+  bottom: -160px;
+  right: -100px;
+  animation: aurora 24s ease-in-out infinite reverse;
+}
+
+.benefits .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: var(--card-hover);
+  border: 1px solid var(--border);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.benefit-card {
+  position: relative;
+  background: linear-gradient(165deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.9rem 1.6rem;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+/* Corner brand glow (kept inside the card so connectors can overflow). */
+.benefit-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 60%;
+  border-top-right-radius: var(--radius-lg);
+  background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.benefit-card:hover::before {
+  opacity: 1;
+}
+
+/* Chain connector — a link drawn into the gap toward the next card. */
+.benefit-card::after {
+  content: "";
+  position: absolute;
+  top: 3.4rem;
+  right: -1.55rem;
+  width: 1.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--crystal));
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.benefit-card--accent {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow-sm);
+}
+
+.benefit-tag {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--card-hover);
+  border: 1px solid var(--border);
+}
+
+.benefit-ico {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--crystal));
+  color: #fff;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 8px 20px var(--accent-glow);
+  transition: transform var(--transition);
+}
+
+:root[data-theme="crystal"] .benefit-ico {
+  color: #0f1115;
+}
+
+.benefit-card:hover .benefit-ico {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.benefit-ico svg {
+  width: 26px;
+  height: 26px;
+}
+
+.benefit-card h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.45rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.benefit-card p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* Chain-assembly animation: cards snap into place one-by-one and links draw
+   between them, like a CARL chain being generated. JS adds `.chain-anim` when
+   the grid scrolls into view; the `.js` gate keeps cards visible without JS. */
+.js .benefits-grid .benefit-card {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.benefits-grid.chain-anim .benefit-card {
+  animation: link-snap 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.benefits-grid.chain-anim .benefit-card:nth-child(1) { animation-delay: 0.05s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(2) { animation-delay: 0.22s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(3) { animation-delay: 0.39s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(4) { animation-delay: 0.56s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(5) { animation-delay: 0.73s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(6) { animation-delay: 0.90s; }
+
+/* Connectors draw just after their card lands (skip the last in each row). */
+.benefits-grid.chain-anim .benefit-card:not(:nth-child(3n))::after {
+  animation: link-draw 0.32s ease forwards;
+}
+
+.benefits-grid.chain-anim .benefit-card:nth-child(1)::after { animation-delay: 0.34s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(2)::after { animation-delay: 0.51s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(4)::after { animation-delay: 0.85s; }
+.benefits-grid.chain-anim .benefit-card:nth-child(5)::after { animation-delay: 1.02s; }
+
+@keyframes link-snap {
+  0% { opacity: 0; transform: translateY(20px) scale(0.93); }
+  55% { opacity: 1; transform: translateY(-4px) scale(1.03); }
+  78% { transform: translateY(1px) scale(0.99); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes link-draw {
+  0% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 0.9; }
+}
+
+/* Contribute */
+.contribute {
+  padding-top: 0;
+}
+
+.contribute-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 55%),
+    linear-gradient(160deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+}
+
+.contribute-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--border) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+  opacity: 0.5;
+  -webkit-mask: radial-gradient(circle at 50% 0%, #000, transparent 70%);
+  mask: radial-gradient(circle at 50% 0%, #000, transparent 70%);
+  pointer-events: none;
+}
+
+.contribute-head {
+  position: relative;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+
+.contribute-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+
+.contribute-head h2 {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+}
+
+.contribute-head p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.contribute-ways {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.contribute-way {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  color: var(--text);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.contribute-way:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  color: var(--text);
+}
+
+.way-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--card-hover);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  margin-bottom: 1rem;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.way-ico svg {
+  width: 24px;
+  height: 24px;
+}
+
+.contribute-way:hover .way-ico {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+:root[data-theme="crystal"] .contribute-way:hover .way-ico {
+  color: #0f1115;
+}
+
+.contribute-way h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.contribute-way p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.contribute-actions {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
 /* Stack */
 .stack-diagram {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  max-width: 720px;
+  position: relative;
+  min-height: 520px;
+  max-width: 900px;
   margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius-lg) + 8px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, var(--accent-glow), transparent 22%),
+    radial-gradient(circle at 18% 22%, rgba(126, 240, 221, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 78%, rgba(244, 230, 200, 0.32), transparent 30%),
+    linear-gradient(150deg, var(--surface), var(--surface-2));
+  box-shadow: var(--shadow-md);
+}
+
+.stack-diagram::before,
+.stack-diagram::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 50%;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.stack-diagram::after {
+  inset: 24%;
+  border-style: solid;
+  opacity: 0.35;
 }
 
 .stack-care {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #fff;
-  padding: 1rem 2.5rem;
-  border-radius: var(--radius-md);
+  width: min(240px, 58vw);
+  min-height: 120px;
+  padding: 1.4rem 1.6rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  text-align: center;
   font-weight: 700;
   font-size: 1.1rem;
   box-shadow: var(--shadow-glow);
-  margin-bottom: 0.5rem;
-  z-index: 2;
 }
 
 :root[data-theme="crystal"] .stack-care {
@@ -743,31 +1151,72 @@ section {
 }
 
 .stack-connector {
-  width: 2px;
-  height: 24px;
-  background: var(--accent);
-  opacity: 0.5;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 12%, color-mix(in srgb, var(--accent) 38%, transparent) 50%, transparent 88%),
+    linear-gradient(0deg, transparent 14%, color-mix(in srgb, var(--accent) 30%, transparent) 50%, transparent 86%);
+  mask:
+    radial-gradient(circle at 50% 50%, transparent 0 82px, #000 84px 86px, transparent 88px),
+    linear-gradient(#000, #000);
+  opacity: 0.55;
 }
 
 .stack-modules {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
 
 .stack-module {
+  position: absolute;
+  width: min(245px, 34%);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 1.25rem;
-  text-align: center;
-  transition: border-color var(--transition), transform var(--transition);
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
 .stack-module:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-3px);
+}
+
+.stack-module::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+
+.stack-module--mage {
+  top: 13%;
+  left: 8%;
+}
+
+.stack-module--carl {
+  top: 13%;
+  right: 8%;
+}
+
+.stack-module--memory {
+  bottom: 13%;
+  left: 8%;
+}
+
+.stack-module--platform {
+  right: 8%;
+  bottom: 13%;
 }
 
 .stack-module h4 {
@@ -791,10 +1240,6 @@ section {
 }
 
 /* Demo */
-.demo-section {
-  background: var(--bg-alt);
-}
-
 .demo-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -879,6 +1324,191 @@ section {
 
 .demo-mascot-wrap .mascot-stage {
   width: min(280px, 80vw);
+}
+
+/* Install */
+.install-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.install-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.install-step {
+  display: flex;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.install-step:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.install-step-num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+:root[data-theme="crystal"] .install-step-num {
+  color: #0f1115;
+}
+
+.install-step-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.install-step-body h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.install-step-body p {
+  margin: 0 0 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.code-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--terminal-bg);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.9rem;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--terminal-text);
+  white-space: nowrap;
+}
+
+.code-prompt {
+  color: var(--accent);
+  user-select: none;
+  margin-right: 0.4rem;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.6rem;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.copy-btn:hover {
+  background: rgba(46, 191, 174, 0.22);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.copy-btn.copied {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.copy-ico {
+  width: 15px;
+  height: 15px;
+}
+
+.install-aside {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+
+.install-aside h4 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+}
+
+.install-reqs {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.install-reqs li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.req-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.install-oneliner {
+  margin-bottom: 1.25rem;
+}
+
+.install-oneliner-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.code-block--compact {
+  padding: 0.55rem 0.7rem;
+}
+
+.code-block--compact code {
+  font-size: 0.78rem;
 }
 
 /* CTA */
@@ -1469,6 +2099,22 @@ section {
     gap: 1.75rem;
   }
 
+  .install-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .benefit-card::after {
+    display: none;
+  }
+
+  .contribute-ways {
+    grid-template-columns: 1fr;
+  }
+
   .pillars-row .scene,
   .pillars-row .pillar-text,
   .pillars-row--reverse .scene,
@@ -1513,8 +2159,48 @@ section {
 
   .how-grid,
   .features-grid,
-  .stack-modules {
+  .benefits-grid {
     grid-template-columns: 1fr;
+  }
+
+  .stack-diagram {
+    min-height: auto;
+    padding: 1.25rem;
+  }
+
+  .stack-diagram::before,
+  .stack-diagram::after,
+  .stack-connector {
+    inset: 1rem;
+  }
+
+  .stack-care {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 0 auto 1rem;
+  }
+
+  .stack-modules {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .stack-module,
+  .stack-module--mage,
+  .stack-module--carl,
+  .stack-module--memory,
+  .stack-module--platform {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .contribute-card {
+    padding: 2rem 1.5rem;
   }
 
   .hero-stats {
@@ -1556,9 +2242,21 @@ section {
   .marquee-track,
   .hero-aurora::before,
   .hero-aurora::after,
+  .benefits-aurora::before,
+  .benefits-aurora::after,
   .speech-bubble,
   .scroll-arrow {
     animation: none !important;
   }
   .speech-bubble { transform: none; }
+
+  .js .benefits-grid .benefit-card {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+  .benefit-card::after {
+    display: none;
+  }
 }

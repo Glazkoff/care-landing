@@ -95,6 +95,13 @@ function initParticles() {
   });
 }
 
+function t(key) {
+  const lang = document.documentElement.lang === "ru" ? "ru" : "en";
+  const dict =
+    (window.CARE_I18N && window.CARE_I18N.TRANSLATIONS[lang]) || {};
+  return dict[key] || key;
+}
+
 const DEMO_LINES_RU = [
   { role: "user", text: "> Собери агента для анализа финансовых отчётов" },
   { role: "tool", text: "▶ Analyzing domain…" },
@@ -132,8 +139,6 @@ function initTerminalDemo() {
   let charIndex = 0;
   let currentLine = null;
   let timer = null;
-
-  const moods = ["idle", "think", "work", "success"];
 
   function setMascotMood(index) {
     if (!mascot) return;
@@ -201,6 +206,59 @@ function initTerminalDemo() {
   if (section) observer.observe(section);
 }
 
+function initChainReveal() {
+  const grid = document.querySelector(".benefits-grid");
+  if (!grid) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    grid.classList.add("chain-anim");
+    return;
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          grid.classList.add("chain-anim");
+          observer.unobserve(grid);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  observer.observe(grid);
+}
+
+function initCopyButtons() {
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const cmd = btn.getAttribute("data-cmd") || "";
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(cmd);
+        } else {
+          const ta = document.createElement("textarea");
+          ta.value = cmd;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+        const label = btn.querySelector(".copy-label");
+        const prev = label ? label.textContent : null;
+        btn.classList.add("copied");
+        if (label) label.textContent = t("install.copied");
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          if (label) label.textContent = prev || t("install.copy");
+        }, 1400);
+      } catch (err) {
+        console.error("Copy failed:", err);
+      }
+    });
+  });
+}
+
 function initHeroParallax() {
   const hero = document.querySelector(".hero");
   const doodleLayer = document.querySelector("[data-parallax]");
@@ -246,18 +304,20 @@ function initMascotHover() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.documentElement.classList.add("js");
   initTheme();
   window.CARE_I18N.initI18n();
   initNav();
   initScrollReveal();
   initParticles();
   initTerminalDemo();
+  initChainReveal();
+  initCopyButtons();
   initMascotHover();
   initHeroParallax();
 
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      clearTimeout(window.__careDemoTimer);
       const output = document.querySelector(".terminal-output");
       if (output) output.innerHTML = "";
     });
