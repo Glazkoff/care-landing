@@ -8,60 +8,14 @@
   --radius-lg: 22px;
   --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 40px rgba(46, 191, 174, 0.25);
+  --shadow-glow: 0 0 40px var(--accent-glow);
   --nav-h: 72px;
   --max-w: 1180px;
   --transition: 0.25s ease;
 }
 
-/* Aqua Bloom (default) */
+/* Warm Sand (default) */
 :root,
-:root[data-theme="aqua"] {
-  --bg: #f0faf8;
-  --bg-alt: #e4f5f1;
-  --surface: #ffffff;
-  --surface-2: #f7fffd;
-  --text: #13242e;
-  --text-muted: #4a6570;
-  --accent: #2ebfae;
-  --accent-2: #1a9a8c;
-  --accent-glow: rgba(46, 191, 174, 0.35);
-  --crystal: #7ef0dd;
-  --cream: #f4e6c8;
-  --border: rgba(19, 36, 46, 0.1);
-  --hero-grad: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(46, 191, 174, 0.18), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(244, 230, 200, 0.5), transparent 50%),
-    linear-gradient(180deg, #f0faf8 0%, #e8f6f3 100%);
-  --nav-bg: rgba(240, 250, 248, 0.85);
-  --terminal-bg: #13242e;
-  --terminal-text: #e6f7f4;
-  --card-hover: rgba(46, 191, 174, 0.08);
-}
-
-/* Deep Crystal */
-:root[data-theme="crystal"] {
-  --bg: #0f1115;
-  --bg-alt: #181c22;
-  --surface: #1f242c;
-  --surface-2: #252b35;
-  --text: #e6e6e6;
-  --text-muted: #a0a8b4;
-  --accent: #33d9b2;
-  --accent-2: #2ebfae;
-  --accent-glow: rgba(51, 217, 178, 0.4);
-  --crystal: #7ef0dd;
-  --cream: #c8e8e0;
-  --border: rgba(126, 240, 221, 0.12);
-  --hero-grad: radial-gradient(ellipse 70% 50% at 75% 15%, rgba(51, 217, 178, 0.15), transparent 55%),
-    radial-gradient(ellipse 40% 35% at 15% 75%, rgba(46, 191, 174, 0.08), transparent 50%),
-    linear-gradient(180deg, #0f1115 0%, #13242e 100%);
-  --nav-bg: rgba(15, 17, 21, 0.9);
-  --terminal-bg: #0a0d10;
-  --terminal-text: #c8f5ec;
-  --card-hover: rgba(51, 217, 178, 0.1);
-}
-
-/* Warm Sand */
 :root[data-theme="warm"] {
   --bg: #faf6ef;
   --bg-alt: #f4ebe0;
@@ -82,6 +36,29 @@
   --terminal-bg: #2a2520;
   --terminal-text: #f4ebe0;
   --card-hover: rgba(42, 125, 111, 0.08);
+}
+
+/* Deep Crystal — dark */
+:root[data-theme="crystal"] {
+  --bg: #0f1115;
+  --bg-alt: #181c22;
+  --surface: #1f242c;
+  --surface-2: #252b35;
+  --text: #e6e6e6;
+  --text-muted: #a0a8b4;
+  --accent: #33d9b2;
+  --accent-2: #2ebfae;
+  --accent-glow: rgba(51, 217, 178, 0.4);
+  --crystal: #7ef0dd;
+  --cream: #c8e8e0;
+  --border: rgba(126, 240, 221, 0.12);
+  --hero-grad: radial-gradient(ellipse 70% 50% at 75% 15%, rgba(51, 217, 178, 0.15), transparent 55%),
+    radial-gradient(ellipse 40% 35% at 15% 75%, rgba(46, 191, 174, 0.08), transparent 50%),
+    linear-gradient(180deg, #0f1115 0%, #13242e 100%);
+  --nav-bg: rgba(15, 17, 21, 0.9);
+  --terminal-bg: #0a0d10;
+  --terminal-text: #c8f5ec;
+  --card-hover: rgba(51, 217, 178, 0.1);
 }
 
 *,

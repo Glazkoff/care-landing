@@ -1,5 +1,6 @@
 const THEME_STORAGE_KEY = "care-landing-theme";
-const VALID_THEMES = ["aqua", "crystal", "warm"];
+const VALID_THEMES = ["warm", "crystal"];
+const DEFAULT_THEME = "warm";
 
 function getThemeFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -8,7 +9,7 @@ function getThemeFromUrl() {
 }
 
 function setTheme(theme, { persist = true, updateUrl = true } = {}) {
-  const next = VALID_THEMES.includes(theme) ? theme : "aqua";
+  const next = VALID_THEMES.includes(theme) ? theme : DEFAULT_THEME;
   document.documentElement.dataset.theme = next;
 
   document.querySelectorAll("[data-theme-btn]").forEach((btn) => {
@@ -29,7 +30,7 @@ function setTheme(theme, { persist = true, updateUrl = true } = {}) {
 function initTheme() {
   const fromUrl = getThemeFromUrl();
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  const theme = fromUrl || (VALID_THEMES.includes(stored) ? stored : "aqua");
+  const theme = fromUrl || (VALID_THEMES.includes(stored) ? stored : DEFAULT_THEME);
   setTheme(theme, { persist: !fromUrl, updateUrl: !fromUrl });
 
   document.querySelectorAll("[data-theme-btn]").forEach((btn) => {

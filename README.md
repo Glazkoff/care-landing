@@ -4,8 +4,8 @@ Static marketing landing for **CARE** (Collaborative Agent Reasoning Ecosystem) 
 
 ## Features
 
-- Three color palettes switchable live: **Aqua Bloom**, **Deep Crystal**, **Warm Sand**
-- Shareable theme URLs: `?theme=aqua`, `?theme=crystal`, `?theme=warm`
+- Two color themes switchable live: **Warm** (default) and **Dark**
+- Shareable theme URLs: `?theme=warm`, `?theme=crystal`
 - RU / EN language toggle with auto-detect
 - Living EVOC mascot in multiple emotions across the page (wave, think, work, crystal, coffee, cheer)
 - Smooth float, breathing, micro-gestures, sparkles — never jerky
@@ -74,9 +74,8 @@ scale. `build_emotes.py` maps source stems to emote names — add a row to
 
 1. Push the `landing/` folder contents to a `gh-pages` branch or configure Pages to serve from `/landing`.
 2. Share theme variants:
-   - `https://your-domain/?theme=aqua`
-   - `https://your-domain/?theme=crystal`
    - `https://your-domain/?theme=warm`
+   - `https://your-domain/?theme=crystal`
 
 ### Netlify / Vercel
 
