@@ -1027,24 +1027,21 @@ section {
 
 .team-avatar {
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--accent), var(--crystal));
-  color: #fff;
   box-shadow: 0 8px 20px var(--accent-glow);
 }
 
-:root[data-theme="crystal"] .team-avatar {
-  color: #0f1115;
-}
-
-.team-avatar svg {
-  width: 26px;
-  height: 26px;
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .team-info {
@@ -1086,16 +1083,17 @@ section {
   content: "";
   position: absolute;
   inset: 12%;
-  border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  border: 2px dashed color-mix(in srgb, var(--accent) 55%, transparent);
   border-radius: 50%;
-  opacity: 0.65;
+  opacity: 0.85;
   pointer-events: none;
 }
 
 .stack-diagram::after {
   inset: 24%;
   border-style: solid;
-  opacity: 0.35;
+  border-width: 2px;
+  opacity: 0.55;
 }
 
 .stack-care {
@@ -1128,12 +1126,12 @@ section {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, transparent 12%, color-mix(in srgb, var(--accent) 38%, transparent) 50%, transparent 88%),
-    linear-gradient(0deg, transparent 14%, color-mix(in srgb, var(--accent) 30%, transparent) 50%, transparent 86%);
-  mask:
-    radial-gradient(circle at 50% 50%, transparent 0 82px, #000 84px 86px, transparent 88px),
-    linear-gradient(#000, #000);
-  opacity: 0.55;
+    linear-gradient(45deg, transparent 27%, color-mix(in srgb, var(--accent) 55%, transparent) 43%, color-mix(in srgb, var(--accent) 55%, transparent) 57%, transparent 73%),
+    linear-gradient(135deg, transparent 27%, color-mix(in srgb, var(--accent) 55%, transparent) 43%, color-mix(in srgb, var(--accent) 55%, transparent) 57%, transparent 73%),
+    linear-gradient(90deg, transparent 16%, color-mix(in srgb, var(--accent) 35%, transparent) 49%, color-mix(in srgb, var(--accent) 35%, transparent) 51%, transparent 84%),
+    linear-gradient(0deg, transparent 18%, color-mix(in srgb, var(--accent) 35%, transparent) 49%, color-mix(in srgb, var(--accent) 35%, transparent) 51%, transparent 82%);
+  mask: radial-gradient(circle at 50% 50%, transparent 0 98px, #000 110px);
+  opacity: 0.75;
 }
 
 .stack-modules {
