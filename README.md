@@ -1,6 +1,6 @@
-# CARE Landing Page
+# MAESTRO CARE Landing Page
 
-Static marketing landing for **CARE** (Collaborative Agent Reasoning Ecosystem) in the AIRI aesthetic with mascot **EVOC**.
+Static marketing landing for **MAESTRO CARE** — an ecosystem for generating and evolving reasoning chains, in the AIRI aesthetic with mascot **EVOC**.
 
 ## Features
 
