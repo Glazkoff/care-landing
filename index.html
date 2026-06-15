@@ -1,541 +1,1196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" data-theme="warm">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAESTRO CARE — собери и запусти AI-агента из одного запроса</title>
-  <meta name="description" content="Опиши задачу словами — MAESTRO CARE соберёт AI-агента, запустит его и сам улучшит результат. Открытый инструмент с интерфейсом в терминале (TUI и CLI).">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="MAESTRO CARE — собери и запусти AI-агента из одного запроса">
-  <meta property="og:description" content="Опиши задачу словами — MAESTRO CARE соберёт AI-агента, запустит его и сам улучшит результат. Открытый инструмент с интерфейсом в терминале (TUI и CLI).">
-  <meta property="og:image" content="assets/mascot.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="assets/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <nav class="nav" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="#hero" class="brand">
-        <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-          <circle cx="16" cy="16" r="10" fill="var(--accent)" opacity="0.2"/>
-          <polygon points="16,8 22,16 16,24 10,16" fill="var(--accent)"/>
-        </svg>
-        MAESTRO CARE
-      </a>
-
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#pillars" data-i18n="nav.how">Как работает</a></li>
-        <li><a href="#benefits" data-i18n="nav.benefits">Преимущества</a></li>
-        <li><a href="#stack" data-i18n="nav.stack">Стек</a></li>
-        <li><a href="#demo" data-i18n="nav.demo">Демо</a></li>
-        <li><a href="#install" data-i18n="nav.install">Установка</a></li>
-        <li class="nav-links-cta"><a href="https://github.com/Glazkoff/care" data-i18n="nav.github" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
-
-      <div class="nav-controls">
-        <div class="pill-group" role="group" aria-label="Language">
-          <button class="pill-btn active" data-lang-btn="ru" aria-pressed="true" data-i18n="lang.ru">RU</button>
-          <button class="pill-btn" data-lang-btn="en" aria-pressed="false" data-i18n="lang.en">EN</button>
-        </div>
-
-        <div class="pill-group" data-theme-switch role="group" aria-label="Theme">
-          <button class="pill-btn active" data-theme-btn="warm" aria-pressed="true" data-i18n="theme.warm">Тёплая</button>
-          <button class="pill-btn" data-theme-btn="crystal" aria-pressed="false" data-i18n="theme.dark">Тёмная</button>
-        </div>
-
-        <a href="https://github.com/Glazkoff/care" class="btn btn-primary nav-github" data-i18n="nav.github" target="_blank" rel="noopener">GitHub</a>
-
-        <button class="nav-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav-links">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAESTRO CARE — собери и запусти AI-агента из одного запроса</title>
+    <meta
+      name="description"
+      content="Опиши задачу словами — MAESTRO CARE соберёт AI-агента, запустит его и сам улучшит результат. Открытый инструмент с интерфейсом в терминале (TUI и CLI)."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="MAESTRO CARE — собери и запусти AI-агента из одного запроса"
+    />
+    <meta
+      property="og:description"
+      content="Опиши задачу словами — MAESTRO CARE соберёт AI-агента, запустит его и сам улучшит результат. Открытый инструмент с интерфейсом в терминале (TUI и CLI)."
+    />
+    <meta property="og:image" content="assets/mascot.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="#hero" class="brand">
+          <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <circle
+              cx="16"
+              cy="16"
+              r="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              opacity="0.3"
+            />
+            <circle cx="16" cy="16" r="10" fill="var(--accent)" opacity="0.2" />
+            <polygon points="16,8 22,16 16,24 10,16" fill="var(--accent)" />
           </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
+          MAESTRO CARE
+        </a>
 
-  <header class="hero" id="hero">
-    <div class="hero-aurora" aria-hidden="true"></div>
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="badge">
-          <span class="badge-dot"></span>
-          <span data-i18n="hero.badge">Открытый инструмент для AI-агентов</span>
-        </div>
-        <h1 data-i18n="hero.title">Опиши задачу — MAESTRO CARE сам соберёт, запустит и улучшит агента</h1>
-        <p class="hero-lead" data-i18n="hero.subtitle">
-          Опиши цель словами — MAESTRO CARE соберёт агента, запустит его и будет улучшать результат. Без ручной настройки пайплайнов, прямо в терминале.
-        </p>
-        <div class="hero-actions">
-          <a href="#install" class="btn btn-primary btn-lg" data-i18n="hero.cta.primary">Начать</a>
-          <a href="#demo" class="btn btn-secondary btn-lg" data-i18n="hero.cta.secondary">Смотреть демо</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-value">≈1 мин</span>
-            <span class="stat-label" data-i18n="hero.stat1.label">до первого агента</span>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#pillars" data-i18n="nav.how">Как работает</a></li>
+          <li><a href="#benefits" data-i18n="nav.benefits">Преимущества</a></li>
+          <li><a href="#stack" data-i18n="nav.stack">Стек</a></li>
+          <li><a href="#demo" data-i18n="nav.demo">Демо</a></li>
+          <li><a href="#install" data-i18n="nav.install">Установка</a></li>
+          <li class="nav-links-cta">
+            <a
+              href="https://github.com/Glazkoff/care"
+              data-i18n="nav.github"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+
+        <div class="nav-controls">
+          <div class="pill-group" role="group" aria-label="Language">
+            <button
+              class="pill-btn active"
+              data-lang-btn="ru"
+              aria-pressed="true"
+              data-i18n="lang.ru"
+            >
+              RU
+            </button>
+            <button
+              class="pill-btn"
+              data-lang-btn="en"
+              aria-pressed="false"
+              data-i18n="lang.en"
+            >
+              EN
+            </button>
           </div>
-          <div class="stat">
-            <span class="stat-value">TUI + CLI</span>
-            <span class="stat-label" data-i18n="hero.stat2.label">один инструмент</span>
+
+          <div
+            class="pill-group"
+            data-theme-switch
+            role="group"
+            aria-label="Theme"
+          >
+            <button
+              class="pill-btn active"
+              data-theme-btn="warm"
+              aria-pressed="true"
+              data-i18n="theme.warm"
+            >
+              Тёплая
+            </button>
+            <button
+              class="pill-btn"
+              data-theme-btn="crystal"
+              aria-pressed="false"
+              data-i18n="theme.dark"
+            >
+              Тёмная
+            </button>
           </div>
-          <div class="stat">
-            <span class="stat-value">100%</span>
-            <span class="stat-label" data-i18n="hero.stat3.label">открытый код</span>
-          </div>
+
+          <a
+            href="https://github.com/Glazkoff/care"
+            class="btn btn-primary nav-github"
+            data-i18n="nav.github"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Меню"
+            aria-expanded="false"
+            aria-controls="nav-links"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16" />
+              <path d="M4 12h16" />
+              <path d="M4 17h16" />
+            </svg>
+          </button>
         </div>
       </div>
+    </nav>
 
-      <div class="hero-visual reveal reveal-delay-1">
-        <div class="hero-doodles" data-parallax aria-hidden="true">
-          <span class="doodle doodle-diamond" style="--top:6%;--left:2%;--size:30px;--delay:0s;--depth:24"></span>
-          <span class="doodle doodle-ring" style="--top:14%;--left:84%;--size:42px;--delay:1.1s;--depth:-30"></span>
-          <span class="doodle doodle-diamond" style="--top:74%;--left:88%;--size:20px;--delay:1.8s;--depth:18"></span>
-          <span class="doodle doodle-plus" style="--top:80%;--left:6%;--size:16px;--delay:0.6s;--depth:-20"></span>
-          <span class="doodle doodle-plus" style="--top:30%;--left:-4%;--size:12px;--delay:2.2s;--depth:14"></span>
-          <span class="doodle doodle-ring" style="--top:60%;--left:-6%;--size:24px;--delay:1.4s;--depth:22"></span>
-        </div>
-        <div class="mascot-glow" aria-hidden="true"></div>
-        <div class="speech-bubble reveal reveal-delay-2" data-i18n="hero.bubble">Привет! Я EVOC — покажу, как это работает 👋</div>
-        <div class="mascot-stage mascot-stage--hero" data-mood="idle" data-parallax-mascot>
-          <div class="mascot-float">
-            <div class="mascot-body">
-              <img class="mascot-img mascot-img--gif" src="assets/hero-mascot.gif" width="227" height="256" alt="Маскот EVOC" decoding="async">
+    <header class="hero" id="hero">
+      <div class="hero-aurora" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span data-i18n="hero.badge"
+              >Открытый инструмент для AI-агентов</span
+            >
+          </div>
+          <h1 data-i18n="hero.title">
+            Опиши задачу — MAESTRO CARE сам соберёт, запустит и улучшит агента
+          </h1>
+          <p class="hero-lead" data-i18n="hero.subtitle">
+            Опиши цель словами — MAESTRO CARE соберёт агента, запустит его и
+            будет улучшать результат. Без ручной настройки пайплайнов, прямо в
+            терминале.
+          </p>
+          <div class="hero-actions">
+            <a
+              href="#install"
+              class="btn btn-primary btn-lg"
+              data-i18n="hero.cta.primary"
+              >Начать</a
+            >
+            <a
+              href="#demo"
+              class="btn btn-secondary btn-lg"
+              data-i18n="hero.cta.secondary"
+              >Смотреть демо</a
+            >
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-value">≈1 мин</span>
+              <span class="stat-label" data-i18n="hero.stat1.label"
+                >до первого агента</span
+              >
+            </div>
+            <div class="stat">
+              <span class="stat-value">TUI + CLI</span>
+              <span class="stat-label" data-i18n="hero.stat2.label"
+                >один инструмент</span
+              >
+            </div>
+            <div class="stat">
+              <span class="stat-value">100%</span>
+              <span class="stat-label" data-i18n="hero.stat3.label"
+                >открытый код</span
+              >
             </div>
           </div>
-          <span class="mascot-shadow" aria-hidden="true"></span>
-          <div class="mascot-particles" aria-hidden="true"></div>
         </div>
-        <svg class="crystal-accent" viewBox="0 0 48 48" aria-hidden="true">
-          <polygon points="24,4 40,24 24,44 8,24" fill="var(--crystal)" opacity="0.8"/>
-          <polygon points="24,12 32,24 24,36 16,24" fill="var(--accent)"/>
-        </svg>
-      </div>
-    </div>
 
-    <a href="#marquee" class="scroll-hint" aria-label="Scroll">
-      <span data-i18n="hero.scroll">Листай вниз</span>
-      <span class="scroll-arrow" aria-hidden="true"></span>
-    </a>
-  </header>
-
-  <div class="marquee" id="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item"><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i><b data-i18n="marquee.5">Повтори</b><i class="marquee-sep">◆</i></span>
-      <span class="marquee-item"><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i><b data-i18n="marquee.5">Повтори</b><i class="marquee-sep">◆</i></span>
-      <span class="marquee-item"><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i><b data-i18n="marquee.5">Повтори</b><i class="marquee-sep">◆</i></span>
-      <span class="marquee-item"><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i><b data-i18n="marquee.5">Повтори</b><i class="marquee-sep">◆</i></span>
-    </div>
-  </div>
-
-  <section id="pillars" class="pillars">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 data-i18n="pillars.title">Один поток — от идеи до готового агента</h2>
-        <p data-i18n="pillars.subtitle">Генерация, запуск и эволюция — три шага одного потока</p>
-      </div>
-
-      <div class="pillars-row reveal">
-        <div class="scene scene--gen">
-          <div class="mascot-stage mascot-stage--scene" data-mood="idle">
-            <div class="mascot-float"><div class="mascot-body">
-              <img class="mascot-img" src="assets/evoc-generate.webp" width="560" height="401" alt="EVOC строит цепочку агента из запроса" decoding="async">
-            </div></div>
-            <span class="mascot-shadow" aria-hidden="true"></span>
-            <div class="mascot-particles" aria-hidden="true"></div>
+        <div class="hero-visual reveal reveal-delay-1">
+          <div class="hero-doodles" data-parallax aria-hidden="true">
+            <span
+              class="doodle doodle-diamond"
+              style="
+                --top: 6%;
+                --left: 2%;
+                --size: 30px;
+                --delay: 0s;
+                --depth: 24;
+              "
+            ></span>
+            <span
+              class="doodle doodle-ring"
+              style="
+                --top: 14%;
+                --left: 84%;
+                --size: 42px;
+                --delay: 1.1s;
+                --depth: -30;
+              "
+            ></span>
+            <span
+              class="doodle doodle-diamond"
+              style="
+                --top: 74%;
+                --left: 88%;
+                --size: 20px;
+                --delay: 1.8s;
+                --depth: 18;
+              "
+            ></span>
+            <span
+              class="doodle doodle-plus"
+              style="
+                --top: 80%;
+                --left: 6%;
+                --size: 16px;
+                --delay: 0.6s;
+                --depth: -20;
+              "
+            ></span>
+            <span
+              class="doodle doodle-plus"
+              style="
+                --top: 30%;
+                --left: -4%;
+                --size: 12px;
+                --delay: 2.2s;
+                --depth: 14;
+              "
+            ></span>
+            <span
+              class="doodle doodle-ring"
+              style="
+                --top: 60%;
+                --left: -6%;
+                --size: 24px;
+                --delay: 1.4s;
+                --depth: 22;
+              "
+            ></span>
           </div>
-        </div>
-        <div class="pillar-text">
-          <span class="pillar-tag" data-i18n="p1.tag">Шаг 1 · Генерация</span>
-          <h3 data-i18n="p1.title">MAESTRO CARE собирает агента из твоих слов</h3>
-          <p data-i18n="p1.desc">Опиши цель — MAESTRO CARE разберёт задачу, спланирует шаги и построит готовую цепочку агента.</p>
-          <a href="#stack" class="pillar-link" data-i18n="pillar.learn">Подробнее в стеке</a>
-        </div>
-      </div>
-
-      <div class="pillars-row pillars-row--reverse reveal">
-        <div class="scene scene--run">
-          <div class="chip chip--tl"><span class="dot"></span><span data-i18n="p2.chip1">Песочница</span></div>
-          <div class="chip chip--tr"><span class="dot"></span><span data-i18n="p2.chip2">Поток токенов</span></div>
-          <div class="chip chip--br"><span class="dot"></span><span data-i18n="p2.chip3">Инструменты и навыки</span></div>
-          <div class="mascot-stage mascot-stage--scene" data-mood="work">
-            <div class="mascot-float"><div class="mascot-body">
-              <img class="mascot-img" src="assets/evoc-start.webp" width="560" height="356" alt="EVOC запускает цепочку инструментов" decoding="async">
-            </div></div>
-            <span class="mascot-shadow" aria-hidden="true"></span>
-            <div class="mascot-particles" aria-hidden="true"></div>
+          <div class="mascot-glow" aria-hidden="true"></div>
+          <div
+            class="speech-bubble reveal reveal-delay-2"
+            data-i18n="hero.bubble"
+          >
+            Привет! Я EVOC — покажу, как это работает 👋
           </div>
-        </div>
-        <div class="pillar-text">
-          <span class="pillar-tag" data-i18n="p2.tag">Шаг 2 · Запуск</span>
-          <h3 data-i18n="p2.title">Агент работает у тебя на глазах</h3>
-          <p data-i18n="p2.desc">MAESTRO CARE запускает шаги в изолированной песочнице и показывает прогресс в реальном времени — виден каждый шаг агента.</p>
-          <a href="#demo" class="pillar-link" data-i18n="pillar.demo">Смотреть демо</a>
-        </div>
-      </div>
-
-      <div class="pillars-row reveal">
-        <div class="scene scene--evo">
-          <div class="chip chip--tl"><span class="dot"></span><span data-i18n="p3.chip1">Генетический алгоритм</span></div>
-          <div class="chip chip--tr"><span class="dot"></span><span data-i18n="p3.chip2">Несколько метрик</span></div>
-          <div class="chip chip--br"><span class="dot"></span><span data-i18n="p3.chip3">Сильнейший вариант</span></div>
-          <div class="mascot-stage mascot-stage--scene" data-mood="success">
-            <div class="mascot-float"><div class="mascot-body">
-              <img class="mascot-img mascot-img--gif" src="assets/evo1-3.gif" width="256" height="256" alt="EVOC эволюционирует: три поколения становятся сильнее" decoding="async">
-            </div></div>
-            <span class="mascot-shadow" aria-hidden="true"></span>
-            <div class="mascot-particles" aria-hidden="true"></div>
-          </div>
-        </div>
-        <div class="pillar-text">
-          <span class="pillar-tag" data-i18n="p3.tag">Шаг 3 · Эволюция</span>
-          <h3 data-i18n="p3.title">Агент становится лучше сам</h3>
-          <p data-i18n="p3.desc">MAESTRO CARE перебирает варианты цепочки по нескольким метрикам и продвигает сильнейший в стабильную версию.</p>
-          <a href="#stack" class="pillar-link" data-i18n="pillar.learn">Подробнее в стеке</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="benefits" class="benefits">
-    <div class="benefits-aurora" aria-hidden="true"></div>
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-eyebrow" data-i18n="benefits.eyebrow">Почему именно MAESTRO CARE</span>
-        <h2 data-i18n="benefits.title">Ты описываешь — MAESTRO CARE делает остальное</h2>
-        <p data-i18n="benefits.subtitle">Конкретная польза на каждом этапе работы с агентом</p>
-      </div>
-      <div class="benefits-grid">
-        <article class="benefit-card">
-          <span class="benefit-tag" data-i18n="benefits.b1.tag">Один запрос</span>
-          <span class="benefit-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10.5H13z"/></svg>
-          </span>
-          <h3 data-i18n="benefits.b1.title">Агент за минуту</h3>
-          <p data-i18n="benefits.b1.desc">Опиши цель словами — MAESTRO CARE соберёт и запустит агента. Обычно это занимает около минуты.</p>
-        </article>
-
-        <article class="benefit-card">
-          <span class="benefit-tag" data-i18n="benefits.b2.tag">История версий</span>
-          <span class="benefit-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v4h4"/><path d="M12 8v4l3 2"/></svg>
-          </span>
-          <h3 data-i18n="benefits.b2.title">Ничего не теряется</h3>
-          <p data-i18n="benefits.b2.desc">MAESTRO CARE хранит каждую цепочку со всеми её версиями — повтори, сравни или откатись в один клик.</p>
-        </article>
-
-        <article class="benefit-card">
-          <span class="benefit-tag" data-i18n="benefits.b3.tag">Прозрачно</span>
-          <span class="benefit-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-          </span>
-          <h3 data-i18n="benefits.b3.title">Видно каждый шаг</h3>
-          <p data-i18n="benefits.b3.desc">Видно, что и зачем делает агент: каждый шаг и результат в реальном времени, в изолированной песочнице.</p>
-        </article>
-
-        <article class="benefit-card benefit-card--accent">
-          <span class="benefit-tag" data-i18n="benefits.b4.tag">Авто-улучшение</span>
-          <span class="benefit-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7.5"/><path d="M17 7.5h4v4"/></svg>
-          </span>
-          <h3 data-i18n="benefits.b4.title">Улучшается без ручной настройки</h3>
-          <p data-i18n="benefits.b4.desc">MAESTRO CARE сам перебирает варианты агента и оставляет тот, что работает лучше.</p>
-        </article>
-
-        <article class="benefit-card">
-          <span class="benefit-tag" data-i18n="benefits.b5.tag">TUI + CLI</span>
-          <span class="benefit-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3"/><path d="M13 15h4"/></svg>
-          </span>
-          <h3 data-i18n="benefits.b5.title">Из терминала — в продакшен</h3>
-          <p data-i18n="benefits.b5.desc">Один и тот же MAESTRO CARE в интерактивном режиме и в CI — автоматизируй агентов в пайплайнах без переписывания.</p>
-        </article>
-
-        <article class="benefit-card">
-          <span class="benefit-tag" data-i18n="benefits.b6.tag">Открытый код</span>
-          <span class="benefit-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>
-          </span>
-          <h3 data-i18n="benefits.b6.title">Твой стек, твои правила</h3>
-          <p data-i18n="benefits.b6.desc">Свои инструменты и навыки, подключение внешних сервисов и ребрендинг — без привязки к вендору.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="stack">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 data-i18n="stack.title">Что под капотом</h2>
-        <p data-i18n="stack.subtitle">MAESTRO CARE — экосистема для генерации и эволюции цепочек</p>
-      </div>
-      <div class="stack-diagram reveal">
-        <div class="stack-care" data-i18n="stack.care.label">MAESTRO CARE TUI / CLI</div>
-        <div class="stack-connector" aria-hidden="true"></div>
-        <div class="stack-modules">
-          <div class="stack-module stack-module--mage">
-            <h3 data-i18n="stack.mage.name">Генерация</h3>
-            <div class="role" data-i18n="stack.mage.role">Сборка цепочки</div>
-            <p data-i18n="stack.mage.desc">Превращает твой запрос в готовую цепочку агента.</p>
-          </div>
-          <div class="stack-module stack-module--carl">
-            <h3 data-i18n="stack.carl.name">CARL</h3>
-            <div class="role" data-i18n="stack.carl.role">Формат цепочек</div>
-            <p data-i18n="stack.carl.desc">Документация по формату цепочек рассуждений.</p>
-          </div>
-          <div class="stack-module stack-module--memory">
-            <h3 data-i18n="stack.memory.name">Память</h3>
-            <div class="role" data-i18n="stack.memory.role">Хранение версий</div>
-            <p data-i18n="stack.memory.desc">Хранит агентов, цепочки и все их версии.</p>
-          </div>
-          <div class="stack-module stack-module--platform">
-            <h3 data-i18n="stack.platform.name">Эволюция</h3>
-            <div class="role" data-i18n="stack.platform.role">Отбор лучших</div>
-            <p data-i18n="stack.platform.desc">Улучшает цепочки и продвигает лучшие варианты.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="demo" class="demo-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 data-i18n="demo.title">Как выглядит работа в MAESTRO CARE</h2>
-        <p data-i18n="demo.subtitle">Чат показывает каждый шаг: генерацию, запуск и сохранение агента</p>
-      </div>
-      <div class="demo-grid">
-        <div class="terminal reveal">
-          <div class="terminal-bar">
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-            <span class="terminal-dot"></span>
-            <span class="terminal-title">care — chat</span>
-            <span class="terminal-mode" data-i18n="demo.mode">Production</span>
-          </div>
-          <div class="terminal-output" aria-live="polite" aria-label="Terminal demo output">
-            <div class="terminal-line terminal-line--user">&gt; Собери агента для анализа финансовых отчётов</div>
-          </div>
-          <p class="terminal-note" data-i18n="demo.note">Анимация интерфейса</p>
-        </div>
-        <div class="demo-mascot-wrap reveal reveal-delay-1">
-          <div class="mascot-stage mascot-stage--calm" data-mood="idle">
+          <div
+            class="mascot-stage mascot-stage--hero"
+            data-mood="idle"
+            data-parallax-mascot
+          >
             <div class="mascot-float">
               <div class="mascot-body">
-                <img class="mascot-img mascot-img--gif" src="assets/work.gif" width="256" height="238" alt="EVOC работает за ноутбуком в TUI" decoding="async">
+                <img
+                  class="mascot-img mascot-img--gif"
+                  src="assets/hero-mascot.gif"
+                  width="227"
+                  height="256"
+                  alt="Маскот EVOC"
+                  decoding="async"
+                />
               </div>
             </div>
             <span class="mascot-shadow" aria-hidden="true"></span>
             <div class="mascot-particles" aria-hidden="true"></div>
           </div>
+          <svg class="crystal-accent" viewBox="0 0 48 48" aria-hidden="true">
+            <polygon
+              points="24,4 40,24 24,44 8,24"
+              fill="var(--crystal)"
+              opacity="0.8"
+            />
+            <polygon points="24,12 32,24 24,36 16,24" fill="var(--accent)" />
+          </svg>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="install" class="install">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 data-i18n="install.title">Установка за минуту</h2>
-        <p data-i18n="install.subtitle">Три команды — и MAESTRO CARE запущен. Без сборки.</p>
+      <a href="#marquee" class="scroll-hint" aria-label="Scroll">
+        <span data-i18n="hero.scroll">Листай вниз</span>
+        <span class="scroll-arrow" aria-hidden="true"></span>
+      </a>
+    </header>
+
+    <div class="marquee" id="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item"
+          ><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.5">Повтори</b
+          ><i class="marquee-sep">◆</i></span
+        >
+        <span class="marquee-item"
+          ><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.5">Повтори</b
+          ><i class="marquee-sep">◆</i></span
+        >
+        <span class="marquee-item"
+          ><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.5">Повтори</b
+          ><i class="marquee-sep">◆</i></span
+        >
+        <span class="marquee-item"
+          ><b data-i18n="marquee.6">Опиши</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.1">Собери</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.2">Запусти</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.3">Эволюционируй</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.4">Сохрани</b><i class="marquee-sep">◆</i
+          ><b data-i18n="marquee.5">Повтори</b
+          ><i class="marquee-sep">◆</i></span
+        >
       </div>
+    </div>
 
-      <div class="install-grid reveal">
-        <ol class="install-steps">
-          <li class="install-step">
-            <span class="install-step-num">1</span>
-            <div class="install-step-body">
-              <h3 data-i18n="install.s1.title">Установи зависимости</h3>
-              <p data-i18n="install.s1.desc">uv создаст окружение и поставит весь стек MAESTRO CARE.</p>
-              <div class="code-block">
-                <code><span class="code-prompt">$</span> <span class="code-text">uv sync</span></code>
-                <button class="copy-btn" type="button" data-cmd="uv sync" data-i18n-title="install.copy" title="Скопировать">
-                  <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="9" y="9" width="11" height="11" rx="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    <section id="pillars" class="pillars">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="pillars.title">
+            Один поток — от идеи до готового агента
+          </h2>
+          <p data-i18n="pillars.subtitle">
+            Генерация, запуск и эволюция — три шага одного потока
+          </p>
+        </div>
+
+        <div class="pillars-row reveal">
+          <div class="scene scene--gen">
+            <div class="mascot-stage mascot-stage--scene" data-mood="idle">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img"
+                    src="assets/evoc-generate.webp"
+                    width="560"
+                    height="401"
+                    alt="EVOC строит цепочку агента из запроса"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="pillar-text">
+            <span class="pillar-tag" data-i18n="p1.tag">Шаг 1 · Генерация</span>
+            <h3 data-i18n="p1.title">
+              MAESTRO CARE собирает агента из твоих слов
+            </h3>
+            <p data-i18n="p1.desc">
+              Опиши цель — MAESTRO CARE разберёт задачу, спланирует шаги и
+              построит готовую цепочку агента.
+            </p>
+            <a href="#stack" class="pillar-link" data-i18n="pillar.learn"
+              >Подробнее в стеке</a
+            >
+          </div>
+        </div>
+
+        <div class="pillars-row pillars-row--reverse reveal">
+          <div class="scene scene--run">
+            <div class="chip chip--tl">
+              <span class="dot"></span
+              ><span data-i18n="p2.chip1">Песочница</span>
+            </div>
+            <div class="chip chip--tr">
+              <span class="dot"></span
+              ><span data-i18n="p2.chip2">Поток токенов</span>
+            </div>
+            <div class="chip chip--br">
+              <span class="dot"></span
+              ><span data-i18n="p2.chip3">Инструменты и навыки</span>
+            </div>
+            <div class="mascot-stage mascot-stage--scene" data-mood="work">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img"
+                    src="assets/evoc-start.webp"
+                    width="560"
+                    height="356"
+                    alt="EVOC запускает цепочку инструментов"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="pillar-text">
+            <span class="pillar-tag" data-i18n="p2.tag">Шаг 2 · Запуск</span>
+            <h3 data-i18n="p2.title">Агент работает у тебя на глазах</h3>
+            <p data-i18n="p2.desc">
+              MAESTRO CARE запускает шаги в изолированной песочнице и показывает
+              прогресс в реальном времени — виден каждый шаг агента.
+            </p>
+            <a href="#demo" class="pillar-link" data-i18n="pillar.demo"
+              >Смотреть демо</a
+            >
+          </div>
+        </div>
+
+        <div class="pillars-row reveal">
+          <div class="scene scene--evo">
+            <div class="chip chip--tl">
+              <span class="dot"></span
+              ><span data-i18n="p3.chip1">Генетический алгоритм</span>
+            </div>
+            <div class="chip chip--tr">
+              <span class="dot"></span
+              ><span data-i18n="p3.chip2">Несколько метрик</span>
+            </div>
+            <div class="chip chip--br">
+              <span class="dot"></span
+              ><span data-i18n="p3.chip3">Сильнейший вариант</span>
+            </div>
+            <div class="mascot-stage mascot-stage--scene" data-mood="success">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img mascot-img--gif"
+                    src="assets/evo1-3.gif"
+                    width="256"
+                    height="256"
+                    alt="EVOC эволюционирует: три поколения становятся сильнее"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="pillar-text">
+            <span class="pillar-tag" data-i18n="p3.tag">Шаг 3 · Эволюция</span>
+            <h3 data-i18n="p3.title">Агент становится лучше сам</h3>
+            <p data-i18n="p3.desc">
+              MAESTRO CARE перебирает варианты цепочки по нескольким метрикам и
+              продвигает сильнейший в стабильную версию.
+            </p>
+            <a href="#stack" class="pillar-link" data-i18n="pillar.learn"
+              >Подробнее в стеке</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+      <div class="benefits-aurora" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow" data-i18n="benefits.eyebrow"
+            >Почему именно MAESTRO CARE</span
+          >
+          <h2 data-i18n="benefits.title">
+            Ты описываешь — MAESTRO CARE делает остальное
+          </h2>
+          <p data-i18n="benefits.subtitle">
+            Конкретная польза на каждом этапе работы с агентом
+          </p>
+        </div>
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <span class="benefit-tag" data-i18n="benefits.b1.tag"
+              >Один запрос</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10.5H13z" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b1.title">Агент за минуту</h3>
+            <p data-i18n="benefits.b1.desc">
+              Опиши цель словами — MAESTRO CARE соберёт и запустит агента.
+              Обычно это занимает около минуты.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span class="benefit-tag" data-i18n="benefits.b2.tag"
+              >История версий</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 12a9 9 0 1 0 2.6-6.4" />
+                <path d="M3 4v4h4" />
+                <path d="M12 8v4l3 2" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b2.title">Ничего не теряется</h3>
+            <p data-i18n="benefits.b2.desc">
+              MAESTRO CARE хранит каждую цепочку со всеми её версиями — повтори,
+              сравни или откатись в один клик.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span class="benefit-tag" data-i18n="benefits.b3.tag"
+              >Прозрачно</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b3.title">Видно каждый шаг</h3>
+            <p data-i18n="benefits.b3.desc">
+              Видно, что и зачем делает агент: каждый шаг и результат в реальном
+              времени, в изолированной песочнице.
+            </p>
+          </article>
+
+          <article class="benefit-card benefit-card--accent">
+            <span class="benefit-tag" data-i18n="benefits.b4.tag"
+              >Авто-улучшение</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 17l6-6 4 4 7-7.5" />
+                <path d="M17 7.5h4v4" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b4.title">
+              Улучшается без ручной настройки
+            </h3>
+            <p data-i18n="benefits.b4.desc">
+              MAESTRO CARE сам перебирает варианты агента и оставляет тот, что
+              работает лучше.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span class="benefit-tag" data-i18n="benefits.b5.tag"
+              >TUI + CLI</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M7 9l3 3-3 3" />
+                <path d="M13 15h4" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b5.title">Из терминала — в продакшен</h3>
+            <p data-i18n="benefits.b5.desc">
+              Один и тот же MAESTRO CARE в интерактивном режиме и в CI —
+              автоматизируй агентов в пайплайнах без переписывания.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span class="benefit-tag" data-i18n="benefits.b6.tag"
+              >Открытый код</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3l9 5-9 5-9-5z" />
+                <path d="M3 13l9 5 9-5" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b6.title">Твой стек, твои правила</h3>
+            <p data-i18n="benefits.b6.desc">
+              Свои инструменты и навыки, подключение внешних сервисов и
+              ребрендинг — без привязки к вендору.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="stack.title">Что под капотом</h2>
+          <p data-i18n="stack.subtitle">
+            MAESTRO CARE — экосистема для генерации и эволюции цепочек
+          </p>
+        </div>
+        <div class="stack-diagram reveal">
+          <div class="stack-care" data-i18n="stack.care.label">
+            MAESTRO CARE TUI / CLI
+          </div>
+          <div class="stack-connector" aria-hidden="true"></div>
+          <div class="stack-modules">
+            <div class="stack-module stack-module--mage">
+              <h3 data-i18n="stack.mage.name">Генерация</h3>
+              <div class="role" data-i18n="stack.mage.role">Сборка цепочки</div>
+              <p data-i18n="stack.mage.desc">
+                Превращает твой запрос в готовую цепочку агента.
+              </p>
+            </div>
+            <div class="stack-module stack-module--carl">
+              <h3 data-i18n="stack.carl.name">CARL</h3>
+              <div class="role" data-i18n="stack.carl.role">Формат цепочек</div>
+              <p data-i18n="stack.carl.desc">
+                Документация по формату цепочек рассуждений.
+              </p>
+            </div>
+            <div class="stack-module stack-module--memory">
+              <h3 data-i18n="stack.memory.name">Память</h3>
+              <div class="role" data-i18n="stack.memory.role">
+                Хранение версий
+              </div>
+              <p data-i18n="stack.memory.desc">
+                Хранит агентов, цепочки и все их версии.
+              </p>
+            </div>
+            <div class="stack-module stack-module--platform">
+              <h3 data-i18n="stack.platform.name">Эволюция</h3>
+              <div class="role" data-i18n="stack.platform.role">
+                Отбор лучших
+              </div>
+              <p data-i18n="stack.platform.desc">
+                Улучшает цепочки и продвигает лучшие варианты.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="demo.title">Как выглядит работа в MAESTRO CARE</h2>
+          <p data-i18n="demo.subtitle">
+            Чат показывает каждый шаг: генерацию, запуск и сохранение агента
+          </p>
+        </div>
+        <div class="demo-grid">
+          <div class="terminal reveal">
+            <div class="terminal-bar">
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-title">care — chat</span>
+              <span class="terminal-mode" data-i18n="demo.mode"
+                >Production</span
+              >
+            </div>
+            <div
+              class="terminal-output"
+              aria-live="polite"
+              aria-label="Terminal demo output"
+            >
+              <div class="terminal-line terminal-line--user">
+                &gt; Собери агента для анализа финансовых отчётов
+              </div>
+            </div>
+            <p class="terminal-note" data-i18n="demo.note">
+              Анимация интерфейса
+            </p>
+          </div>
+          <div class="demo-mascot-wrap reveal reveal-delay-1">
+            <div class="mascot-stage mascot-stage--calm" data-mood="idle">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img mascot-img--gif"
+                    src="assets/work.gif"
+                    width="256"
+                    height="238"
+                    alt="EVOC работает за ноутбуком в TUI"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="install.title">Установка за минуту</h2>
+          <p data-i18n="install.subtitle">
+            Три команды — и MAESTRO CARE запущен. Без сборки.
+          </p>
+        </div>
+
+        <div class="install-grid reveal">
+          <ol class="install-steps">
+            <li class="install-step">
+              <span class="install-step-num">1</span>
+              <div class="install-step-body">
+                <h3 data-i18n="install.s1.title">Установи зависимости</h3>
+                <p data-i18n="install.s1.desc">
+                  uv создаст окружение и поставит весь стек MAESTRO CARE.
+                </p>
+                <div class="code-block">
+                  <code
+                    ><span class="code-prompt">$</span>
+                    <span class="code-text">uv sync</span></code
+                  >
+                  <button
+                    class="copy-btn"
+                    type="button"
+                    data-cmd="uv sync"
+                    data-i18n-title="install.copy"
+                    title="Скопировать"
+                  >
+                    <svg
+                      class="copy-ico"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="9" y="9" width="11" height="11" rx="2" />
+                      <path
+                        d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                      />
+                    </svg>
+                    <span class="copy-label" data-i18n="install.copy"
+                      >Копировать</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <li class="install-step">
+              <span class="install-step-num">2</span>
+              <div class="install-step-body">
+                <h3 data-i18n="install.s2.title">Укажи доступ к модели</h3>
+                <p data-i18n="install.s2.desc">
+                  care init создаст файл .env: адрес сервиса, ключ и название
+                  модели.
+                </p>
+                <div class="code-block">
+                  <code
+                    ><span class="code-prompt">$</span>
+                    <span class="code-text">uv run care init</span></code
+                  >
+                  <button
+                    class="copy-btn"
+                    type="button"
+                    data-cmd="uv run care init"
+                    data-i18n-title="install.copy"
+                    title="Скопировать"
+                  >
+                    <svg
+                      class="copy-ico"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="9" y="9" width="11" height="11" rx="2" />
+                      <path
+                        d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                      />
+                    </svg>
+                    <span class="copy-label" data-i18n="install.copy"
+                      >Копировать</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <li class="install-step">
+              <span class="install-step-num">3</span>
+              <div class="install-step-body">
+                <h3 data-i18n="install.s3.title">Запусти MAESTRO CARE</h3>
+                <p data-i18n="install.s3.desc">
+                  Откроется чат — опиши задачу и собери первого агента.
+                </p>
+                <div class="code-block">
+                  <code
+                    ><span class="code-prompt">$</span>
+                    <span class="code-text">uv run care</span></code
+                  >
+                  <button
+                    class="copy-btn"
+                    type="button"
+                    data-cmd="uv run care"
+                    data-i18n-title="install.copy"
+                    title="Скопировать"
+                  >
+                    <svg
+                      class="copy-ico"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="9" y="9" width="11" height="11" rx="2" />
+                      <path
+                        d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                      />
+                    </svg>
+                    <span class="copy-label" data-i18n="install.copy"
+                      >Копировать</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ol>
+
+          <aside class="install-aside">
+            <h4 data-i18n="install.aside.title">Что нужно</h4>
+            <ul class="install-reqs">
+              <li>
+                <span class="req-dot"></span
+                ><span data-i18n="install.req1">Python 3.12+ и uv</span>
+              </li>
+              <li>
+                <span class="req-dot"></span
+                ><span data-i18n="install.req2"
+                  >Доступ к LLM с OpenAI-совместимым API</span
+                >
+              </li>
+              <li>
+                <span class="req-dot"></span
+                ><span data-i18n="install.req3"
+                  >Хранение и эволюция — опционально, для режима
+                  Production</span
+                >
+              </li>
+            </ul>
+            <div class="install-oneliner">
+              <span class="install-oneliner-label" data-i18n="install.oneliner"
+                >Одной строкой:</span
+              >
+              <div class="code-block code-block--compact">
+                <code
+                  ><span class="code-prompt">$</span>
+                  <span class="code-text"
+                    >uv sync &amp;&amp; uv run care init &amp;&amp; uv run
+                    care</span
+                  ></code
+                >
+                <button
+                  class="copy-btn"
+                  type="button"
+                  data-cmd="uv sync && uv run care init && uv run care"
+                  data-i18n-title="install.copy"
+                  title="Скопировать"
+                >
+                  <svg
+                    class="copy-ico"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="9" y="9" width="11" height="11" rx="2" />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
                   </svg>
-                  <span class="copy-label" data-i18n="install.copy">Копировать</span>
+                  <span class="copy-label" data-i18n="install.copy"
+                    >Копировать</span
+                  >
                 </button>
               </div>
             </div>
-          </li>
+            <a
+              href="https://pyshka501.github.io/care-docs/"
+              class="pillar-link"
+              data-i18n="install.docs"
+              target="_blank"
+              rel="noopener"
+              >Полная документация</a
+            >
+          </aside>
+        </div>
+      </div>
+    </section>
 
-          <li class="install-step">
-            <span class="install-step-num">2</span>
-            <div class="install-step-body">
-              <h3 data-i18n="install.s2.title">Укажи доступ к модели</h3>
-              <p data-i18n="install.s2.desc">care init создаст файл .env: адрес сервиса, ключ и название модели.</p>
-              <div class="code-block">
-                <code><span class="code-prompt">$</span> <span class="code-text">uv run care init</span></code>
-                <button class="copy-btn" type="button" data-cmd="uv run care init" data-i18n-title="install.copy" title="Скопировать">
-                  <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="9" y="9" width="11" height="11" rx="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                  <span class="copy-label" data-i18n="install.copy">Копировать</span>
-                </button>
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div class="cta-doodles" aria-hidden="true">
+            <span
+              class="doodle doodle-diamond"
+              style="
+                --top: 12%;
+                --left: 6%;
+                --size: 26px;
+                --delay: 0s;
+                --depth: 0;
+              "
+            ></span>
+            <span
+              class="doodle doodle-ring"
+              style="
+                --top: 64%;
+                --left: 12%;
+                --size: 32px;
+                --delay: 1s;
+                --depth: 0;
+              "
+            ></span>
+            <span
+              class="doodle doodle-plus"
+              style="
+                --top: 24%;
+                --left: 46%;
+                --size: 14px;
+                --delay: 1.6s;
+                --depth: 0;
+              "
+            ></span>
+          </div>
+          <div class="cta-text">
+            <h2 data-i18n="cta.title">Готов собрать своего агента?</h2>
+            <p data-i18n="cta.subtitle">
+              Поставь MAESTRO CARE и собери первого агента уже сегодня.
+            </p>
+            <div class="cta-actions">
+              <a
+                href="https://github.com/Glazkoff/care"
+                class="btn btn-primary btn-lg"
+                data-i18n="cta.primary"
+                target="_blank"
+                rel="noopener"
+                >Открыть на GitHub</a
+              >
+              <a
+                href="https://pyshka501.github.io/care-docs/"
+                class="btn btn-secondary btn-lg"
+                data-i18n="cta.secondary"
+                target="_blank"
+                rel="noopener"
+                >Читать документацию</a
+              >
+            </div>
+          </div>
+          <div class="cta-visual">
+            <div class="mascot-stage mascot-stage--scene" data-mood="success">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img mascot-img--gif"
+                    src="assets/coffee.gif"
+                    width="216"
+                    height="256"
+                    alt="EVOC с кофе"
+                    decoding="async"
+                  />
+                </div>
               </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
             </div>
-          </li>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <li class="install-step">
-            <span class="install-step-num">3</span>
-            <div class="install-step-body">
-              <h3 data-i18n="install.s3.title">Запусти MAESTRO CARE</h3>
-              <p data-i18n="install.s3.desc">Откроется чат — опиши задачу и собери первого агента.</p>
-              <div class="code-block">
-                <code><span class="code-prompt">$</span> <span class="code-text">uv run care</span></code>
-                <button class="copy-btn" type="button" data-cmd="uv run care" data-i18n-title="install.copy" title="Скопировать">
-                  <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="9" y="9" width="11" height="11" rx="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                  <span class="copy-label" data-i18n="install.copy">Копировать</span>
-                </button>
+    <section id="team" class="team">
+      <div class="container">
+        <div class="team-card reveal">
+          <div class="team-head">
+            <span class="team-eyebrow" data-i18n="team.eyebrow">Команда</span>
+            <h2 data-i18n="team.title">Кто делает MAESTRO CARE</h2>
+            <p data-i18n="team.subtitle">
+              Исследователи AIRI, которые развивают проект
+            </p>
+          </div>
+
+          <div class="team-grid">
+            <article class="team-member">
+              <span class="team-avatar" aria-hidden="true">
+                <img
+                  src="assets/coffee.gif"
+                  alt=""
+                  width="56"
+                  height="56"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </span>
+              <div class="team-info">
+                <h3 data-i18n="team.m1.name">
+                  Пчелин Константин Константинович
+                </h3>
+                <p class="team-role" data-i18n="team.m1.role">
+                  Младший научный сотрудник AIRI
+                </p>
               </div>
+            </article>
+
+            <article class="team-member">
+              <span class="team-avatar" aria-hidden="true">
+                <img
+                  src="assets/work.gif"
+                  alt=""
+                  width="56"
+                  height="56"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </span>
+              <div class="team-info">
+                <h3 data-i18n="team.m2.name">Глазков Никита Олегович</h3>
+                <p class="team-role" data-i18n="team.m2.role">
+                  Младший научный сотрудник AIRI
+                </p>
+              </div>
+            </article>
+
+            <article class="team-member">
+              <span class="team-avatar" aria-hidden="true">
+                <img
+                  src="assets/evoc-congrats.webp"
+                  alt=""
+                  width="56"
+                  height="56"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </span>
+              <div class="team-info">
+                <h3 data-i18n="team.m3.name">Волкова Ольга Алексеевна</h3>
+                <p class="team-role" data-i18n="team.m3.role">
+                  Младший научный сотрудник AIRI
+                </p>
+              </div>
+            </article>
+
+            <article class="team-member team-member--lead">
+              <span class="team-avatar" aria-hidden="true">
+                <img
+                  src="assets/hero-mascot.gif"
+                  alt=""
+                  width="56"
+                  height="56"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </span>
+              <div class="team-info">
+                <h3 data-i18n="team.m4.name">Беспалов Ярослав Радионович</h3>
+                <p class="team-role" data-i18n="team.m4.role">
+                  Научный сотрудник, руководитель группы «Мультимодальные
+                  архитектуры ИИ», AIRI
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <svg
+            class="brand-icon"
+            viewBox="0 0 32 32"
+            width="28"
+            height="28"
+            aria-hidden="true"
+          >
+            <polygon points="16,8 22,16 16,24 10,16" fill="var(--accent)" />
+          </svg>
+          <div>
+            <div data-i18n="footer.tagline">
+              Собери, запусти и улучши AI-агента из терминала
             </div>
+            <div class="footer-meta" data-i18n="footer.mascot">
+              MAESTRO CARE
+            </div>
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://pyshka501.github.io/care-docs/"
+              data-i18n="footer.docs"
+              target="_blank"
+              rel="noopener"
+              >Документация</a
+            >
           </li>
-        </ol>
-
-        <aside class="install-aside">
-          <h4 data-i18n="install.aside.title">Что нужно</h4>
-          <ul class="install-reqs">
-            <li><span class="req-dot"></span><span data-i18n="install.req1">Python 3.12+ и uv</span></li>
-            <li><span class="req-dot"></span><span data-i18n="install.req2">Доступ к LLM с OpenAI-совместимым API</span></li>
-            <li><span class="req-dot"></span><span data-i18n="install.req3">Хранение и эволюция — опционально, для режима Production</span></li>
-          </ul>
-          <div class="install-oneliner">
-            <span class="install-oneliner-label" data-i18n="install.oneliner">Одной строкой:</span>
-            <div class="code-block code-block--compact">
-              <code><span class="code-prompt">$</span> <span class="code-text">uv sync &amp;&amp; uv run care init &amp;&amp; uv run care</span></code>
-              <button class="copy-btn" type="button" data-cmd="uv sync && uv run care init && uv run care" data-i18n-title="install.copy" title="Скопировать">
-                <svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="9" y="9" width="11" height="11" rx="2"/>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                </svg>
-                <span class="copy-label" data-i18n="install.copy">Копировать</span>
-              </button>
-            </div>
-          </div>
-          <a href="https://pyshka501.github.io/care-docs/" class="pillar-link" data-i18n="install.docs" target="_blank" rel="noopener">Полная документация</a>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-card reveal">
-        <div class="cta-doodles" aria-hidden="true">
-          <span class="doodle doodle-diamond" style="--top:12%;--left:6%;--size:26px;--delay:0s;--depth:0"></span>
-          <span class="doodle doodle-ring" style="--top:64%;--left:12%;--size:32px;--delay:1s;--depth:0"></span>
-          <span class="doodle doodle-plus" style="--top:24%;--left:46%;--size:14px;--delay:1.6s;--depth:0"></span>
-        </div>
-        <div class="cta-text">
-          <h2 data-i18n="cta.title">Готов собрать своего агента?</h2>
-          <p data-i18n="cta.subtitle">Поставь MAESTRO CARE и собери первого агента уже сегодня.</p>
-          <div class="cta-actions">
-            <a href="https://github.com/Glazkoff/care" class="btn btn-primary btn-lg" data-i18n="cta.primary" target="_blank" rel="noopener">Открыть на GitHub</a>
-            <a href="https://pyshka501.github.io/care-docs/" class="btn btn-secondary btn-lg" data-i18n="cta.secondary" target="_blank" rel="noopener">Читать документацию</a>
-          </div>
-        </div>
-        <div class="cta-visual">
-          <div class="mascot-stage mascot-stage--scene" data-mood="success">
-            <div class="mascot-float"><div class="mascot-body">
-              <img class="mascot-img mascot-img--gif" src="assets/coffee.gif" width="216" height="256" alt="EVOC с кофе" decoding="async">
-            </div></div>
-            <span class="mascot-shadow" aria-hidden="true"></span>
-            <div class="mascot-particles" aria-hidden="true"></div>
-          </div>
+          <li>
+            <a
+              href="https://github.com/Glazkoff/care/blob/main/docs/ARCHITECTURE.md"
+              data-i18n="footer.arch"
+              target="_blank"
+              rel="noopener"
+              >Архитектура</a
+            >
+          </li>
+          <li><a href="#team" data-i18n="footer.team">Команда</a></li>
+          <li><a href="?theme=warm" data-i18n="theme.warm">Светлая</a></li>
+          <li><a href="?theme=crystal" data-i18n="theme.dark">Тёмная</a></li>
+        </ul>
+        <div class="footer-meta">
+          <span data-i18n="footer.copy"
+            >© 2026 MAESTRO CARE. Открытый код.</span
+          >
         </div>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <section id="team" class="team">
-    <div class="container">
-      <div class="team-card reveal">
-        <div class="team-head">
-          <span class="team-eyebrow" data-i18n="team.eyebrow">Команда</span>
-          <h2 data-i18n="team.title">Кто делает MAESTRO CARE</h2>
-          <p data-i18n="team.subtitle">Исследователи AIRI, которые развивают проект</p>
-        </div>
-
-        <div class="team-grid">
-          <article class="team-member">
-            <span class="team-avatar" aria-hidden="true">
-              <img src="assets/coffee.gif" alt="" width="56" height="56" decoding="async" loading="lazy">
-            </span>
-            <div class="team-info">
-              <h3 data-i18n="team.m1.name">Пчелин Константин Константинович</h3>
-              <p class="team-role" data-i18n="team.m1.role">Младший научный сотрудник AIRI</p>
-            </div>
-          </article>
-
-          <article class="team-member">
-            <span class="team-avatar" aria-hidden="true">
-              <img src="assets/work.gif" alt="" width="56" height="56" decoding="async" loading="lazy">
-            </span>
-            <div class="team-info">
-              <h3 data-i18n="team.m2.name">Глазков Никита Олегович</h3>
-              <p class="team-role" data-i18n="team.m2.role">Младший научный сотрудник AIRI</p>
-            </div>
-          </article>
-
-          <article class="team-member">
-            <span class="team-avatar" aria-hidden="true">
-              <img src="assets/evoc-congrats.webp" alt="" width="56" height="56" decoding="async" loading="lazy">
-            </span>
-            <div class="team-info">
-              <h3 data-i18n="team.m3.name">Волкова Ольга Алексеевна</h3>
-              <p class="team-role" data-i18n="team.m3.role">Младший научный сотрудник AIRI</p>
-            </div>
-          </article>
-
-          <article class="team-member team-member--lead">
-            <span class="team-avatar" aria-hidden="true">
-              <img src="assets/hero-mascot.gif" alt="" width="56" height="56" decoding="async" loading="lazy">
-            </span>
-            <div class="team-info">
-              <h3 data-i18n="team.m4.name">Беспалов Ярослав Радионович</h3>
-              <p class="team-role" data-i18n="team.m4.role">Научный сотрудник, руководитель группы «Мультимодальные архитектуры ИИ», AIRI</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <svg class="brand-icon" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-          <polygon points="16,8 22,16 16,24 10,16" fill="var(--accent)"/>
-        </svg>
-        <div>
-          <div data-i18n="footer.tagline">Собери, запусти и улучши AI-агента из терминала</div>
-          <div class="footer-meta" data-i18n="footer.mascot">Маскот EVOC</div>
-        </div>
-      </div>
-      <ul class="footer-links">
-        <li><a href="https://pyshka501.github.io/care-docs/" data-i18n="footer.docs" target="_blank" rel="noopener">Документация</a></li>
-        <li><a href="https://github.com/Glazkoff/care/blob/main/docs/ARCHITECTURE.md" data-i18n="footer.arch" target="_blank" rel="noopener">Архитектура</a></li>
-        <li><a href="#team" data-i18n="footer.team">Команда</a></li>
-        <li><a href="?theme=warm" data-i18n="theme.warm">Тёплая</a></li>
-        <li><a href="?theme=crystal" data-i18n="theme.dark">Тёмная</a></li>
-      </ul>
-      <div class="footer-meta">
-        <span data-i18n="footer.copy">© 2026 MAESTRO CARE. Открытый код.</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="i18n.js"></script>
-  <script src="main.js"></script>
-</body>
+    <script src="i18n.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
