@@ -9,6 +9,7 @@ const TRANSLATIONS = {
     "nav.stack": "Стек",
     "nav.demo": "Демо",
     "nav.install": "Установка",
+    "nav.skill": "Агентный навык",
     "nav.github": "GitHub",
     "nav.docs": "Документация",
 
@@ -126,10 +127,16 @@ const TRANSLATIONS = {
     "install.req1": "uv (для uvx) или pipx",
     "install.req2": "git в PATH",
     "install.req3": "Доступ к LLM с OpenAI-совместимым API",
+    "install.req4": "Запущенный Docker — для локального запуска навыков в песочнице (без него — простой режим скачивания)",
+    "install.req4link": "скачать Docker",
+    "install.models.title": "Рекомендуемые модели",
+    "install.models.gen": "Генерация (MAGE): GLM-4.6 или Qwen3-Coder",
+    "install.models.exec": "Исполнение (CARL): GLM-4.6 / DeepSeek",
+    "install.models.tip": "Совет: начните с одной модели и на генерацию, и на исполнение — потом подберёте под задачу.",
     "install.oneliner": "Обновить до последней версии:",
     "install.docs": "Полная документация",
 
-    "skill.eyebrow": "Агентский навык",
+    "skill.eyebrow": "Агентный навык",
     "skill.title": "Или подключи как навык агента",
     "skill.subtitle": "Дай агенту управлять CARE CLI — Claude Code, Codex, Hermes или OpenClaw.",
     "skill.s1.title": "Скачай навык",
@@ -181,6 +188,7 @@ const TRANSLATIONS = {
     "nav.stack": "Stack",
     "nav.demo": "Demo",
     "nav.install": "Install",
+    "nav.skill": "Agent skill",
     "nav.github": "GitHub",
     "nav.docs": "Documentation",
 
@@ -298,6 +306,12 @@ const TRANSLATIONS = {
     "install.req1": "uv (for uvx) or pipx",
     "install.req2": "git in PATH",
     "install.req3": "Access to an LLM with an OpenAI-compatible API",
+    "install.req4": "A running Docker — for the local sandbox that runs skills (without it, a plain download mode is used)",
+    "install.req4link": "get Docker",
+    "install.models.title": "Recommended models",
+    "install.models.gen": "Generation (MAGE): GLM-4.6 or Qwen3-Coder",
+    "install.models.exec": "Execution (CARL): GLM-4.6 / DeepSeek",
+    "install.models.tip": "Tip: start with one model for both generation and execution, then tune per task.",
     "install.oneliner": "Update to the latest version:",
     "install.docs": "Full documentation",
 
@@ -350,8 +364,8 @@ const LANG_STORAGE_KEY = "care-landing-lang";
 function detectLanguage() {
   const stored = localStorage.getItem(LANG_STORAGE_KEY);
   if (stored === "ru" || stored === "en") return stored;
-  const nav = (navigator.language || "en").toLowerCase();
-  return nav.startsWith("ru") ? "ru" : "en";
+  // Default to Russian; users can switch to English (choice is remembered).
+  return "ru";
 }
 
 function applyTranslations(lang) {
