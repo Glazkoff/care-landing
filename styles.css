@@ -1894,8 +1894,18 @@ section {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 18%, transparent);
 }
 .carl-topo-ic {
-  font-size: 1.1rem;
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+}
+.carl-topo-ic svg {
+  width: 16px;
+  height: 16px;
 }
 .carl-topo-k {
   font-size: 0.62rem;
