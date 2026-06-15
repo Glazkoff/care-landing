@@ -27,6 +27,7 @@
   --accent-2: #1f6358;
   --accent-glow: rgba(42, 125, 111, 0.3);
   --crystal: #4db8a4;
+  --llm: #b9822f;
   --cream: #e8c89a;
   --border: rgba(42, 37, 32, 0.1);
   --hero-grad: radial-gradient(ellipse 70% 55% at 65% 25%, rgba(232, 200, 154, 0.45), transparent 55%),
@@ -50,6 +51,7 @@
   --accent-2: #2ebfae;
   --accent-glow: rgba(51, 217, 178, 0.4);
   --crystal: #7ef0dd;
+  --llm: #e0b873;
   --cream: #c8e8e0;
   --border: rgba(126, 240, 221, 0.12);
   --hero-grad: radial-gradient(ellipse 70% 50% at 75% 15%, rgba(51, 217, 178, 0.15), transparent 55%),
@@ -1388,14 +1390,14 @@ section {
 
 .carl-chain-badge {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   padding: 0.22rem 0.5rem;
   border-radius: 6px;
   color: var(--crystal);
-  background: color-mix(in srgb, var(--crystal) 18%, transparent);
-  border: 1px solid color-mix(in srgb, var(--crystal) 45%, transparent);
+  background: color-mix(in srgb, var(--crystal) 24%, transparent);
+  border: 1px solid color-mix(in srgb, var(--crystal) 55%, transparent);
 }
 
 .carl-chain-title {
@@ -1492,14 +1494,14 @@ section {
 
 .carl-phase-badge {
   font-family: var(--font-mono);
-  font-size: 0.66rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   padding: 0.16rem 0.42rem;
   border-radius: 5px;
   color: var(--crystal);
-  background: color-mix(in srgb, var(--crystal) 16%, transparent);
-  border: 1px solid color-mix(in srgb, var(--crystal) 40%, transparent);
+  background: color-mix(in srgb, var(--crystal) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--crystal) 50%, transparent);
 }
 
 .carl-phase-count {
@@ -1585,6 +1587,9 @@ section {
 }
 .carl-node--struct {
   --c: var(--crystal);
+}
+.carl-node--llm {
+  --c: var(--llm);
 }
 
 .carl-node-idx {
@@ -1861,12 +1866,12 @@ section {
   }
 }
 
+/* Visual data-flow chain inside the expanded step */
 .carl-topo {
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-bottom: 1rem;
 }
 .carl-topo-node {
   --c: var(--accent);
@@ -1878,7 +1883,7 @@ section {
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: var(--surface);
+  background: var(--bg);
 }
 .carl-topo--io {
   --c: var(--text-muted);
@@ -1936,52 +1941,282 @@ section {
   font-family: var(--font-mono);
 }
 
-.carl-topo-desc {
-  margin: 0 0 0.9rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.carl-topo-meta {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-.carl-topo-meta > div {
+/* Formal CARL step spec (expanded panel) */
+.carl-spec {
+  --c: var(--accent);
   display: flex;
   flex-direction: column;
-  gap: 0.18rem;
-  padding: 0.5rem 0.65rem;
-  border-radius: 8px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  min-width: 0;
+  gap: 0.9rem;
 }
-.carl-topo-meta dt {
+.carl-spec--tool {
+  --c: var(--accent);
+}
+.carl-spec--struct {
+  --c: var(--crystal);
+}
+.carl-spec--llm {
+  --c: var(--llm);
+}
+
+.carl-spec-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.carl-spec-num {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.03em;
-  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--c);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 16%, transparent);
 }
-.carl-topo-meta dd {
+.carl-spec-title {
+  font-family: var(--font-mono);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-word;
+}
+.carl-spec-type {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c);
+  padding: 0.16rem 0.5rem;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+}
+
+/* CARL StepDescription spec — uniform field blocks */
+.carl-fields {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.carl-frow {
+  display: grid;
+  grid-template-columns: 184px minmax(0, 1fr);
+  gap: 0.35rem 1.4rem;
+  padding: 0.62rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  align-items: baseline;
+}
+.carl-frow:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.carl-fkey {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: color-mix(in srgb, var(--c) 72%, var(--text-muted));
+  word-break: break-word;
+}
+.carl-fval {
+  margin: 0;
+  min-width: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+.carl-fval code {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text);
   word-break: break-word;
 }
+.carl-fval--chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.carl-chip {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0.18rem 0.5rem;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--c) 8%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--c) 26%, var(--border));
+}
+.carl-chip--opt {
+  color: var(--text-muted);
+  border-style: dashed;
+}
+.carl-fgroup {
+  margin-top: 0.9rem;
+  padding: 0.75rem 0.9rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.carl-fgroup-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c);
+}
+.carl-fields--nested .carl-frow {
+  padding: 0.45rem 0;
+  border-top-color: color-mix(in srgb, var(--border) 40%, transparent);
+}
+.carl-fields--nested .carl-frow:first-child {
+  padding-top: 0;
+}
+
+@media (max-width: 640px) {
+  .carl-frow {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+/* Prose CARL fields (aim / description / instruction) — image-style */
+.carl-spec-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.carl-spec-prose-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+.carl-spec-prose-row p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.carl-spec-prose-row--hl {
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--c) 32%, var(--border));
+  background: color-mix(in srgb, var(--c) 6%, transparent);
+}
+.carl-spec-aim-k {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c);
+  padding: 0.12rem 0.42rem;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+}
+
+.carl-spec-fields {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem 0.9rem;
+}
+.carl-spec-field {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.carl-spec-field--wide {
+  grid-column: 1 / -1;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.carl-spec-field dt {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+.carl-spec-field dt::after {
+  content: ":";
+}
+.carl-spec-field--wide dt::after {
+  content: "";
+}
+.carl-spec-field dd {
+  margin: 0;
+  min-width: 0;
+  word-break: break-word;
+}
+.carl-spec-field dd code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.carl-spec-field dd.is-empty {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.carl-spec-config {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 0.65rem 0.85rem 0.8rem;
+}
+.carl-spec-config-label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c);
+}
+
+.carl-spec-schema {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.carl-schema-prop {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0.16rem 0.45rem;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--c) 8%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--c) 25%, var(--border));
+}
+.carl-schema-prop--opt {
+  color: var(--text-muted);
+  border-style: dashed;
+}
 
 @media (max-width: 768px) {
+  .carl-spec-fields {
+    grid-template-columns: 1fr;
+  }
+  .carl-spec-type {
+    margin-left: 0;
+  }
   .carl-topo {
     flex-direction: column;
   }
   .carl-topo-arrow {
     transform: rotate(90deg);
-  }
-  .carl-topo-meta {
-    grid-template-columns: 1fr;
   }
 }
 
