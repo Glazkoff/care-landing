@@ -9,7 +9,6 @@ const TRANSLATIONS = {
     "nav.stack": "Стек",
     "nav.demo": "Демо",
     "nav.install": "Установка",
-    "nav.skill": "Агентный навык",
     "nav.github": "GitHub",
     "nav.docs": "Документация",
 
@@ -19,6 +18,7 @@ const TRANSLATIONS = {
       "Опиши цель словами — MAESTRO CARE соберёт агента, запустит его и будет улучшать результат. Без ручной настройки пайплайнов, прямо в терминале.",
     "hero.cta.primary": "Начать",
     "hero.cta.secondary": "Смотреть демо",
+    "hero.cta.skill": "Добавить навык",
     "hero.stat1.label": "до первого агента",
     "hero.stat2.label": "один инструмент",
     "hero.stat3.label": "открытый код",
@@ -188,7 +188,6 @@ const TRANSLATIONS = {
     "nav.stack": "Stack",
     "nav.demo": "Demo",
     "nav.install": "Install",
-    "nav.skill": "Agent skill",
     "nav.github": "GitHub",
     "nav.docs": "Documentation",
 
@@ -198,6 +197,7 @@ const TRANSLATIONS = {
       "Describe the goal in plain words — MAESTRO CARE builds an agent, runs it, and keeps improving the result. No manual pipeline wiring, right in your terminal.",
     "hero.cta.primary": "Get started",
     "hero.cta.secondary": "Watch demo",
+    "hero.cta.skill": "Add skill",
     "hero.stat1.label": "to your first agent",
     "hero.stat2.label": "one tool",
     "hero.stat3.label": "open source",
