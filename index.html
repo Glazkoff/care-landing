@@ -110,20 +110,55 @@
             aria-label="Theme"
           >
             <button
-              class="pill-btn active"
+              class="pill-btn pill-btn--icon active"
+              type="button"
               data-theme-btn="warm"
               aria-pressed="true"
-              data-i18n="theme.warm"
+              data-i18n-title="theme.warm"
+              title="Светлая"
             >
-              Светлая
+              <svg
+                class="theme-ico theme-ico--sun"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+                <g
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 1.5v3" />
+                  <path d="M12 19.5v3" />
+                  <path d="M1.5 12h3" />
+                  <path d="M19.5 12h3" />
+                  <path d="M4.6 4.6l2.1 2.1" />
+                  <path d="M17.3 17.3l2.1 2.1" />
+                  <path d="M19.4 4.6l-2.1 2.1" />
+                  <path d="M6.7 17.3l-2.1 2.1" />
+                </g>
+              </svg>
+              <span class="sr-only" data-i18n="theme.warm">Светлая</span>
             </button>
             <button
-              class="pill-btn"
+              class="pill-btn pill-btn--icon"
+              type="button"
               data-theme-btn="crystal"
               aria-pressed="false"
-              data-i18n="theme.dark"
+              data-i18n-title="theme.dark"
+              title="Тёмная"
             >
-              Тёмная
+              <svg
+                class="theme-ico theme-ico--moon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span class="sr-only" data-i18n="theme.dark">Тёмная</span>
             </button>
           </div>
 

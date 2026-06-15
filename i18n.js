@@ -144,7 +144,7 @@ const TRANSLATIONS = {
     "team.m4.role": "Научный сотрудник, руководитель группы «Мультимодальные архитектуры ИИ», AIRI",
 
     "footer.tagline": "Собери, запусти и улучши AI-агента из терминала",
-    "footer.mascot": "Маскот EVOC",
+    "footer.mascot": "MAESTRO CARE",
     "footer.docs": "Документация",
     "footer.arch": "Архитектура",
     "footer.team": "Команда",
@@ -300,7 +300,7 @@ const TRANSLATIONS = {
     "team.m4.role": "Research Scientist, Head of the “Multimodal AI Architectures” group, AIRI",
 
     "footer.tagline": "Build, run, and improve an AI agent from your terminal",
-    "footer.mascot": "Mascot EVOC",
+    "footer.mascot": "MAESTRO CARE",
     "footer.docs": "Documentation",
     "footer.arch": "Architecture",
     "footer.team": "Team",
