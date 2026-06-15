@@ -424,9 +424,9 @@
                 <div class="mascot-body">
                   <img
                     class="mascot-img"
-                    src="assets/evoc-generate.webp"
-                    width="560"
-                    height="401"
+                    src="assets/magic_wand_slow.gif"
+                    width="256"
+                    height="256"
                     alt="Maestric строит цепочку агента из запроса"
                     decoding="async"
                   />
@@ -470,9 +470,9 @@
                 <div class="mascot-body">
                   <img
                     class="mascot-img"
-                    src="assets/evoc-start.webp"
-                    width="560"
-                    height="356"
+                    src="assets/start_button.gif"
+                    width="255"
+                    height="166"
                     alt="Maestric запускает цепочку инструментов"
                     decoding="async"
                   />
@@ -941,19 +941,58 @@
             >
               <div class="carl-topo">
                 <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">📥</span>
+                  <span class="carl-topo-ic" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 3v10" />
+                      <path d="M8 9l4 4 4-4" />
+                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
+                    </svg>
+                  </span>
                   <span class="carl-topo-k" data-i18n="step.in">вход</span>
                   <code>$inputs.pdf_path</code>
                 </span>
                 <span class="carl-topo-arrow" aria-hidden="true">→</span>
                 <span class="carl-topo-node carl-topo--op carl-node--tool">
-                  <span class="carl-topo-ic" aria-hidden="true">🔧</span>
+                  <span class="carl-topo-ic" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"
+                      />
+                    </svg>
+                  </span>
                   <code>pdf_extractor</code>
                   <span class="carl-topo-type">skill</span>
                 </span>
                 <span class="carl-topo-arrow" aria-hidden="true">→</span>
                 <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">📤</span>
+                  <span class="carl-topo-ic" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 14V4" />
+                      <path d="M8 8l4-4 4 4" />
+                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
+                    </svg>
+                  </span>
                   <span class="carl-topo-k" data-i18n="step.out">выход</span>
                   <code>extracted</code>
                 </span>
@@ -978,18 +1017,61 @@
             >
               <div class="carl-topo">
                 <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">📥</span>
+                  <span class="carl-topo-ic" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 3v10" />
+                      <path d="M8 9l4 4 4-4" />
+                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
+                    </svg>
+                  </span>
                   <span class="carl-topo-k" data-i18n="step.in">вход</span>
                   <code>$history[-1]</code>
                 </span>
                 <span class="carl-topo-arrow" aria-hidden="true">→</span>
                 <span class="carl-topo-node carl-topo--op carl-node--struct">
+                  <span class="carl-topo-ic" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"
+                      />
+                      <path
+                        d="M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"
+                      />
+                    </svg>
+                  </span>
                   <code>structured_output</code>
                   <span class="carl-topo-type">strict</span>
                 </span>
                 <span class="carl-topo-arrow" aria-hidden="true">→</span>
                 <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">📤</span>
+                  <span class="carl-topo-ic" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 14V4" />
+                      <path d="M8 8l4-4 4 4" />
+                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
+                    </svg>
+                  </span>
                   <span class="carl-topo-k" data-i18n="step.out">выход</span>
                   <code>QuarterlyFinancials</code>
                 </span>
