@@ -1,13 +1,13 @@
 # MAESTRO CARE Landing Page
 
-Static marketing landing for **MAESTRO CARE** — an ecosystem for generating and evolving reasoning chains, in the AIRI aesthetic with mascot **EVOC**.
+Static marketing landing for **MAESTRO CARE** — an ecosystem for generating and evolving reasoning chains, in the AIRI aesthetic with mascot **Maestric**.
 
 ## Features
 
 - Two color themes switchable live: **Warm** (default) and **Dark**
 - Shareable theme URLs: `?theme=warm`, `?theme=crystal`
 - RU / EN language toggle with auto-detect
-- Living EVOC mascot in multiple emotions across the page (wave, think, work, crystal, coffee, cheer)
+- Living Maestric mascot in multiple emotions across the page (wave, think, work, crystal, coffee, cheer)
 - Smooth float, breathing, micro-gestures, sparkles — never jerky
 - Live TUI terminal demo section
 - No build step required — pure HTML/CSS/JS
@@ -43,7 +43,7 @@ This produces:
 
 ## Rebuild emotion emotes
 
-The per-section EVOC emotes are the hand-made high-res PNGs in `mascote/`
+The per-section Maestric emotes are the hand-made high-res PNGs in `mascote/`
 (`think`, `work`, `coffee`, `cheers`, `surprised`, `agent_generation`, the
 transparent GigaEvo evolution strip, plus `start_clean`). The build trims the
 padding and downscales each with LANCZOS for crisp, detailed art:
