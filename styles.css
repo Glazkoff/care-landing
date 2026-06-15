@@ -1,4 +1,4 @@
-/* MAESTRO CARE Landing — AIRI aesthetic + EVOC mascot */
+/* MAESTRO CARE Landing — AIRI aesthetic + Maestric mascot */
 
 :root {
   --font-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -479,14 +479,14 @@ a:hover {
 
 .mascot-float {
   width: 100%;
-  animation: evoc-float 5s ease-in-out infinite;
+  animation: maestric-float 5s ease-in-out infinite;
   will-change: transform;
 }
 
 .mascot-body {
   width: 100%;
   transform-origin: 50% 92%;
-  animation: evoc-life 18s ease-in-out infinite;
+  animation: maestric-life 18s ease-in-out infinite;
   will-change: transform;
 }
 
@@ -495,7 +495,7 @@ a:hover {
   height: auto;
   display: block;
   transform-origin: 50% 62%;
-  animation: evoc-idle 4.6s ease-in-out infinite;
+  animation: maestric-idle 4.6s ease-in-out infinite;
   filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.16));
   transition: filter var(--transition);
   will-change: transform;
@@ -512,7 +512,7 @@ a:hover {
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.22), transparent 70%);
   border-radius: 50%;
   z-index: -1;
-  animation: evoc-shadow 5s ease-in-out infinite;
+  animation: maestric-shadow 5s ease-in-out infinite;
 }
 
 :root[data-theme="crystal"] .mascot-shadow {
@@ -522,11 +522,11 @@ a:hover {
 /* Mood overlays — applied to inner layers so they compose with the base
    life animation instead of replacing the stage transform. */
 .mascot-stage[data-mood="wave"] .mascot-body {
-  animation: evoc-wave 1s ease-in-out infinite;
+  animation: maestric-wave 1s ease-in-out infinite;
 }
 
 .mascot-stage[data-mood="think"] .mascot-body {
-  animation: evoc-think 3.2s ease-in-out infinite;
+  animation: maestric-think 3.2s ease-in-out infinite;
 }
 
 .mascot-stage[data-mood="work"] .mascot-float {
@@ -538,7 +538,7 @@ a:hover {
 }
 
 /* Grounded scenes (pillars, demo, CTA): like Duolingo/Discord characters they
-   stand still and just breathe + blink — no levitating. Only the hero EVOC
+   stand still and just breathe + blink — no levitating. Only the hero Maestric
    keeps its gentle magical float. */
 .mascot-stage--scene .mascot-float,
 .mascot-stage--calm .mascot-float,
@@ -552,7 +552,7 @@ a:hover {
   animation: none;
 }
 
-/* Different EVOC sizes across the page so the little ones feel scattered and
+/* Different Maestric sizes across the page so the little ones feel scattered and
    alive rather than stamped at one scale. */
 /* Generation is a landscape scene (mascot + the DAG it builds) — give it room. */
 .scene--gen .mascot-stage--scene { width: min(440px, 96%); }
@@ -623,7 +623,7 @@ a:hover {
   width: 48px;
   height: 48px;
   opacity: 0.7;
-  animation: evoc-float 3.5s ease-in-out infinite reverse;
+  animation: maestric-float 3.5s ease-in-out infinite reverse;
 }
 
 /* Sections */
@@ -1341,6 +1341,14 @@ section {
   margin: 0.75rem 0;
 }
 
+.terminal-line--result {
+  color: #aef5e4;
+  border-left: 2px solid var(--crystal);
+  padding-left: 0.6rem;
+  margin: 0.1rem 0;
+  white-space: pre;
+}
+
 .terminal-note {
   margin: 0;
   padding: 0.5rem 1rem 0.85rem;
@@ -1358,6 +1366,436 @@ section {
 
 .demo-mascot-wrap .mascot-stage {
   width: min(280px, 80vw);
+}
+
+/* CARL chain graph */
+.carl-chain {
+  margin-top: 2.5rem;
+  padding: 1.6rem 1.75rem 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.carl-chain-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.4rem;
+}
+
+.carl-chain-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.22rem 0.5rem;
+  border-radius: 6px;
+  color: var(--crystal);
+  background: color-mix(in srgb, var(--crystal) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--crystal) 45%, transparent);
+}
+
+.carl-chain-title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.carl-chain-count {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.carl-chain-task {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.carl-graph {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+/* Phases: input → CARL chain → result */
+.carl-phase {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.carl-phase--chain {
+  flex: 1.2 1 0;
+}
+.carl-phase--out {
+  flex: 1.35 1 0;
+  border-color: color-mix(in srgb, var(--crystal) 42%, var(--border));
+  box-shadow: 0 0 22px color-mix(in srgb, var(--crystal) 12%, transparent),
+    var(--shadow-sm);
+}
+
+.carl-phase-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+}
+.carl-phase--out .carl-phase-head {
+  background: color-mix(in srgb, var(--crystal) 8%, var(--surface));
+}
+
+.carl-phase-step {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+}
+.carl-phase-step--ok {
+  background: var(--crystal);
+  color: #04201b;
+  font-weight: 900;
+}
+
+.carl-phase-label {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.carl-phase-badge {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.16rem 0.42rem;
+  border-radius: 5px;
+  color: var(--crystal);
+  background: color-mix(in srgb, var(--crystal) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--crystal) 40%, transparent);
+}
+
+.carl-phase-count {
+  margin-left: auto;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.carl-phase-count--crystal {
+  color: var(--crystal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carl-phase-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.8rem;
+}
+
+.carl-io-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text);
+}
+.carl-io-ic {
+  flex-shrink: 0;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.carl-io-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Step nodes inside the chain phase */
+.carl-chain-box {
+  justify-content: center;
+}
+
+.carl-node {
+  --c: var(--accent);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--c) 9%, var(--bg)),
+    var(--bg)
+  );
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.carl-node::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: linear-gradient(90deg, transparent, var(--c), transparent);
+}
+.carl-node:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--c) 55%, var(--border));
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--c) 22%, transparent);
+}
+.carl-node--tool {
+  --c: var(--accent);
+}
+.carl-node--struct {
+  --c: var(--crystal);
+}
+
+.carl-node-idx {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--c);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 16%, transparent);
+}
+
+.carl-node-name {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carl-node-type {
+  align-self: flex-start;
+  max-width: 100%;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c);
+  padding: 0.12rem 0.45rem;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Flowing connectors */
+.carl-link {
+  flex: 0 0 32px;
+  align-self: center;
+  position: relative;
+  height: 3px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 65%, transparent) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 24px 100%;
+  z-index: 1;
+}
+.carl-link--v {
+  flex: 0 0 16px;
+  height: 16px;
+  width: 3px;
+  background: repeating-linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--crystal) 65%, transparent) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 100% 24px;
+}
+
+.carl-spark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--crystal);
+  box-shadow: 0 0 9px 2px color-mix(in srgb, var(--crystal) 70%, transparent);
+  opacity: 0;
+}
+.carl-link--v .carl-spark {
+  top: 0;
+  left: 50%;
+  margin: -3.5px 0 0 -3.5px;
+}
+
+.carl-chain.visible .carl-link:not(.carl-link--v) {
+  animation: carl-flow-x 0.9s linear infinite;
+}
+.carl-chain.visible .carl-link:not(.carl-link--v) .carl-spark {
+  animation: carl-spark-x 1.9s ease-in-out infinite;
+}
+.carl-chain.visible .carl-link--v {
+  animation: carl-flow-y 0.9s linear infinite;
+}
+.carl-chain.visible .carl-link--v .carl-spark {
+  animation: carl-spark-y 1.9s ease-in-out infinite;
+}
+
+@keyframes carl-flow-x {
+  to {
+    background-position: 24px 0;
+  }
+}
+@keyframes carl-spark-x {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+@keyframes carl-flow-y {
+  to {
+    background-position: 0 24px;
+  }
+}
+@keyframes carl-spark-y {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Result fields */
+.carl-payload-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.carl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--crystal) 6%, var(--bg));
+  border: 1px solid var(--border);
+}
+
+.carl-field dt {
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.carl-field dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.carl-payload-saved {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--crystal);
+  padding: 0.16rem 0.5rem;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--crystal) 12%, transparent);
+}
+
+/* Sequential reveal (gated on JS; static without it) */
+.js .carl-chain:not(.visible) .carl-phase {
+  opacity: 0;
+}
+.carl-chain.visible .carl-phase {
+  animation: carl-pop 0.5s ease backwards;
+}
+.carl-chain.visible .carl-phase:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.carl-chain.visible .carl-phase:nth-child(3) {
+  animation-delay: 0.25s;
+}
+.carl-chain.visible .carl-phase:nth-child(5) {
+  animation-delay: 0.45s;
+}
+
+@keyframes carl-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Install */
@@ -1726,7 +2164,7 @@ section {
   left: var(--left);
   width: var(--size);
   height: var(--size);
-  animation: evoc-float 6s ease-in-out infinite;
+  animation: maestric-float 6s ease-in-out infinite;
   animation-delay: var(--delay, 0s);
   transition: translate 0.3s ease-out;
   will-change: transform, translate;
@@ -1895,7 +2333,7 @@ section {
   color: var(--text);
   box-shadow: var(--shadow-sm);
   z-index: 3;
-  animation: evoc-float 5s ease-in-out infinite;
+  animation: maestric-float 5s ease-in-out infinite;
 }
 
 .chip .dot {
@@ -2049,15 +2487,15 @@ section {
 /* Animations */
 
 /* Vertical hover — eased so the turnaround is soft, never a hard bounce.
-   Kept gentle (hero only) so EVOC drifts rather than bobs distractingly. */
-@keyframes evoc-float {
+   Kept gentle (hero only) so Maestric drifts rather than bobs distractingly. */
+@keyframes maestric-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 
 /* Living idle: a slow breath, then a quick blink (fast vertical pinch around
    the face). Reads as alive without any jerky drifting. Loops seamlessly. */
-@keyframes evoc-idle {
+@keyframes maestric-idle {
   0%, 100% { transform: scale(1, 1); }
   40% { transform: scale(1.012, 0.99); }
   78% { transform: scale(1, 1); }
@@ -2067,9 +2505,9 @@ section {
 }
 
 /* Long life timeline: mostly calm idle with a few spaced-out micro-gestures
-   (look around, little lean) so EVOC reads as alive without ever jerking.
+   (look around, little lean) so Maestric reads as alive without ever jerking.
    Start and end states are identical for a seamless loop. */
-@keyframes evoc-life {
+@keyframes maestric-life {
   0%, 28% { transform: rotate(0deg) translateX(0); }
   34% { transform: rotate(-2.4deg) translateX(-2px); }
   40% { transform: rotate(-2deg) translateX(-2px); }
@@ -2084,7 +2522,7 @@ section {
 }
 
 /* Friendly hover wiggle. */
-@keyframes evoc-wave {
+@keyframes maestric-wave {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(-6deg); }
   60% { transform: rotate(5deg); }
@@ -2092,13 +2530,13 @@ section {
 }
 
 /* Contemplative lean while the terminal "thinks". */
-@keyframes evoc-think {
+@keyframes maestric-think {
   0%, 100% { transform: rotate(0deg); }
   50% { transform: rotate(-5deg) translateX(-2px); }
 }
 
 /* Ground shadow shrinks as the mascot rises — opposite phase to the float. */
-@keyframes evoc-shadow {
+@keyframes maestric-shadow {
   0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.85; }
   50% { transform: translateX(-50%) scale(0.82); opacity: 0.5; }
 }
@@ -2146,6 +2584,42 @@ section {
   .demo-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .carl-graph {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .carl-phase {
+    flex: 0 0 auto;
+  }
+
+  .carl-link {
+    flex-basis: 22px;
+    width: 3px;
+    height: 22px;
+    align-self: center;
+    background: repeating-linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 65%, transparent) 0 6px,
+      transparent 6px 12px
+    );
+    background-size: 100% 24px;
+  }
+
+  .carl-chain.visible .carl-link:not(.carl-link--v) {
+    animation: carl-flow-y 0.9s linear infinite;
+  }
+
+  .carl-link .carl-spark {
+    top: 0;
+    left: 50%;
+    margin: -3.5px 0 0 -3.5px;
+  }
+
+  .carl-chain.visible .carl-link:not(.carl-link--v) .carl-spark {
+    animation: carl-spark-y 1.9s ease-in-out infinite;
   }
 
   .hero-visual {
@@ -2372,6 +2846,22 @@ section {
     opacity: 1;
     transform: none;
     animation: none !important;
+  }
+
+  .carl-phase,
+  .carl-node {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+  .carl-link,
+  .carl-link--v {
+    animation: none !important;
+  }
+
+  .carl-spark {
+    display: none;
   }
 
   .benefit-card::after {

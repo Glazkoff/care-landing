@@ -175,26 +175,32 @@ function t(key) {
 }
 
 const DEMO_LINES_RU = [
-  { role: "user", text: "> Собери агента для анализа финансовых отчётов" },
-  { role: "tool", text: "▶ Analyzing domain…" },
-  { role: "tool", text: "▶ Planning steps…" },
-  { role: "tool", text: "✓ Describing steps" },
-  { role: "tool", text: " ⎿ 4 steps · 2 tools · 1 skill" },
-  { role: "tool", text: "▶ Running chain…" },
-  { role: "assistant", text: "Агент готов: извлекает метрики из PDF и строит сводку." },
-  { role: "tool", text: "✓ Saved chain `fin-report-agent`" },
-  { role: "tool", text: "🧬 Evolution run `evo-7f3a` started" },
+  { role: "user", text: "> Достань показатели из квартального отчёта" },
+  { role: "tool", text: "📎 q3-report.pdf прикреплён" },
+  { role: "tool", text: "▶ Анализирую задачу…" },
+  { role: "tool", text: "▶ Планирую шаги…" },
+  { role: "tool", text: "✓ Цепочка CARL собрана · 2 шага" },
+  { role: "tool", text: "▶ extract_pdf_text · читаю PDF…" },
+  { role: "tool", text: "▶ normalise_financials · структурирую…" },
+  { role: "result", text: "✓ QuarterlyFinancials" },
+  { role: "result", text: "  period: Q3 2025 · USD" },
+  { role: "result", text: "  revenue: $4.20M · net income: $0.91M" },
+  { role: "tool", text: "✓ Сохранено в Memory · chain `fin-report`" },
+  { role: "tool", text: "🧬 Эволюция `evo-7f3a` запущена" },
 ];
 
 const DEMO_LINES_EN = [
-  { role: "user", text: "> Build an agent to analyze financial reports" },
-  { role: "tool", text: "▶ Analyzing domain…" },
+  { role: "user", text: "> Extract the headline figures from a quarterly report" },
+  { role: "tool", text: "📎 q3-report.pdf attached" },
+  { role: "tool", text: "▶ Analyzing task…" },
   { role: "tool", text: "▶ Planning steps…" },
-  { role: "tool", text: "✓ Describing steps" },
-  { role: "tool", text: " ⎿ 4 steps · 2 tools · 1 skill" },
-  { role: "tool", text: "▶ Running chain…" },
-  { role: "assistant", text: "Agent ready: extracts metrics from PDFs and builds a summary." },
-  { role: "tool", text: "✓ Saved chain `fin-report-agent`" },
+  { role: "tool", text: "✓ CARL chain assembled · 2 steps" },
+  { role: "tool", text: "▶ extract_pdf_text · reading PDF…" },
+  { role: "tool", text: "▶ normalise_financials · structuring…" },
+  { role: "result", text: "✓ QuarterlyFinancials" },
+  { role: "result", text: "  period: Q3 2025 · USD" },
+  { role: "result", text: "  revenue: $4.20M · net income: $0.91M" },
+  { role: "tool", text: "✓ Saved to Memory · chain `fin-report`" },
   { role: "tool", text: "🧬 Evolution run `evo-7f3a` started" },
 ];
 
@@ -202,42 +208,42 @@ function getDemoLines() {
   return document.documentElement.lang === "ru" ? DEMO_LINES_RU : DEMO_LINES_EN;
 }
 
-function initTerminalDemo() {
-  const output = document.querySelector(".terminal-output");
-  const mascot = document.querySelector("#demo .mascot-stage");
-  if (!output) return;
+
+function startTypewriter({
+  output,
+  getLines,
+  section,
+  onIndex,
+  onReset,
+  loopPause = 3200,
+}) {
+  if (!output || !section) return;
 
   let lineIndex = 0;
   let charIndex = 0;
   let currentLine = null;
   let timer = null;
 
-  function setMascotMood(index) {
-    if (!mascot) return;
-    const mood = index < 3 ? "think" : index < 6 ? "work" : "success";
-    mascot.dataset.mood = mood;
-  }
-
   function reset() {
     output.innerHTML = "";
     lineIndex = 0;
     charIndex = 0;
     currentLine = null;
-    if (mascot) mascot.dataset.mood = "idle";
+    if (onReset) onReset();
   }
 
   function typeNextChar() {
-    const lines = getDemoLines();
+    const lines = getLines();
     if (lineIndex >= lines.length) {
       timer = setTimeout(() => {
         reset();
         timer = setTimeout(typeNextChar, 400);
-      }, 3200);
+      }, loopPause);
       return;
     }
 
     const entry = lines[lineIndex];
-    setMascotMood(lineIndex);
+    if (onIndex) onIndex(lineIndex);
 
     if (!currentLine) {
       currentLine = document.createElement("div");
@@ -250,13 +256,16 @@ function initTerminalDemo() {
       currentLine.textContent += entry.text[charIndex];
       charIndex += 1;
       output.scrollTop = output.scrollHeight;
-      timer = setTimeout(typeNextChar, entry.role === "tool" ? 18 : 28);
+      const fast = entry.role === "tool" || entry.role === "json";
+      timer = setTimeout(typeNextChar, fast ? 15 : 24);
       return;
     }
 
     lineIndex += 1;
     currentLine = null;
-    timer = setTimeout(typeNextChar, entry.role === "assistant" ? 500 : 260);
+    const slow =
+      entry.role === "assistant" || entry.role === "result";
+    timer = setTimeout(typeNextChar, slow ? 340 : 200);
   }
 
   const observer = new IntersectionObserver(
@@ -271,12 +280,30 @@ function initTerminalDemo() {
         }
       });
     },
-    { threshold: 0.35 }
+    { threshold: 0.3 }
   );
 
-  const section = document.querySelector("#demo");
-  if (section) observer.observe(section);
+  observer.observe(section);
 }
+
+function initTerminalDemo() {
+  const output = document.querySelector(".terminal-output");
+  const mascot = document.querySelector("#demo .mascot-stage");
+  startTypewriter({
+    output,
+    getLines: getDemoLines,
+    section: document.querySelector("#demo"),
+    onIndex: (i) => {
+      if (mascot) {
+        mascot.dataset.mood = i < 4 ? "think" : i < 7 ? "work" : "success";
+      }
+    },
+    onReset: () => {
+      if (mascot) mascot.dataset.mood = "idle";
+    },
+  });
+}
+
 
 function initChainReveal() {
   const grid = document.querySelector(".benefits-grid");
@@ -392,8 +419,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const output = document.querySelector(".terminal-output");
-      if (output) output.innerHTML = "";
+      document
+        .querySelectorAll(".terminal-output")
+        .forEach((output) => {
+          output.innerHTML = "";
+        });
     });
   });
 });
