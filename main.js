@@ -62,6 +62,34 @@ function initTheme() {
   });
 }
 
+function initSwitch(btnAttr, panelAttr, storageKey) {
+  const buttons = Array.from(document.querySelectorAll(`[${btnAttr}]`));
+  if (!buttons.length) return;
+  const panels = Array.from(document.querySelectorAll(`[${panelAttr}]`));
+  const values = buttons.map((b) => b.getAttribute(btnAttr));
+  const fallback = values[0];
+
+  function apply(value, persist) {
+    const next = values.includes(value) ? value : fallback;
+    buttons.forEach((b) => {
+      const active = b.getAttribute(btnAttr) === next;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    panels.forEach((p) => {
+      p.hidden = p.getAttribute(panelAttr) !== next;
+    });
+    if (persist && storageKey) localStorage.setItem(storageKey, next);
+  }
+
+  const stored = storageKey ? localStorage.getItem(storageKey) : null;
+  apply(values.includes(stored) ? stored : fallback, false);
+
+  buttons.forEach((b) => {
+    b.addEventListener("click", () => apply(b.getAttribute(btnAttr), true));
+  });
+}
+
 function initScrollReveal() {
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const targets = document.querySelectorAll(".reveal");
@@ -351,6 +379,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("js");
   initTheme();
   window.CARE_I18N.initI18n();
+  initSwitch("data-pkg-btn", "data-pkg-panel", "care-landing-pkg");
+  initSwitch("data-agent-btn", "data-agent-panel", "care-landing-agent");
   initNav();
   initScrollReveal();
   initParticles();

@@ -1512,6 +1512,41 @@ section {
   font-size: 0.78rem;
 }
 
+.pkg-switch {
+  margin-bottom: 0.9rem;
+}
+
+.install-step .pill-group {
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.pkg-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pkg-panel[hidden] {
+  display: none;
+}
+
+.pkg-hint {
+  margin: 0.1rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.pkg-hint a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.skill-install {
+  background: var(--bg-alt);
+}
+
 /* CTA */
 .cta-section {
   padding: 5rem 0;
