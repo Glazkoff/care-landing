@@ -27,6 +27,24 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      (function () {
+        var VALID = ["warm", "crystal"];
+        try {
+          var fromUrl = new URLSearchParams(window.location.search).get("theme");
+          var stored = localStorage.getItem("care-landing-theme");
+          var theme = VALID.indexOf(fromUrl) > -1
+            ? fromUrl
+            : VALID.indexOf(stored) > -1
+              ? stored
+              : window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "crystal"
+                : "warm";
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <nav class="nav" aria-label="Main navigation">

@@ -8,6 +8,13 @@ function getThemeFromUrl() {
   return VALID_THEMES.includes(theme) ? theme : null;
 }
 
+function getSystemTheme() {
+  return window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "crystal"
+    : "warm";
+}
+
 function setTheme(theme, { persist = true, updateUrl = true } = {}) {
   const next = VALID_THEMES.includes(theme) ? theme : DEFAULT_THEME;
   document.documentElement.dataset.theme = next;
@@ -30,8 +37,25 @@ function setTheme(theme, { persist = true, updateUrl = true } = {}) {
 function initTheme() {
   const fromUrl = getThemeFromUrl();
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  const theme = fromUrl || (VALID_THEMES.includes(stored) ? stored : DEFAULT_THEME);
-  setTheme(theme, { persist: !fromUrl, updateUrl: !fromUrl });
+  const explicit = fromUrl || (VALID_THEMES.includes(stored) ? stored : null);
+  const theme = explicit || getSystemTheme();
+  setTheme(theme, { persist: Boolean(explicit), updateUrl: Boolean(explicit) });
+
+  if (window.matchMedia) {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const hasChoice =
+          getThemeFromUrl() ||
+          VALID_THEMES.includes(localStorage.getItem(THEME_STORAGE_KEY));
+        if (!hasChoice) {
+          setTheme(e.matches ? "crystal" : "warm", {
+            persist: false,
+            updateUrl: false,
+          });
+        }
+      });
+  }
 
   document.querySelectorAll("[data-theme-btn]").forEach((btn) => {
     btn.addEventListener("click", () => setTheme(btn.dataset.themeBtn));
