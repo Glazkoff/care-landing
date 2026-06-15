@@ -87,7 +87,7 @@ const TRANSLATIONS = {
     "stack.platform.name": "Эволюция",
     "stack.platform.role": "Отбор лучших",
     "stack.platform.desc": "Улучшает цепочки и продвигает лучшие варианты.",
-    "stack.care.label": "MAESTRO CARE TUI / CLI",
+    "stack.care.label": "MAESTRO CARE",
 
     "demo.title": "Как выглядит работа в MAESTRO CARE",
     "demo.subtitle": "Прикладываешь документ — получаешь готовую цепочку CARL и структурный результат",
@@ -259,7 +259,7 @@ const TRANSLATIONS = {
     "stack.platform.name": "Evolution",
     "stack.platform.role": "Best-of selection",
     "stack.platform.desc": "Improves chains and promotes the best variants.",
-    "stack.care.label": "MAESTRO CARE TUI / CLI",
+    "stack.care.label": "MAESTRO CARE",
 
     "demo.title": "What working in MAESTRO CARE looks like",
     "demo.subtitle": "Attach a document — get a ready CARL chain and a structured result",
