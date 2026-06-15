@@ -304,6 +304,31 @@ function initTerminalDemo() {
   });
 }
 
+function initChainSteps() {
+  const buttons = Array.from(document.querySelectorAll(".carl-step-btn"));
+  if (!buttons.length) return;
+
+  function closeAll(except) {
+    buttons.forEach((btn) => {
+      if (btn === except) return;
+      btn.setAttribute("aria-expanded", "false");
+      btn.classList.remove("is-open");
+      const panel = document.getElementById(btn.getAttribute("aria-controls"));
+      if (panel) panel.hidden = true;
+    });
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const panel = document.getElementById(btn.getAttribute("aria-controls"));
+      const willOpen = btn.getAttribute("aria-expanded") !== "true";
+      closeAll(btn);
+      btn.setAttribute("aria-expanded", String(willOpen));
+      btn.classList.toggle("is-open", willOpen);
+      if (panel) panel.hidden = !willOpen;
+    });
+  });
+}
 
 function initChainReveal() {
   const grid = document.querySelector(".benefits-grid");
@@ -412,6 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initParticles();
   initTerminalDemo();
+  initChainSteps();
   initChainReveal();
   initCopyButtons();
   initMascotHover();

@@ -1798,6 +1798,189 @@ section {
   }
 }
 
+/* Clickable steps → expandable CARL topology */
+.carl-step-btn {
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  padding-right: 2rem;
+}
+.carl-step-btn:focus-visible {
+  outline: 2px solid var(--c);
+  outline-offset: 2px;
+}
+.carl-step-chevron {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid var(--c);
+  border-bottom: 2px solid var(--c);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+.carl-step-btn.is-open {
+  border-color: color-mix(in srgb, var(--c) 60%, var(--border));
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--c) 24%, transparent);
+}
+.carl-step-btn.is-open .carl-step-chevron {
+  transform: rotate(225deg);
+  top: 0.95rem;
+}
+
+.carl-steps-hint {
+  margin: 1.1rem 0 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.carl-step-panels {
+  margin-top: 0.85rem;
+}
+
+.carl-step-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--crystal) 4%, var(--bg));
+  padding: 1.25rem;
+}
+.carl-step-panel:not([hidden]) {
+  animation: carl-step-open 0.32s ease;
+}
+@keyframes carl-step-open {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.carl-topo {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.carl-topo-node {
+  --c: var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1 1 0;
+  min-width: 140px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.carl-topo--io {
+  --c: var(--text-muted);
+}
+.carl-topo--op.carl-node--tool {
+  --c: var(--accent);
+}
+.carl-topo--op.carl-node--struct {
+  --c: var(--crystal);
+}
+.carl-topo--op {
+  border-color: color-mix(in srgb, var(--c) 45%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 18%, transparent);
+}
+.carl-topo-ic {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.carl-topo-k {
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.carl-topo-node code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-word;
+}
+.carl-topo-type {
+  align-self: flex-start;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c);
+  padding: 0.1rem 0.4rem;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+}
+.carl-topo-arrow {
+  align-self: center;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.carl-topo-desc {
+  margin: 0 0 0.9rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.carl-topo-meta {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.carl-topo-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  min-width: 0;
+}
+.carl-topo-meta dt {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+.carl-topo-meta dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .carl-topo {
+    flex-direction: column;
+  }
+  .carl-topo-arrow {
+    transform: rotate(90deg);
+  }
+  .carl-topo-meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carl-step-panel:not([hidden]) {
+    animation: none;
+  }
+}
+
 /* Install */
 .install-grid {
   display: grid;

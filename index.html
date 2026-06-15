@@ -858,19 +858,31 @@
                 >
               </div>
               <div class="carl-phase-body carl-chain-box">
-                <div class="carl-node carl-node--tool">
+                <button
+                  type="button"
+                  class="carl-node carl-node--tool carl-step-btn"
+                  aria-expanded="false"
+                  aria-controls="carl-step-1"
+                >
                   <span class="carl-node-idx">1</span>
                   <span class="carl-node-name">extract_pdf_text</span>
-                  <span class="carl-node-type">tool</span>
-                </div>
+                  <span class="carl-node-type">skill</span>
+                  <span class="carl-step-chevron" aria-hidden="true"></span>
+                </button>
                 <span class="carl-link carl-link--v" aria-hidden="true"
                   ><i class="carl-spark"></i
                 ></span>
-                <div class="carl-node carl-node--struct">
+                <button
+                  type="button"
+                  class="carl-node carl-node--struct carl-step-btn"
+                  aria-expanded="false"
+                  aria-controls="carl-step-2"
+                >
                   <span class="carl-node-idx">2</span>
                   <span class="carl-node-name">normalise_financials</span>
                   <span class="carl-node-type">structured_output</span>
-                </div>
+                  <span class="carl-step-chevron" aria-hidden="true"></span>
+                </button>
               </div>
             </div>
 
@@ -912,6 +924,92 @@
                   >💾 memory_card · fin-report</span
                 >
               </div>
+            </div>
+          </div>
+
+          <p class="carl-steps-hint" data-i18n="chain.hint">
+            Нажмите на шаг — развернётся его топология CARL
+          </p>
+
+          <div class="carl-step-panels">
+            <div
+              class="carl-step-panel"
+              id="carl-step-1"
+              role="region"
+              aria-label="extract_pdf_text"
+              hidden
+            >
+              <div class="carl-topo">
+                <span class="carl-topo-node carl-topo--io">
+                  <span class="carl-topo-ic" aria-hidden="true">📥</span>
+                  <span class="carl-topo-k" data-i18n="step.in">вход</span>
+                  <code>$inputs.pdf_path</code>
+                </span>
+                <span class="carl-topo-arrow" aria-hidden="true">→</span>
+                <span class="carl-topo-node carl-topo--op carl-node--tool">
+                  <span class="carl-topo-ic" aria-hidden="true">🔧</span>
+                  <code>pdf_extractor</code>
+                  <span class="carl-topo-type">skill</span>
+                </span>
+                <span class="carl-topo-arrow" aria-hidden="true">→</span>
+                <span class="carl-topo-node carl-topo--io">
+                  <span class="carl-topo-ic" aria-hidden="true">📤</span>
+                  <span class="carl-topo-k" data-i18n="step.out">выход</span>
+                  <code>extracted</code>
+                </span>
+              </div>
+              <p class="carl-topo-desc" data-i18n="step.s1.desc">
+                Читает исходный PDF и возвращает текст и распознанные таблицы.
+              </p>
+              <dl class="carl-topo-meta">
+                <div><dt>step_type</dt><dd>skill</dd></div>
+                <div><dt>skill_name</dt><dd>pdf_extractor</dd></div>
+                <div><dt>input_mapping</dt><dd>pdf_path ← $inputs.pdf_path</dd></div>
+                <div><dt>output_key</dt><dd>extracted</dd></div>
+              </dl>
+            </div>
+
+            <div
+              class="carl-step-panel"
+              id="carl-step-2"
+              role="region"
+              aria-label="normalise_financials"
+              hidden
+            >
+              <div class="carl-topo">
+                <span class="carl-topo-node carl-topo--io">
+                  <span class="carl-topo-ic" aria-hidden="true">📥</span>
+                  <span class="carl-topo-k" data-i18n="step.in">вход</span>
+                  <code>$history[-1]</code>
+                </span>
+                <span class="carl-topo-arrow" aria-hidden="true">→</span>
+                <span class="carl-topo-node carl-topo--op carl-node--struct">
+                  <span class="carl-topo-ic" aria-hidden="true">🧬</span>
+                  <code>structured_output</code>
+                  <span class="carl-topo-type">strict</span>
+                </span>
+                <span class="carl-topo-arrow" aria-hidden="true">→</span>
+                <span class="carl-topo-node carl-topo--io">
+                  <span class="carl-topo-ic" aria-hidden="true">📤</span>
+                  <span class="carl-topo-k" data-i18n="step.out">выход</span>
+                  <code>QuarterlyFinancials</code>
+                </span>
+              </div>
+              <p class="carl-topo-desc" data-i18n="step.s2.desc">
+                Приводит извлечённый текст к строгой схеме QuarterlyFinancials.
+              </p>
+              <dl class="carl-topo-meta">
+                <div><dt>step_type</dt><dd>structured_output</dd></div>
+                <div><dt>dependencies</dt><dd>[1] · $history[-1]</dd></div>
+                <div><dt>schema_name</dt><dd>QuarterlyFinancials</dd></div>
+                <div>
+                  <dt>output_schema</dt>
+                  <dd>
+                    period · currency · revenue · net_income · total_expenses ·
+                    notable_alerts
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
