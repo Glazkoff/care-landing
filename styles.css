@@ -2195,7 +2195,8 @@ section {
     font-weight: 700;
   }
 
-  .nav-github {
+  .nav-github,
+  .nav-docs {
     display: none;
   }
 

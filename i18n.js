@@ -10,6 +10,7 @@ const TRANSLATIONS = {
     "nav.demo": "Демо",
     "nav.install": "Установка",
     "nav.github": "GitHub",
+    "nav.docs": "Документация",
 
     "hero.badge": "Открытый инструмент для AI-агентов",
     "hero.title": "Опиши задачу — MAESTRO CARE сам соберёт, запустит и улучшит агента",
@@ -150,6 +151,7 @@ const TRANSLATIONS = {
     "nav.demo": "Demo",
     "nav.install": "Install",
     "nav.github": "GitHub",
+    "nav.docs": "Documentation",
 
     "hero.badge": "Open-source toolkit for AI agents",
     "hero.title": "Describe a task — MAESTRO CARE builds, runs, and improves the agent",
