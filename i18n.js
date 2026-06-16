@@ -94,8 +94,9 @@ const TRANSLATIONS = {
     "demo.subtitle": "Прикладываешь документ — получаешь готовую цепочку CARL и структурный результат",
     "demo.mode": "Production",
     "demo.note": "Анимация интерфейса",
+    "chain.badge": "Формат CARL",
     "chain.title": "Итоговая цепочка",
-    "chain.steps": "2 шага",
+    "chain.steps": "3 шага",
     "chain.task": "достать показатели из квартального PDF",
     "chain.p1": "Вход",
     "chain.p2": "Цепочка",
@@ -105,12 +106,30 @@ const TRANSLATIONS = {
     "chain.persist": "сохранение",
     "chain.result": "Результат · QuarterlyFinancials",
     "chain.saved": "💾 memory_card · fin-report",
-    "chain.hint": "Нажмите на шаг — развернётся его топология CARL",
+    "chain.hint": "Нажмите на шаг — развернётся его структура в формате CARL",
     "step.in": "вход",
     "step.out": "выход",
-    "step.s1.desc": "Читает исходный PDF и возвращает текст и распознанные таблицы.",
+    "step.s1.aim":
+      "понять структуру отчёта и спланировать извлечение нужных показателей",
+    "step.s1.sys":
+      "Ты — аккуратный финансовый аналитик. Не выдумывай числа: опирайся только на текст отчёта.",
+    "step.s1.stage":
+      "определи разделы PDF и список метрик — выручка, чистая прибыль, расходы; зафиксируй валюту и отчётный период",
+    "step.s1.rq":
+      "Где в отчёте итоговые цифры? Какой период и валюта? Есть ли сноски о рисках или пересчётах?",
+    "step.s1.ex":
+      "напр.: строка «Revenue» в итоговой таблице → revenue; суммы в тыс. → перевести в абсолютные значения валюты",
+    "step.s1.ctx1": "структура квартального отчёта",
+    "step.s1.ctx2": "ключевые метрики P&L",
+    "step.s1.ctx3": "валюта и отчётный период",
+    "step.s2.aim":
+      "извлечь из PDF чистый текст и таблицы для дальнейшей структуризации",
     "step.s2.desc":
-      "Приводит извлечённый текст к строгой схеме QuarterlyFinancials.",
+      "читает исходный PDF и возвращает обычный текст и распознанные таблицы",
+    "step.s3.aim":
+      "привести извлечённый текст к строгой схеме QuarterlyFinancials",
+    "step.s3.instruction":
+      "распарсить текст в форму QuarterlyFinancials: числа — в единицах валюты, неуверенные поля пропускать, а не угадывать",
     "install.title": "Установка за минуту",
     "install.subtitle": "Одна команда запускает мастер, который настроит всё за тебя.",
     "install.s1.title": "Запусти установщик",
@@ -271,8 +290,9 @@ const TRANSLATIONS = {
     "demo.subtitle": "Attach a document — get a ready CARL chain and a structured result",
     "demo.mode": "Production",
     "demo.note": "Interface animation",
+    "chain.badge": "CARL format",
     "chain.title": "Resulting chain",
-    "chain.steps": "2 steps",
+    "chain.steps": "3 steps",
     "chain.task": "extract figures from a quarterly PDF",
     "chain.p1": "Input",
     "chain.p2": "Chain",
@@ -282,12 +302,30 @@ const TRANSLATIONS = {
     "chain.persist": "persist",
     "chain.result": "Result · QuarterlyFinancials",
     "chain.saved": "💾 memory_card · fin-report",
-    "chain.hint": "Click a step to expand its CARL topology",
+    "chain.hint": "Click a step to expand its CARL structure",
     "step.in": "input",
     "step.out": "output",
-    "step.s1.desc": "Reads the source PDF and returns plain text + parsed tables.",
+    "step.s1.aim":
+      "understand the report layout and plan which figures to extract",
+    "step.s1.sys":
+      "You are a careful financial analyst. Never invent numbers — rely only on the report text.",
+    "step.s1.stage":
+      "map the PDF sections and the metric list — revenue, net income, expenses; pin down the currency and reporting period",
+    "step.s1.rq":
+      "Where are the headline figures? What period and currency? Any footnotes on risks or restatements?",
+    "step.s1.ex":
+      "e.g. the 'Revenue' line in the summary table → revenue; figures in thousands → convert to absolute currency values",
+    "step.s1.ctx1": "quarterly report structure",
+    "step.s1.ctx2": "key P&L metrics",
+    "step.s1.ctx3": "currency and reporting period",
+    "step.s2.aim":
+      "extract clean text and tables from the PDF for downstream structuring",
     "step.s2.desc":
-      "Coerces the extracted text into the strict QuarterlyFinancials schema.",
+      "reads the source PDF and returns plain text plus parsed tables",
+    "step.s3.aim":
+      "coerce the extracted text into the strict QuarterlyFinancials schema",
+    "step.s3.instruction":
+      "parse the text into the QuarterlyFinancials shape: raw values in currency units, omit uncertain fields rather than guessing",
     "install.title": "Install in a minute",
     "install.subtitle": "One command launches a wizard that sets everything up for you.",
     "install.s1.title": "Run the installer",

@@ -817,11 +817,13 @@
 
         <div class="carl-chain reveal reveal-delay-2">
           <div class="carl-chain-head">
-            <span class="carl-chain-badge">CARL</span>
+            <span class="carl-chain-badge" data-i18n="chain.badge"
+              >Формат CARL</span
+            >
             <h3 class="carl-chain-title" data-i18n="chain.title">
               Итоговая цепочка
             </h3>
-            <span class="carl-chain-count" data-i18n="chain.steps">2 шага</span>
+            <span class="carl-chain-count" data-i18n="chain.steps">3 шага</span>
             <span class="carl-chain-task" data-i18n="chain.task">
               достать показатели из квартального PDF
             </span>
@@ -852,27 +854,43 @@
               ><i class="carl-spark"></i
             ></span>
 
-            <!-- Phase 2 — the CARL chain (2 steps) -->
+            <!-- Phase 2 — the CARL chain (3 steps) -->
             <div class="carl-phase carl-phase--chain" role="listitem">
               <div class="carl-phase-head">
-                <span class="carl-phase-badge">CARL</span>
+                <span class="carl-phase-badge" data-i18n="chain.badge"
+                  >Формат CARL</span
+                >
                 <span class="carl-phase-label" data-i18n="chain.p2"
                   >Цепочка</span
                 >
                 <span class="carl-phase-count" data-i18n="chain.steps"
-                  >2 шага</span
+                  >3 шага</span
                 >
               </div>
               <div class="carl-phase-body carl-chain-box">
                 <button
                   type="button"
-                  class="carl-node carl-node--tool carl-step-btn"
+                  class="carl-node carl-node--llm carl-step-btn"
                   aria-expanded="false"
                   aria-controls="carl-step-1"
                 >
                   <span class="carl-node-idx">1</span>
+                  <span class="carl-node-name">plan_extraction</span>
+                  <span class="carl-node-type">llm</span>
+                  <span class="carl-step-chevron" aria-hidden="true"></span>
+                </button>
+                <span class="carl-link carl-link--v" aria-hidden="true"
+                  ><i class="carl-spark"></i
+                ></span>
+                <button
+                  type="button"
+                  class="carl-node carl-node--tool carl-step-btn"
+                  aria-expanded="false"
+                  aria-controls="carl-step-2"
+                >
+                  <span class="carl-node-idx">2</span>
                   <span class="carl-node-name">extract_pdf_text</span>
-                  <span class="carl-node-type">skill</span>
+                  <span class="carl-node-type">tool</span>
                   <span class="carl-step-chevron" aria-hidden="true"></span>
                 </button>
                 <span class="carl-link carl-link--v" aria-hidden="true"
@@ -882,9 +900,9 @@
                   type="button"
                   class="carl-node carl-node--struct carl-step-btn"
                   aria-expanded="false"
-                  aria-controls="carl-step-2"
+                  aria-controls="carl-step-3"
                 >
-                  <span class="carl-node-idx">2</span>
+                  <span class="carl-node-idx">3</span>
                   <span class="carl-node-name">normalise_financials</span>
                   <span class="carl-node-type">structured_output</span>
                   <span class="carl-step-chevron" aria-hidden="true"></span>
@@ -934,7 +952,7 @@
           </div>
 
           <p class="carl-steps-hint" data-i18n="chain.hint">
-            Нажмите на шаг — развернётся его топология CARL
+            Нажмите на шаг — развернётся его структура в формате CARL
           </p>
 
           <div class="carl-step-panels">
@@ -942,161 +960,203 @@
               class="carl-step-panel"
               id="carl-step-1"
               role="region"
-              aria-label="extract_pdf_text"
+              aria-label="plan_extraction"
               hidden
             >
-              <div class="carl-topo">
-                <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M12 3v10" />
-                      <path d="M8 9l4 4 4-4" />
-                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
-                    </svg>
-                  </span>
-                  <span class="carl-topo-k" data-i18n="step.in">вход</span>
-                  <code>$inputs.pdf_path</code>
-                </span>
-                <span class="carl-topo-arrow" aria-hidden="true">→</span>
-                <span class="carl-topo-node carl-topo--op carl-node--tool">
-                  <span class="carl-topo-ic" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"
-                      />
-                    </svg>
-                  </span>
-                  <code>pdf_extractor</code>
-                  <span class="carl-topo-type">skill</span>
-                </span>
-                <span class="carl-topo-arrow" aria-hidden="true">→</span>
-                <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M12 14V4" />
-                      <path d="M8 8l4-4 4 4" />
-                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
-                    </svg>
-                  </span>
-                  <span class="carl-topo-k" data-i18n="step.out">выход</span>
-                  <code>extracted</code>
-                </span>
+              <div class="carl-spec carl-spec--llm">
+                <div class="carl-spec-head">
+                  <span class="carl-spec-num">1</span>
+                  <code class="carl-spec-title">plan_extraction</code>
+                  <span class="carl-spec-type">llm</span>
+                </div>
+                <dl class="carl-fields">
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">step_type</dt>
+                    <dd class="carl-fval"><code>llm</code></dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">aim</dt>
+                    <dd class="carl-fval" data-i18n="step.s1.aim">
+                      понять структуру отчёта и спланировать извлечение нужных
+                      показателей
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">reasoning_questions</dt>
+                    <dd class="carl-fval" data-i18n="step.s1.rq">
+                      Где в отчёте итоговые цифры? Какой период и валюта? Есть ли
+                      сноски о рисках или пересчётах?
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">step_context_queries</dt>
+                    <dd class="carl-fval carl-fval--chips">
+                      <span class="carl-chip" data-i18n="step.s1.ctx1"
+                        >структура квартального отчёта</span
+                      >
+                      <span class="carl-chip" data-i18n="step.s1.ctx2"
+                        >ключевые метрики P&amp;L</span
+                      >
+                      <span class="carl-chip" data-i18n="step.s1.ctx3"
+                        >валюта и отчётный период</span
+                      >
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">stage_action</dt>
+                    <dd class="carl-fval" data-i18n="step.s1.stage">
+                      определи разделы PDF и список метрик — выручка, чистая
+                      прибыль, расходы; зафиксируй валюту и отчётный период
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">example_reasoning</dt>
+                    <dd class="carl-fval" data-i18n="step.s1.ex">
+                      напр.: строка «Revenue» в итоговой таблице → revenue; суммы
+                      в тыс. → перевести в абсолютные значения валюты
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">dependencies</dt>
+                    <dd class="carl-fval"><code>[]</code></dd>
+                  </div>
+                </dl>
+                <div class="carl-fgroup">
+                  <span class="carl-fgroup-label">llm_config</span>
+                  <dl class="carl-fields carl-fields--nested">
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">model</dt>
+                      <dd class="carl-fval"><code>auto</code></dd>
+                    </div>
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">temperature</dt>
+                      <dd class="carl-fval"><code>0.2</code></dd>
+                    </div>
+                  </dl>
+                </div>
               </div>
-              <p class="carl-topo-desc" data-i18n="step.s1.desc">
-                Читает исходный PDF и возвращает текст и распознанные таблицы.
-              </p>
-              <dl class="carl-topo-meta">
-                <div><dt>step_type</dt><dd>skill</dd></div>
-                <div><dt>skill_name</dt><dd>pdf_extractor</dd></div>
-                <div><dt>input_mapping</dt><dd>pdf_path ← $inputs.pdf_path</dd></div>
-                <div><dt>output_key</dt><dd>extracted</dd></div>
-              </dl>
             </div>
 
             <div
               class="carl-step-panel"
               id="carl-step-2"
               role="region"
+              aria-label="extract_pdf_text"
+              hidden
+            >
+              <div class="carl-spec carl-spec--tool">
+                <div class="carl-spec-head">
+                  <span class="carl-spec-num">2</span>
+                  <code class="carl-spec-title">extract_pdf_text</code>
+                  <span class="carl-spec-type">tool</span>
+                </div>
+                <dl class="carl-fields">
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">step_type</dt>
+                    <dd class="carl-fval"><code>tool</code></dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">aim</dt>
+                    <dd class="carl-fval" data-i18n="step.s2.aim">
+                      извлечь из PDF чистый текст и таблицы для дальнейшей
+                      структуризации
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">dependencies</dt>
+                    <dd class="carl-fval"><code>[1]</code></dd>
+                  </div>
+                </dl>
+                <div class="carl-fgroup">
+                  <span class="carl-fgroup-label">step_config</span>
+                  <dl class="carl-fields carl-fields--nested">
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">tool_name</dt>
+                      <dd class="carl-fval"><code>pdf_extractor</code></dd>
+                    </div>
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">input_mapping</dt>
+                      <dd class="carl-fval">
+                        <code>pdf_path ← $inputs.pdf_path</code>
+                      </dd>
+                    </div>
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">output_key</dt>
+                      <dd class="carl-fval"><code>extracted</code></dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="carl-step-panel"
+              id="carl-step-3"
+              role="region"
               aria-label="normalise_financials"
               hidden
             >
-              <div class="carl-topo">
-                <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M12 3v10" />
-                      <path d="M8 9l4 4 4-4" />
-                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
-                    </svg>
-                  </span>
-                  <span class="carl-topo-k" data-i18n="step.in">вход</span>
-                  <code>$history[-1]</code>
-                </span>
-                <span class="carl-topo-arrow" aria-hidden="true">→</span>
-                <span class="carl-topo-node carl-topo--op carl-node--struct">
-                  <span class="carl-topo-ic" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"
-                      />
-                      <path
-                        d="M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"
-                      />
-                    </svg>
-                  </span>
-                  <code>structured_output</code>
-                  <span class="carl-topo-type">strict</span>
-                </span>
-                <span class="carl-topo-arrow" aria-hidden="true">→</span>
-                <span class="carl-topo-node carl-topo--io">
-                  <span class="carl-topo-ic" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M12 14V4" />
-                      <path d="M8 8l4-4 4 4" />
-                      <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" />
-                    </svg>
-                  </span>
-                  <span class="carl-topo-k" data-i18n="step.out">выход</span>
-                  <code>QuarterlyFinancials</code>
-                </span>
-              </div>
-              <p class="carl-topo-desc" data-i18n="step.s2.desc">
-                Приводит извлечённый текст к строгой схеме QuarterlyFinancials.
-              </p>
-              <dl class="carl-topo-meta">
-                <div><dt>step_type</dt><dd>structured_output</dd></div>
-                <div><dt>dependencies</dt><dd>[1] · $history[-1]</dd></div>
-                <div><dt>schema_name</dt><dd>QuarterlyFinancials</dd></div>
-                <div>
-                  <dt>output_schema</dt>
-                  <dd>
-                    period · currency · revenue · net_income · total_expenses ·
-                    notable_alerts
-                  </dd>
+              <div class="carl-spec carl-spec--struct">
+                <div class="carl-spec-head">
+                  <span class="carl-spec-num">3</span>
+                  <code class="carl-spec-title">normalise_financials</code>
+                  <span class="carl-spec-type">structured_output</span>
                 </div>
-              </dl>
+                <dl class="carl-fields">
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">step_type</dt>
+                    <dd class="carl-fval"><code>structured_output</code></dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">aim</dt>
+                    <dd class="carl-fval" data-i18n="step.s3.aim">
+                      привести извлечённый текст к строгой схеме
+                      QuarterlyFinancials
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">instruction</dt>
+                    <dd class="carl-fval" data-i18n="step.s3.instruction">
+                      распарсить текст в форму QuarterlyFinancials: числа — в
+                      единицах валюты, неуверенные поля пропускать, а не угадывать
+                    </dd>
+                  </div>
+                  <div class="carl-frow">
+                    <dt class="carl-fkey">dependencies</dt>
+                    <dd class="carl-fval"><code>[2]</code></dd>
+                  </div>
+                </dl>
+                <div class="carl-fgroup">
+                  <span class="carl-fgroup-label">step_config</span>
+                  <dl class="carl-fields carl-fields--nested">
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">input_source</dt>
+                      <dd class="carl-fval"><code>$history[-1]</code></dd>
+                    </div>
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">schema_name</dt>
+                      <dd class="carl-fval"><code>QuarterlyFinancials</code></dd>
+                    </div>
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">strict_json</dt>
+                      <dd class="carl-fval"><code>true</code></dd>
+                    </div>
+                    <div class="carl-frow">
+                      <dt class="carl-fkey">output_schema</dt>
+                      <dd class="carl-fval carl-fval--chips">
+                        <span class="carl-chip">period</span>
+                        <span class="carl-chip">currency</span>
+                        <span class="carl-chip">revenue</span>
+                        <span class="carl-chip">net_income</span>
+                        <span class="carl-chip">total_expenses</span>
+                        <span class="carl-chip carl-chip--opt"
+                          >notable_alerts?</span
+                        >
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </div>
         </div>
