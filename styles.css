@@ -651,6 +651,21 @@ section {
   font-size: 1.05rem;
 }
 
+/* Balance multi-line headings and avoid a lone orphan word on the last line.
+   RU text is longer than EN and was wrapping awkwardly (e.g. a single word
+   stranded on its own line). */
+.hero h1,
+.section-header h2,
+.team-head h2,
+.cta-card h2,
+.cta-title {
+  text-wrap: balance;
+}
+.hero-lead,
+.section-header p {
+  text-wrap: pretty;
+}
+
 /* How it works */
 .how-grid {
   display: grid;
