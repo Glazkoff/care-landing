@@ -400,6 +400,11 @@ const TRANSLATIONS = {
 const LANG_STORAGE_KEY = "care-landing-lang";
 
 function detectLanguage() {
+  // Explicit ?lang=ru / ?lang=en override — lets you share a link in a fixed language.
+  try {
+    const fromUrl = new URLSearchParams(window.location.search).get("lang");
+    if (fromUrl === "ru" || fromUrl === "en") return fromUrl;
+  } catch (e) {}
   const stored = localStorage.getItem(LANG_STORAGE_KEY);
   if (stored === "ru" || stored === "en") return stored;
   // Default to Russian; users can switch to English (choice is remembered).
@@ -445,7 +450,14 @@ function setLanguage(lang) {
   const next = lang === "ru" ? "ru" : "en";
   localStorage.setItem(LANG_STORAGE_KEY, next);
   applyTranslations(next);
+  // Reflect the language in the URL so the current page is shareable as-is.
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", next);
+    window.history.replaceState(null, "", url);
+  } catch (e) {}
 }
+
 
 function initI18n() {
   const lang = detectLanguage();
