@@ -538,29 +538,46 @@ function initMascotEasterEgg() {
   if (!img) return;
 
   const idleSrc = img.getAttribute("src");
-  const jumpSrc = "assets/mascot_jump.gif?v=2";
+  // Each clip is authored to open on the idle GIF's first frame, so the cut is
+  // seamless. The fallback ms is refined from the real frame delays below.
+  const variants = [
+    { src: "assets/mascot_jump.gif?v=2", ms: 900 },
+    { src: "assets/mascot_dance.gif", ms: 1170 },
+    { src: "assets/mascot_five.gif", ms: 1170 },
+    { src: "assets/mascot_kiss.gif", ms: 1170 },
+  ];
 
-  // Warm the cache so the swap to the jump frames is instant.
-  new Image().src = jumpSrc;
-
-  let jumpMs = 900;
-  getGifDurationMs(jumpSrc).then((ms) => {
-    if (ms) jumpMs = ms;
+  // Warm the cache so swaps are instant, and read each clip's real play length.
+  variants.forEach((v) => {
+    new Image().src = v.src;
+    getGifDurationMs(v.src).then((ms) => {
+      if (ms) v.ms = ms;
+    });
   });
 
-  let jumping = false;
+  let playing = false;
+  let lastIndex = -1;
   stage.style.cursor = "pointer";
 
   stage.addEventListener("click", () => {
-    if (jumping) return;
-    jumping = true;
-    stage.dataset.mood = "idle"; // pause the hover wave so the jump reads cleanly
-    img.src = jumpSrc;
+    if (playing) return;
+    playing = true;
+
+    // Pick a random clip, but never the same one twice in a row.
+    let i = Math.floor(Math.random() * variants.length);
+    while (variants.length > 1 && i === lastIndex) {
+      i = Math.floor(Math.random() * variants.length);
+    }
+    lastIndex = i;
+    const variant = variants[i];
+
+    stage.dataset.mood = "idle"; // pause the hover wave so the clip reads cleanly
+    img.src = variant.src;
     window.setTimeout(() => {
       img.src = idleSrc;
       stage.dataset.mood = stage.matches(":hover") ? "wave" : "idle";
-      jumping = false;
-    }, jumpMs);
+      playing = false;
+    }, variant.ms);
   });
 }
 
