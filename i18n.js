@@ -18,7 +18,7 @@ const TRANSLATIONS = {
       "Соберёт агента, запустит и сам улучшит результат — без ручной настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.",
     "hero.cta.primary": "Начать",
     "hero.cta.secondary": "Смотреть демо",
-    "hero.cta.skill": "Добавить навык",
+    "hero.cta.skill": "Добавить как навык",
     "hero.stat1.label": "до первого агента",
     "hero.stat2.label": "один инструмент",
     "hero.stat3.label": "открытый код",
@@ -216,7 +216,7 @@ const TRANSLATIONS = {
       "It builds the agent, runs it, and keeps improving the result — no manual pipeline wiring, right in your terminal or your favorite coding agent.",
     "hero.cta.primary": "Get started",
     "hero.cta.secondary": "Watch demo",
-    "hero.cta.skill": "Add skill",
+    "hero.cta.skill": "Add as skill",
     "hero.stat1.label": "to your first agent",
     "hero.stat2.label": "one tool",
     "hero.stat3.label": "open source",
@@ -443,6 +443,14 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.langBtn === lang);
     btn.setAttribute("aria-pressed", btn.dataset.langBtn === lang ? "true" : "false");
+  });
+
+  // Point documentation links at the matching language: EN lives at the docs
+  // root, RU is mirrored under /ru/.
+  const docsBase = "https://airi-maestro.github.io/care-docs/";
+  document.querySelectorAll("[data-doc-path]").forEach((el) => {
+    const path = el.getAttribute("data-doc-path");
+    el.setAttribute("href", docsBase + (lang === "ru" ? "ru/" : "") + path);
   });
 }
 
