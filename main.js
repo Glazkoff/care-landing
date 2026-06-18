@@ -423,6 +423,74 @@ function initHeroParallax() {
   });
 }
 
+function initCursorOrb() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia("(hover: none)").matches) return;
+
+  const brandIcon = document.querySelector(".nav .brand-icon");
+  if (!brandIcon) return;
+
+  const orb = document.createElement("div");
+  orb.className = "cursor-orb";
+  orb.setAttribute("aria-hidden", "true");
+  document.body.appendChild(orb);
+  document.documentElement.classList.add("has-cursor-orb");
+
+  const homePos = () => {
+    const r = brandIcon.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  };
+
+  const target = homePos();
+  const pos = { x: target.x, y: target.y };
+  let following = false;
+  let raf = null;
+
+  const draw = () => {
+    orb.style.transform =
+      `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%)`;
+  };
+  draw();
+
+  const tick = () => {
+    pos.x += (target.x - pos.x) * 0.2;
+    pos.y += (target.y - pos.y) * 0.2;
+    draw();
+    if (Math.hypot(target.x - pos.x, target.y - pos.y) > 0.5) {
+      raf = requestAnimationFrame(tick);
+    } else {
+      pos.x = target.x;
+      pos.y = target.y;
+      draw();
+      raf = null;
+    }
+  };
+  const kick = () => {
+    if (raf == null) raf = requestAnimationFrame(tick);
+  };
+
+  window.addEventListener("mousemove", (e) => {
+    following = true;
+    target.x = e.clientX;
+    target.y = e.clientY;
+    kick();
+  });
+
+  const goHome = () => {
+    following = false;
+    const h = homePos();
+    target.x = h.x;
+    target.y = h.y;
+    kick();
+  };
+
+  document.documentElement.addEventListener("mouseleave", goHome);
+  window.addEventListener("blur", goHome);
+  window.addEventListener("resize", () => {
+    if (!following) goHome();
+  });
+}
+
 function initMascotHover() {
   const stage = document.querySelector(".hero-visual .mascot-stage");
   if (!stage) return;
@@ -432,6 +500,78 @@ function initMascotHover() {
   stage.addEventListener("mouseleave", () => {
     if (stage.dataset.mood === "wave") stage.dataset.mood = "idle";
   });
+}
+
+// Yandex Metrica goal + parameter tracking. Relies on window.__ymId (set by the
+// inline counter snippet only when a real counter id is injected), so it is a
+// no-op in local/preview builds that keep the __YM_COUNTER_ID__ placeholder.
+// Goals sent (create matching JS-event goals in the Metrica dashboard to see
+// them as conversions): docs_click, github_click, cta_click, install_copy,
+// carl_step, theme_switch, lang_switch, pkg_switch, agent_switch,
+// external_click, nav_click. Webvisor must also be enabled in the counter's
+// settings UI for session recordings.
+function initAnalytics() {
+  const id = window.__ymId;
+  if (!id || typeof window.ym !== "function") return;
+  const ym = window.ym;
+  const goal = (name, params) => {
+    try {
+      ym(id, "reachGoal", name, params);
+    } catch (e) {}
+  };
+
+  // Record query parameters (utm_*, theme, lang, ref, …) as visit params.
+  try {
+    const sp = new URLSearchParams(window.location.search);
+    const query = {};
+    let has = false;
+    sp.forEach((v, k) => {
+      query[k] = v;
+      has = true;
+    });
+    if (has) ym(id, "params", { query });
+  } catch (e) {}
+
+  document.addEventListener(
+    "click",
+    (e) => {
+      const el = e.target.closest(
+        "a, button, [data-theme-btn], [data-lang-btn], [data-pkg-btn], [data-agent-btn]"
+      );
+      if (!el) return;
+
+      const copy = el.closest(".copy-btn");
+      if (copy) return goal("install_copy", { cmd: copy.getAttribute("data-cmd") || "" });
+
+      const step = el.closest(".carl-step-btn");
+      if (step) return goal("carl_step", { step: step.getAttribute("aria-controls") || "" });
+
+      if (el.hasAttribute("data-theme-btn")) return goal("theme_switch", { theme: el.getAttribute("data-theme-btn") });
+      if (el.hasAttribute("data-lang-btn")) return goal("lang_switch", { lang: el.getAttribute("data-lang-btn") });
+      if (el.hasAttribute("data-pkg-btn")) return goal("pkg_switch", { pkg: el.getAttribute("data-pkg-btn") });
+      if (el.hasAttribute("data-agent-btn")) return goal("agent_switch", { agent: el.getAttribute("data-agent-btn") });
+
+      const link = el.closest("a");
+      if (!link) return;
+      const href = link.getAttribute("href") || "";
+      const label = (link.textContent || "").trim().slice(0, 60);
+
+      if (href.includes("care-docs")) return goal("docs_click", { href, label });
+      if (href.includes("github.com")) return goal("github_click", { href, label });
+      if (link.classList.contains("btn")) return goal("cta_click", { label, href });
+
+      if (/^https?:\/\//i.test(href)) {
+        let host = "";
+        try {
+          host = new URL(href, location.href).host;
+        } catch (e) {}
+        if (host && host !== location.host) return goal("external_click", { href, label });
+      }
+
+      if (href.charAt(0) === "#" && href.length > 1) return goal("nav_click", { section: href, label });
+    },
+    true
+  );
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -449,6 +589,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initCopyButtons();
   initMascotHover();
   initHeroParallax();
+  initCursorOrb();
+  initAnalytics();
 
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {

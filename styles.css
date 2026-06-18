@@ -192,6 +192,27 @@ a:hover {
   }
 }
 
+/* The brand-icon ring detaches and trails the cursor while it's in the viewport,
+   then returns to the logo when the pointer leaves (driven by initCursorOrb). */
+html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
+  opacity: 0;
+}
+
+.cursor-orb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--text);
+  border-radius: 50%;
+  opacity: 0.32;
+  pointer-events: none;
+  z-index: 150;
+  transform: translate(-60px, -60px) translate(-50%, -50%);
+  will-change: transform;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
