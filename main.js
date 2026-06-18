@@ -491,6 +491,79 @@ function initCursorOrb() {
   });
 }
 
+// Sum the per-frame delays in a GIF (no native "animation ended" event exists),
+// so we know exactly when a one-shot GIF has played through once.
+async function getGifDurationMs(url) {
+  try {
+    const buf = new Uint8Array(await (await fetch(url)).arrayBuffer());
+    if (buf[0] !== 0x47 || buf[1] !== 0x49 || buf[2] !== 0x46) return null;
+    let i = 13;
+    const packed = buf[10];
+    if (packed & 0x80) i += 3 * (1 << ((packed & 0x07) + 1));
+    let total = 0;
+    let guard = 0;
+    while (i < buf.length && guard++ < 100000) {
+      const b = buf[i];
+      if (b === 0x21) {
+        if (buf[i + 1] === 0xf9) total += (buf[i + 4] | (buf[i + 5] << 8)) * 10;
+        i += 2;
+        while (i < buf.length && buf[i] !== 0x00) i += buf[i] + 1;
+        i += 1;
+      } else if (b === 0x2c) {
+        i += 9;
+        const lp = buf[i];
+        i += 1;
+        if (lp & 0x80) i += 3 * (1 << ((lp & 0x07) + 1));
+        i += 1;
+        while (i < buf.length && buf[i] !== 0x00) i += buf[i] + 1;
+        i += 1;
+      } else if (b === 0x3b) {
+        break;
+      } else {
+        i += 1;
+      }
+    }
+    return total || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// Easter egg: clicking the hero mascot snaps the idle loop back to its first frame
+// and plays the jump animation once, then returns to the idle loop. The jump GIF is
+// authored to open on the same first frame as the idle GIF, so the cut is seamless.
+function initMascotEasterEgg() {
+  const stage = document.querySelector(".mascot-stage--hero");
+  const img = stage && stage.querySelector(".mascot-img");
+  if (!img) return;
+
+  const idleSrc = img.getAttribute("src");
+  const jumpSrc = "assets/mascot_jump.gif?v=2";
+
+  // Warm the cache so the swap to the jump frames is instant.
+  new Image().src = jumpSrc;
+
+  let jumpMs = 900;
+  getGifDurationMs(jumpSrc).then((ms) => {
+    if (ms) jumpMs = ms;
+  });
+
+  let jumping = false;
+  stage.style.cursor = "pointer";
+
+  stage.addEventListener("click", () => {
+    if (jumping) return;
+    jumping = true;
+    stage.dataset.mood = "idle"; // pause the hover wave so the jump reads cleanly
+    img.src = jumpSrc;
+    window.setTimeout(() => {
+      img.src = idleSrc;
+      stage.dataset.mood = stage.matches(":hover") ? "wave" : "idle";
+      jumping = false;
+    }, jumpMs);
+  });
+}
+
 function initMascotHover() {
   const stage = document.querySelector(".hero-visual .mascot-stage");
   if (!stage) return;
@@ -588,6 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initChainReveal();
   initCopyButtons();
   initMascotHover();
+  initMascotEasterEgg();
   initHeroParallax();
   initCursorOrb();
   initAnalytics();
