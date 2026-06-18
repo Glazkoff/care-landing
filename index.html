@@ -26,25 +26,73 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
     <script>
       (function () {
         var VALID = ["warm", "crystal"];
         try {
-          var fromUrl = new URLSearchParams(window.location.search).get("theme");
+          var fromUrl = new URLSearchParams(window.location.search).get(
+            "theme"
+          );
           var stored = localStorage.getItem("care-landing-theme");
-          var theme = VALID.indexOf(fromUrl) > -1
-            ? fromUrl
-            : VALID.indexOf(stored) > -1
-              ? stored
-              : window.matchMedia &&
-                  window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "crystal"
-                : "warm";
+          var theme =
+            VALID.indexOf(fromUrl) > -1
+              ? fromUrl
+              : VALID.indexOf(stored) > -1
+                ? stored
+                : window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "crystal"
+                  : "warm";
           document.documentElement.dataset.theme = theme;
         } catch (e) {}
       })();
     </script>
+    <!-- Yandex.Metrica counter -->
+    <script type="text/javascript">
+      (function () {
+        var YM_ID = "__YM_COUNTER_ID__";
+        if (!/^\d+$/.test(YM_ID)) return;
+        (function (m, e, t, r, i, k, a) {
+          m[i] =
+            m[i] ||
+            function () {
+              (m[i].a = m[i].a || []).push(arguments);
+            };
+          m[i].l = 1 * new Date();
+          for (var j = 0; j < e.scripts.length; j++) {
+            if (e.scripts[j].src === r) {
+              return;
+            }
+          }
+          ((k = e.createElement(t)),
+            (a = e.getElementsByTagName(t)[0]),
+            (k.async = 1),
+            (k.src = r),
+            a.parentNode.insertBefore(k, a));
+        })(
+          window,
+          document,
+          "script",
+          "https://mc.yandex.ru/metrika/tag.js",
+          "ym"
+        );
+        ym(+YM_ID, "init", {
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true
+        });
+      })();
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/__YM_COUNTER_ID__"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrica counter -->
   </head>
   <body>
     <nav class="nav" aria-label="Main navigation">
@@ -215,12 +263,11 @@
             >
           </div>
           <h1 data-i18n="hero.title">
-            Опиши задачу — MAESTRO CARE сам соберёт, запустит и улучшит агента
+            Опиши задачу словами — остальное MAESTRO CARE берёт на себя
           </h1>
           <p class="hero-lead" data-i18n="hero.subtitle">
-            Опиши цель словами — MAESTRO CARE соберёт агента, запустит его и
-            будет улучшать результат. Без ручной настройки пайплайнов, прямо в
-            терминале.
+            Соберёт агента, запустит и сам улучшит результат — без ручной
+            настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.
           </p>
           <div class="hero-actions">
             <a
@@ -768,7 +815,8 @@
         <div class="section-header reveal">
           <h2 data-i18n="demo.title">Как выглядит работа в MAESTRO CARE</h2>
           <p data-i18n="demo.subtitle">
-            Прикладываешь документ — получаешь готовую цепочку CARL и структурный результат
+            Прикладываешь документ — получаешь готовую цепочку CARL и
+            структурный результат
           </p>
         </div>
         <div class="demo-grid">
@@ -984,8 +1032,8 @@
                   <div class="carl-frow">
                     <dt class="carl-fkey">reasoning_questions</dt>
                     <dd class="carl-fval" data-i18n="step.s1.rq">
-                      Где в отчёте итоговые цифры? Какой период и валюта? Есть ли
-                      сноски о рисках или пересчётах?
+                      Где в отчёте итоговые цифры? Какой период и валюта? Есть
+                      ли сноски о рисках или пересчётах?
                     </dd>
                   </div>
                   <div class="carl-frow">
@@ -1012,8 +1060,8 @@
                   <div class="carl-frow">
                     <dt class="carl-fkey">example_reasoning</dt>
                     <dd class="carl-fval" data-i18n="step.s1.ex">
-                      напр.: строка «Revenue» в итоговой таблице → revenue; суммы
-                      в тыс. → перевести в абсолютные значения валюты
+                      напр.: строка «Revenue» в итоговой таблице → revenue;
+                      суммы в тыс. → перевести в абсолютные значения валюты
                     </dd>
                   </div>
                   <div class="carl-frow">
@@ -1118,7 +1166,8 @@
                     <dt class="carl-fkey">instruction</dt>
                     <dd class="carl-fval" data-i18n="step.s3.instruction">
                       распарсить текст в форму QuarterlyFinancials: числа — в
-                      единицах валюты, неуверенные поля пропускать, а не угадывать
+                      единицах валюты, неуверенные поля пропускать, а не
+                      угадывать
                     </dd>
                   </div>
                   <div class="carl-frow">
@@ -1135,7 +1184,9 @@
                     </div>
                     <div class="carl-frow">
                       <dt class="carl-fkey">schema_name</dt>
-                      <dd class="carl-fval"><code>QuarterlyFinancials</code></dd>
+                      <dd class="carl-fval">
+                        <code>QuarterlyFinancials</code>
+                      </dd>
                     </div>
                     <div class="carl-frow">
                       <dt class="carl-fkey">strict_json</dt>
@@ -1160,7 +1211,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -1433,14 +1483,33 @@
               <li>
                 <span class="req-dot"></span
                 ><span data-i18n="install.req4"
-                  >Запущенный Docker — для локального запуска навыков в песочнице (без него — простой режим скачивания)</span
+                  >Запущенный Docker — для локального запуска навыков в
+                  песочнице (без него — простой режим скачивания)</span
                 >
-                <a class="req-link" href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener" data-i18n="install.req4link">скачать Docker</a>
+                <a
+                  class="req-link"
+                  href="https://www.docker.com/products/docker-desktop/"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="install.req4link"
+                  >скачать Docker</a
+                >
               </li>
             </ul>
-            <h4 data-i18n="install.models.title" style="margin-top:1.4rem">Рекомендуемые модели</h4>
-            <p data-i18n="install.models.list" style="margin-top:.4rem">Qwen3-Coder · GLM-4.6 · Kimi 2.6</p>
-            <p class="install-models-tip" data-i18n="install.models.tip" style="margin-top:.4rem">Выбирай модель с уверенным tool-calling и контекстом от 32K — цепочки собираются стабильнее и выше по качеству.</p>
+            <h4 data-i18n="install.models.title" style="margin-top: 1.4rem">
+              Рекомендуемые модели
+            </h4>
+            <p data-i18n="install.models.list" style="margin-top: 0.4rem">
+              Qwen3-Coder · GLM-4.6 · Kimi 2.6
+            </p>
+            <p
+              class="install-models-tip"
+              data-i18n="install.models.tip"
+              style="margin-top: 0.4rem"
+            >
+              Выбирай модель с уверенным tool-calling и контекстом от 32K —
+              цепочки собираются стабильнее и выше по качеству.
+            </p>
             <div class="install-oneliner">
               <span class="install-oneliner-label" data-i18n="install.oneliner"
                 >Обновить до последней версии:</span
@@ -1925,6 +1994,25 @@
             <article class="team-member">
               <span class="team-avatar" aria-hidden="true">
                 <img
+                  src="assets/work.gif"
+                  alt=""
+                  width="56"
+                  height="56"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </span>
+              <div class="team-info">
+                <h3 data-i18n="team.m2.name">Глазков Никита Олегович</h3>
+                <p class="team-role" data-i18n="team.m2.role">
+                  Младший научный сотрудник AIRI
+                </p>
+              </div>
+            </article>
+
+            <article class="team-member">
+              <span class="team-avatar" aria-hidden="true">
+                <img
                   src="assets/coffee.gif"
                   alt=""
                   width="56"
@@ -1938,25 +2026,6 @@
                   Пчелин Константин Константинович
                 </h3>
                 <p class="team-role" data-i18n="team.m1.role">
-                  Младший научный сотрудник AIRI
-                </p>
-              </div>
-            </article>
-
-            <article class="team-member">
-              <span class="team-avatar" aria-hidden="true">
-                <img
-                  src="assets/work.gif"
-                  alt=""
-                  width="56"
-                  height="56"
-                  decoding="async"
-                  loading="lazy"
-                />
-              </span>
-              <div class="team-info">
-                <h3 data-i18n="team.m2.name">Глазков Никита Олегович</h3>
-                <p class="team-role" data-i18n="team.m2.role">
                   Младший научный сотрудник AIRI
                 </p>
               </div>
@@ -1981,7 +2050,7 @@
               </div>
             </article>
 
-            <article class="team-member team-member--lead">
+            <article class="team-member">
               <span class="team-avatar" aria-hidden="true">
                 <img
                   src="assets/hero-mascot.gif"

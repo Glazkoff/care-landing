@@ -13,9 +13,9 @@ const TRANSLATIONS = {
     "nav.docs": "Документация",
 
     "hero.badge": "Открытый инструмент для AI-агентов",
-    "hero.title": "Опиши задачу — MAESTRO CARE сам соберёт, запустит и улучшит агента",
+    "hero.title": "Опиши задачу словами — остальное MAESTRO CARE берёт на себя",
     "hero.subtitle":
-      "Опиши цель словами — MAESTRO CARE соберёт агента, запустит его и будет улучшать результат. Без ручной настройки пайплайнов, прямо в терминале.",
+      "Соберёт агента, запустит и сам улучшит результат — без ручной настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.",
     "hero.cta.primary": "Начать",
     "hero.cta.secondary": "Смотреть демо",
     "hero.cta.skill": "Добавить навык",
@@ -211,9 +211,9 @@ const TRANSLATIONS = {
     "nav.docs": "Documentation",
 
     "hero.badge": "Open-source toolkit for AI agents",
-    "hero.title": "Describe a task — MAESTRO CARE builds, runs, and improves the agent",
+    "hero.title": "Describe your task — MAESTRO CARE takes care of the rest",
     "hero.subtitle":
-      "Describe the goal in plain words — MAESTRO CARE builds an agent, runs it, and keeps improving the result. No manual pipeline wiring, right in your terminal.",
+      "It builds the agent, runs it, and keeps improving the result — no manual pipeline wiring, right in your terminal or your favorite coding agent.",
     "hero.cta.primary": "Get started",
     "hero.cta.secondary": "Watch demo",
     "hero.cta.skill": "Add skill",
@@ -463,7 +463,10 @@ function initI18n() {
   const lang = detectLanguage();
   applyTranslations(lang);
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
-    btn.addEventListener("click", () => setLanguage(btn.dataset.langBtn));
+    btn.addEventListener("click", () => {
+      const current = document.documentElement.lang === "ru" ? "ru" : "en";
+      setLanguage(current === "ru" ? "en" : "ru");
+    });
   });
 }
 

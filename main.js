@@ -58,7 +58,12 @@ function initTheme() {
   }
 
   document.querySelectorAll("[data-theme-btn]").forEach((btn) => {
-    btn.addEventListener("click", () => setTheme(btn.dataset.themeBtn));
+    btn.addEventListener("click", () => {
+      const current = VALID_THEMES.includes(document.documentElement.dataset.theme)
+        ? document.documentElement.dataset.theme
+        : DEFAULT_THEME;
+      setTheme(current === "warm" ? "crystal" : "warm");
+    });
   });
 }
 

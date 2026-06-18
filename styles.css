@@ -153,6 +153,7 @@ a:hover {
   font-weight: 700;
   font-size: 1.15rem;
   letter-spacing: -0.02em;
+  line-height: 1.1em;
 }
 
 .brand:hover {
@@ -165,6 +166,32 @@ a:hover {
   flex-shrink: 0;
 }
 
+.brand-icon polygon {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.brand:hover .brand-icon polygon,
+.footer-brand:hover .brand-icon polygon {
+  animation: brand-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes brand-pulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-icon polygon {
+    animation: none;
+  }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -172,12 +199,16 @@ a:hover {
   list-style: none;
   margin: 0;
   padding: 0;
+  /* Set on the container so the <li> line-box strut tightens too; the body's
+     1.6 strut (not the <a>'s line-height) is what spaces wrapped link rows. */
+  line-height: 1.2;
 }
 
 .nav-links a {
   color: var(--text-muted);
   font-size: 0.92rem;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .nav-links a:hover {
@@ -635,7 +666,6 @@ section {
 
 .section-header {
   text-align: center;
-  max-width: 640px;
   margin: 0 auto 3rem;
 }
 
@@ -1088,12 +1118,7 @@ section {
 .team-member:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
-  box-shadow: var(--shadow-md);
-}
-
-.team-member--lead {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow-sm);
+  box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow-md);
 }
 
 .team-avatar {
@@ -1135,7 +1160,7 @@ section {
 /* Stack */
 .stack-diagram {
   position: relative;
-  min-height: 520px;
+  min-height: 680px;
   max-width: 900px;
   margin: 0 auto;
   border: 1px solid var(--border);
@@ -1175,8 +1200,7 @@ section {
   transform: translate(-50%, -50%);
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #fff;
-  width: min(240px, 58vw);
-  min-height: 120px;
+  min-height: 100px;
   padding: 1.4rem 1.6rem;
   border-radius: 999px;
   display: grid;
@@ -1213,6 +1237,9 @@ section {
 
 .stack-module {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  --r: 250px;
   width: min(245px, 34%);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1220,13 +1247,49 @@ section {
   padding: 1.25rem;
   text-align: left;
   box-shadow: var(--shadow-sm);
-  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  transform:
+    translate(-50%, -50%)
+    translate(
+      calc(cos(var(--a, 0deg) + var(--stack-orbit, 0deg)) * var(--r)),
+      calc(sin(var(--a, 0deg) + var(--stack-orbit, 0deg)) * var(--r))
+    );
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .stack-module:hover {
   border-color: var(--accent);
   box-shadow: var(--shadow-glow);
-  transform: translateY(-3px);
+}
+
+/* The four modules sit at the points of a rhombus (top, right, bottom, left) and
+   revolve around MAESTRO CARE, evenly spaced on one circle. A single animated angle
+   drives the orbit; each card only TRANSLATES along the circle and never rotates, so
+   it can never spin on its own axis. The animation is always applied but paused:
+   hovering the diagram runs it, unhovering pauses it in place. */
+@property --stack-orbit {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.stack-modules {
+  animation: stack-orbit 24s linear infinite paused;
+}
+
+.stack-diagram:hover .stack-modules {
+  animation-play-state: running;
+}
+
+@keyframes stack-orbit {
+  to {
+    --stack-orbit: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-modules {
+    animation: none;
+  }
 }
 
 .stack-module::before {
@@ -1241,23 +1304,19 @@ section {
 }
 
 .stack-module--mage {
-  top: 13%;
-  left: 8%;
+  --a: -135deg;
 }
 
 .stack-module--carl {
-  top: 13%;
-  right: 8%;
+  --a: -45deg;
 }
 
 .stack-module--memory {
-  bottom: 13%;
-  left: 8%;
+  --a: 135deg;
 }
 
 .stack-module--platform {
-  right: 8%;
-  bottom: 13%;
+  --a: 45deg;
 }
 
 .stack-module h3 {
@@ -1570,9 +1629,14 @@ section {
 .carl-node {
   --c: var(--accent);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "idx type"
+    "name name";
+  align-items: center;
+  column-gap: 0.45rem;
+  row-gap: 0.35rem;
   padding: 0.7rem 0.8rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -1608,6 +1672,7 @@ section {
 }
 
 .carl-node-idx {
+  grid-area: idx;
   width: 22px;
   height: 22px;
   display: grid;
@@ -1622,6 +1687,7 @@ section {
 }
 
 .carl-node-name {
+  grid-area: name;
   font-family: var(--font-mono);
   font-size: 0.82rem;
   font-weight: 600;
@@ -1632,7 +1698,9 @@ section {
 }
 
 .carl-node-type {
-  align-self: flex-start;
+  grid-area: type;
+  justify-self: start;
+  align-self: center;
   max-width: 100%;
   font-size: 0.62rem;
   letter-spacing: 0.05em;
@@ -3264,6 +3332,12 @@ section {
     position: relative;
     inset: auto;
     width: 100%;
+  }
+
+  .stack-modules,
+  .stack-module {
+    animation: none;
+    transform: none;
   }
 
   .team-card {

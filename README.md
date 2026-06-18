@@ -1,5 +1,7 @@
 # MAESTRO CARE Landing Page
 
+**Live site:** https://airi-maestro.github.io/care-page/
+
 Static marketing landing for **MAESTRO CARE** — an ecosystem for generating and evolving reasoning chains, in the AIRI aesthetic with mascot **Maestric**.
 
 ## Features
