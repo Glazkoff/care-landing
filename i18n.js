@@ -444,6 +444,14 @@ function applyTranslations(lang) {
     btn.classList.toggle("active", btn.dataset.langBtn === lang);
     btn.setAttribute("aria-pressed", btn.dataset.langBtn === lang ? "true" : "false");
   });
+
+  // Point documentation links at the matching language: EN lives at the docs
+  // root, RU is mirrored under /ru/.
+  const docsBase = "https://airi-maestro.github.io/care-docs/";
+  document.querySelectorAll("[data-doc-path]").forEach((el) => {
+    const path = el.getAttribute("data-doc-path");
+    el.setAttribute("href", docsBase + (lang === "ru" ? "ru/" : "") + path);
+  });
 }
 
 function setLanguage(lang) {
