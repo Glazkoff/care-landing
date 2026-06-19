@@ -16,6 +16,11 @@
   --fs-heading: clamp(2rem, 4.5vw, 3.15rem);
   --fs-subheading: clamp(1.35rem, 2.4vw, 1.9rem);
   --fs-body: 1.05rem;
+
+  --panel-bg: var(--surface);
+  --panel-border: var(--border);
+  --panel-radius: var(--radius-lg);
+  --panel-hover-ring: var(--accent);
 }
 
 /* Warm Sand (default) */
@@ -319,9 +324,10 @@ a:hover {
   font-size: 0.95rem;
   border: none;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow var(--transition), background var(--transition);
+  transition: transform 0.15s ease, box-shadow var(--transition), background var(--transition), border-color var(--transition);
   font-family: inherit;
   text-decoration: none;
+  line-height: 1.2;
 }
 
 .btn:hover {
@@ -907,6 +913,32 @@ section {
   font-size: 0.9rem;
 }
 
+/* Unified surface panels */
+.surface-panel,
+.benefit-card,
+.install-step,
+.install-aside,
+.team-member,
+.stack-module,
+.carl-chain,
+.team-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--panel-radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.surface-panel:hover,
+.benefit-card:hover,
+.install-step:hover,
+.install-aside:hover,
+.team-member:hover,
+.stack-module:hover,
+.carl-chain:hover {
+  border-color: var(--panel-hover-ring);
+  box-shadow: 0 0 0 1px var(--panel-hover-ring);
+}
+
 /* Benefits */
 .benefits {
   position: relative;
@@ -961,36 +993,15 @@ section {
 
 .benefit-card {
   position: relative;
-  background: linear-gradient(165deg, var(--surface), var(--surface-2));
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   padding: 1.9rem 1.6rem;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
-/* Corner brand glow (kept inside the card so connectors can overflow). */
 .benefit-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 60%;
-  height: 60%;
-  border-top-right-radius: var(--radius-lg);
-  background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
-  opacity: 0;
-  transition: opacity var(--transition);
-  pointer-events: none;
-}
-
-.benefit-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-md);
+  display: none;
 }
 
 .benefit-card:hover::before {
-  opacity: 1;
+  display: none;
 }
 
 /* Chain connector — a link drawn into the gap toward the next card. */
@@ -1008,11 +1019,6 @@ section {
   opacity: 0;
   z-index: 2;
   pointer-events: none;
-}
-
-.benefit-card--accent {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow-sm);
 }
 
 .benefit-ico {
@@ -1105,24 +1111,11 @@ section {
 .team-card {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 55%),
-    linear-gradient(160deg, var(--surface), var(--surface-2));
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   padding: 3rem;
 }
 
 .team-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(var(--border) 1.4px, transparent 1.4px);
-  background-size: 22px 22px;
-  opacity: 0.5;
-  -webkit-mask: radial-gradient(circle at 50% 0%, #000, transparent 70%);
-  mask: radial-gradient(circle at 50% 0%, #000, transparent 70%);
-  pointer-events: none;
+  display: none;
 }
 
 .team-head {
@@ -1143,17 +1136,11 @@ section {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
   padding: 1.4rem 1.5rem;
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .team-member:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow-md);
+  transform: none;
 }
 
 .team-avatar {
@@ -1197,12 +1184,8 @@ section {
   border: 1px solid var(--border);
   border-radius: calc(var(--radius-lg) + 8px);
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 50%, var(--accent-glow), transparent 22%),
-    radial-gradient(circle at 18% 22%, rgba(126, 240, 221, 0.18), transparent 28%),
-    radial-gradient(circle at 82% 78%, rgba(244, 230, 200, 0.32), transparent 30%),
-    linear-gradient(150deg, var(--surface), var(--surface-2));
-  box-shadow: var(--shadow-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .stack-diagram::before,
@@ -1272,24 +1255,18 @@ section {
   left: 50%;
   --r: 250px;
   width: min(245px, 34%);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   padding: 1.25rem;
   text-align: left;
-  box-shadow: var(--shadow-sm);
   transform:
     translate(-50%, -50%)
     translate(
       calc(cos(var(--a, 0deg) + var(--stack-orbit, 0deg)) * var(--r)),
       calc(sin(var(--a, 0deg) + var(--stack-orbit, 0deg)) * var(--r))
     );
-  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.stack-module:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-glow);
+.stack-module::before {
+  display: none;
 }
 
 /* The four modules sit at the points of a rhombus (top, right, bottom, left) and
@@ -1321,17 +1298,6 @@ section {
   .stack-modules {
     animation: none;
   }
-}
-
-.stack-module::before {
-  content: "";
-  display: block;
-  width: 10px;
-  height: 10px;
-  margin-bottom: 0.7rem;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 18px var(--accent-glow);
 }
 
 .stack-module--mage {
@@ -1562,9 +1528,6 @@ section {
 .carl-chain {
   margin-top: 0;
   padding: 1.6rem 1.75rem 1.75rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
@@ -2445,16 +2408,11 @@ section {
   display: flex;
   gap: 1rem;
   min-width: 0;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   padding: 1.5rem;
-  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.install-step:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-sm);
+.install-aside {
+  padding: 1.75rem;
 }
 
 .install-step-num {
@@ -2544,13 +2502,6 @@ section {
 .copy-ico {
   width: 15px;
   height: 15px;
-}
-
-.install-aside {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.75rem;
 }
 
 .install-aside h4 {
@@ -2770,11 +2721,18 @@ section {
   color: inherit;
 }
 
-/* Large CTA buttons */
+/* Hero & CTA action buttons — larger than nav controls */
 .btn-lg {
   padding: 0.9rem 1.7rem;
   font-size: 1rem;
   border-radius: var(--radius-md);
+}
+
+.hero-actions .btn-primary:hover,
+.hero-actions .btn-secondary:hover,
+.cta-actions .btn-primary:hover,
+.cta-actions .btn-secondary:hover {
+  transform: translateY(-1px);
 }
 
 /* Scroll hint */
@@ -2974,13 +2932,14 @@ section {
   position: absolute;
   display: inline-flex;
   align-items: center;
-  padding: 0.45rem 0.85rem;
+  padding: 0.55rem 0.95rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-caption);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text);
   box-shadow: var(--shadow-sm);
   z-index: 3;
   animation: maestric-float 5s ease-in-out infinite;
@@ -3553,8 +3512,8 @@ section {
   }
 
   .chip {
-    font-size: 0.72rem;
-    padding: 0.4rem 0.65rem;
+    font-size: var(--fs-body);
+    padding: 0.5rem 0.8rem;
   }
 
   .scroll-hint {
