@@ -175,8 +175,8 @@ const TRANSLATIONS = {
     "skill.check": "Проверь навык:",
     "skill.docs": "Документация по навыку",
 
-    "cta.title": "Готов собрать своего агента?",
-    "cta.subtitle": "Поставь MAESTRO CARE и собери первого агента уже сегодня.",
+    "cta.title": "Готов собрать свою цепочку рассуждений?",
+    "cta.subtitle": "Поставь MAESTRO CARE и собери первую цепочку CARL уже сегодня.",
     "cta.primary": "Открыть на GitHub",
     "cta.secondary": "Читать документацию",
 
@@ -398,8 +398,8 @@ const TRANSLATIONS = {
     "skill.check": "Check the skill:",
     "skill.docs": "Skill documentation",
 
-    "cta.title": "Ready to build your agent?",
-    "cta.subtitle": "Install MAESTRO CARE and build your first agent today.",
+    "cta.title": "Ready to build your reasoning chain?",
+    "cta.subtitle": "Install MAESTRO CARE and build your first CARL chain today.",
     "cta.primary": "Open on GitHub",
     "cta.secondary": "Read the docs",
 
