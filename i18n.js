@@ -15,7 +15,7 @@ const TRANSLATIONS = {
     "hero.badge": "Открытая экосистема AIRI для агентных цепочек CARL",
     "hero.title": "Опиши задачу словами — остальное MAESTRO CARE берёт на себя",
     "hero.subtitle":
-      "Превращает запрос в агентную цепочку CARL — без ручной настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.",
+      "Превращает запрос в агентную цепочку рассуждений формата CARL — без ручной настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.",
     "hero.cta.primary": "Начать",
     "hero.cta.secondary": "Смотреть демо",
     "hero.cta.skill": "Добавить как навык",
@@ -238,7 +238,7 @@ const TRANSLATIONS = {
     "hero.badge": "Open-source AIRI ecosystem for CARL agent chains",
     "hero.title": "Describe your task — MAESTRO CARE takes care of the rest",
     "hero.subtitle":
-      "It turns your prompt into a CARL agent chain — no manual pipeline wiring, right in your terminal or your favorite coding agent.",
+      "It turns your prompt into an agent reasoning chain in the CARL format — no manual pipeline wiring, right in your terminal or your favorite coding agent.",
     "hero.cta.primary": "Get started",
     "hero.cta.secondary": "Watch demo",
     "hero.cta.skill": "Add as skill",
