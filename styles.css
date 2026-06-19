@@ -43,9 +43,10 @@
   --llm: #b9822f;
   --cream: #e8c89a;
   --border: rgba(42, 37, 32, 0.1);
-  --hero-grad: radial-gradient(ellipse 70% 55% at 65% 25%, rgba(232, 200, 154, 0.45), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 25% 70%, rgba(42, 125, 111, 0.12), transparent 50%),
-    linear-gradient(180deg, #faf6ef 0%, #f4ebe0 100%);
+  --hero-grad: radial-gradient(ellipse 80% 60% at 65% 18%, rgba(232, 200, 154, 0.38), transparent 62%),
+    radial-gradient(ellipse 70% 55% at 18% 72%, rgba(42, 125, 111, 0.11), transparent 58%),
+    radial-gradient(ellipse 65% 50% at 82% 92%, rgba(232, 200, 154, 0.16), transparent 60%);
+  --page-grad: var(--hero-grad);
   --nav-bg: rgba(250, 246, 239, 0.9);
   --terminal-bg: #2a2520;
   --terminal-text: #f4ebe0;
@@ -69,9 +70,10 @@
   --llm: #e0b873;
   --cream: #c8e8e0;
   --border: rgba(126, 240, 221, 0.12);
-  --hero-grad: radial-gradient(ellipse 70% 50% at 75% 15%, rgba(51, 217, 178, 0.15), transparent 55%),
-    radial-gradient(ellipse 40% 35% at 15% 75%, rgba(46, 191, 174, 0.08), transparent 50%),
-    linear-gradient(180deg, #0f1115 0%, #13242e 100%);
+  --hero-grad: radial-gradient(ellipse 80% 55% at 75% 12%, rgba(51, 217, 178, 0.14), transparent 62%),
+    radial-gradient(ellipse 65% 50% at 12% 78%, rgba(46, 191, 174, 0.08), transparent 58%),
+    radial-gradient(ellipse 60% 45% at 78% 94%, rgba(51, 217, 178, 0.09), transparent 60%);
+  --page-grad: var(--hero-grad);
   --nav-bg: rgba(15, 17, 21, 0.9);
   --terminal-bg: #0a0d10;
   --terminal-text: #c8f5ec;
@@ -99,17 +101,20 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   background-color: var(--bg);
-  background-image: linear-gradient(
-    180deg,
-    var(--bg) 0%,
-    var(--bg-alt) 34%,
-    var(--bg) 64%,
-    var(--bg-alt) 100%
-  );
-  background-repeat: no-repeat;
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100%;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: var(--page-grad);
+  pointer-events: none;
 }
 
 img {
@@ -406,9 +411,9 @@ a:hover {
 .hero {
   min-height: 100vh;
   padding: calc(var(--nav-h) + 3rem) 0 4rem;
-  background: var(--hero-grad);
+  background: transparent;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-grid {
@@ -420,42 +425,60 @@ a:hover {
   z-index: 1;
 }
 
-/* Aurora — slow drifting colour clouds behind the hero. */
-.hero-aurora {
-  position: absolute;
+/* Page-wide ambient aurora — fixed, not clipped per section */
+.page-aurora {
+  position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
 }
 
-.hero-aurora::before,
-.hero-aurora::after {
-  content: "";
+.page-aurora__blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(70px);
   pointer-events: none;
 }
 
-.hero-aurora::before {
+.page-aurora__blob--1 {
   width: 520px;
   height: 520px;
   background: var(--accent-glow);
-  opacity: 0.55;
-  top: -160px;
-  right: -80px;
+  opacity: 0.5;
+  top: -12%;
+  right: -6%;
   animation: aurora 16s ease-in-out infinite;
 }
 
-.hero-aurora::after {
+.page-aurora__blob--2 {
   width: 440px;
   height: 440px;
   background: var(--crystal);
-  opacity: 0.28;
-  bottom: -180px;
-  left: -100px;
+  opacity: 0.26;
+  bottom: 8%;
+  left: -8%;
   animation: aurora 22s ease-in-out infinite reverse;
+}
+
+.page-aurora__blob--3 {
+  width: 460px;
+  height: 460px;
+  background: var(--accent-glow);
+  opacity: 0.38;
+  top: 38%;
+  left: -10%;
+  animation: aurora 18s ease-in-out infinite;
+}
+
+.page-aurora__blob--4 {
+  width: 380px;
+  height: 380px;
+  background: var(--crystal);
+  opacity: 0.22;
+  top: 62%;
+  right: -8%;
+  animation: aurora 24s ease-in-out infinite reverse;
 }
 
 /* ---- Typography system ---- */
@@ -948,42 +971,7 @@ section {
 /* Benefits */
 .benefits {
   position: relative;
-  overflow: hidden;
-}
-
-.benefits-aurora {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.benefits-aurora::before,
-.benefits-aurora::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-}
-
-.benefits-aurora::before {
-  width: 460px;
-  height: 460px;
-  background: var(--accent-glow);
-  opacity: 0.5;
-  top: -160px;
-  left: -120px;
-  animation: aurora 18s ease-in-out infinite;
-}
-
-.benefits-aurora::after {
-  width: 380px;
-  height: 380px;
-  background: var(--crystal);
-  opacity: 0.28;
-  bottom: -160px;
-  right: -100px;
-  animation: aurora 24s ease-in-out infinite reverse;
+  overflow: visible;
 }
 
 .benefits .container {
@@ -2702,10 +2690,6 @@ section {
   font-weight: 600;
 }
 
-.skill-install {
-  background: var(--bg-alt);
-}
-
 /* CTA */
 .cta-section {
   padding: 5rem 0;
@@ -2908,8 +2892,7 @@ section {
 /* Marquee ribbon */
 .marquee {
   overflow: hidden;
-  background: var(--surface);
-  border-block: 1px solid var(--border);
+  background: transparent;
   padding: 1rem 0;
 }
 
@@ -2947,7 +2930,7 @@ section {
 /* Pillars — Discord-style alternating showcase rows */
 .pillars {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .pillars-row {
@@ -3096,7 +3079,6 @@ section {
 /* Footer */
 .footer {
   padding: 2.5rem 0 2rem;
-  border-top: 1px solid var(--border);
 }
 
 .footer-inner {
@@ -3226,7 +3208,6 @@ section {
 
 .footer-bottom {
   padding-top: 1.25rem;
-  border-top: 1px solid var(--border);
   font-size: var(--fs-caption);
   color: var(--text-caption);
 }
@@ -3620,6 +3601,7 @@ section {
   .hero-aurora::after,
   .benefits-aurora::before,
   .benefits-aurora::after,
+  .page-aurora__blob,
   .speech-bubble,
   .scroll-arrow {
     animation: none !important;
