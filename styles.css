@@ -16,6 +16,8 @@
   --fs-heading: clamp(2rem, 4.5vw, 3.15rem);
   --fs-subheading: clamp(1.35rem, 2.4vw, 1.9rem);
   --fs-body: 1.05rem;
+  --fs-caption: 0.82rem;
+  --fs-ui: 0.95rem;
 
   --panel-bg: var(--surface);
   --panel-border: var(--border);
@@ -220,7 +222,7 @@ a:hover {
 
 .nav-links a {
   color: var(--text);
-  font-size: 0.92rem;
+  font-size: var(--fs-ui);
   font-weight: 500;
   line-height: 1.2;
 }
@@ -248,7 +250,7 @@ a:hover {
   border: none;
   background: transparent;
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: var(--fs-caption);
   font-weight: 600;
   padding: 0.35rem 0.65rem;
   border-radius: 999px;
@@ -321,7 +323,7 @@ a:hover {
   padding: 0.75rem 1.35rem;
   border-radius: var(--radius-md);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: var(--fs-ui);
   border: none;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow var(--transition), background var(--transition), border-color var(--transition);
@@ -460,9 +462,9 @@ a:hover {
 .text-label {
   display: inline-block;
   margin: 0 0 0.75rem;
-  font-size: 0.82rem;
+  font-size: var(--fs-caption);
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.45;
   color: var(--text-caption);
 }
 
@@ -472,6 +474,10 @@ a:hover {
   right: 1.2rem;
   z-index: 1;
   margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text);
 }
 
 .hero h1,
@@ -555,7 +561,7 @@ a:hover {
 }
 
 .stat-label {
-  font-size: 0.82rem;
+  font-size: var(--fs-caption);
   color: var(--text-caption);
   margin-top: 0.15rem;
 }
@@ -1321,7 +1327,7 @@ section {
 }
 
 .stack-module .role {
-  font-size: 0.75rem;
+  font-size: var(--fs-caption);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 0.5rem;
@@ -1329,7 +1335,7 @@ section {
 
 .stack-module p {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: var(--fs-body);
 }
 
 /* Demo */
@@ -1421,11 +1427,11 @@ section {
 .terminal-note {
   margin: 0;
   padding: 0.5rem 1rem 0.85rem;
-  font-size: 0.72rem;
+  font-size: var(--fs-caption);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
 }
 
 .demo-mascot-wrap {
@@ -1446,6 +1452,17 @@ section {
   display: flex;
   justify-content: center;
   margin-bottom: 1.25rem;
+}
+
+.demo-showcase-switch .pill-group {
+  padding: 4px;
+  gap: 3px;
+}
+
+.demo-showcase-switch .pill-btn {
+  font-size: var(--fs-body);
+  padding: 0.9rem 1.7rem;
+  line-height: 1.2;
 }
 
 .demo-view-panel[hidden] {
@@ -1503,9 +1520,10 @@ section {
   align-items: center;
   justify-content: center;
   padding: 0.55rem 0.75rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text);
   background: var(--surface-2);
   border-top: 1px solid var(--border);
   text-align: center;
@@ -1540,7 +1558,7 @@ section {
 }
 
 .carl-chain-badge {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1557,7 +1575,7 @@ section {
 }
 
 .carl-chain-count {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -1570,7 +1588,7 @@ section {
 }
 
 .carl-chain-task {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   color: var(--text-muted);
 }
@@ -1622,7 +1640,7 @@ section {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 700;
   color: #fff;
@@ -1635,7 +1653,7 @@ section {
 }
 
 .carl-phase-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1644,7 +1662,7 @@ section {
 }
 
 .carl-phase-badge {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1658,7 +1676,7 @@ section {
 .carl-phase-count {
   margin-left: auto;
   min-width: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1683,7 +1701,7 @@ section {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   color: var(--text);
 }
@@ -1755,7 +1773,7 @@ section {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 700;
   color: #fff;
@@ -1765,7 +1783,7 @@ section {
 
 .carl-node-name {
   grid-area: name;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text);
@@ -1919,7 +1937,7 @@ section {
 
 .carl-field dd {
   margin: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.92rem;
   font-weight: 600;
   color: var(--text);
@@ -2079,7 +2097,7 @@ section {
   color: var(--text-muted);
 }
 .carl-topo-node code {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text);
@@ -2098,7 +2116,7 @@ section {
 .carl-topo-arrow {
   align-self: center;
   color: var(--text-muted);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
 }
 
 /* Formal CARL step spec (expanded panel) */
@@ -2132,7 +2150,7 @@ section {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   font-weight: 700;
   color: #fff;
@@ -2140,7 +2158,7 @@ section {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 16%, transparent);
 }
 .carl-spec-title {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.98rem;
   font-weight: 700;
   color: var(--text);
@@ -2148,7 +2166,7 @@ section {
 }
 .carl-spec-type {
   margin-left: auto;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.66rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -2178,7 +2196,7 @@ section {
   padding-top: 0;
 }
 .carl-fkey {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -2193,7 +2211,7 @@ section {
   color: var(--text);
 }
 .carl-fval code {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text);
@@ -2205,7 +2223,7 @@ section {
   gap: 0.4rem;
 }
 .carl-chip {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   font-weight: 600;
   color: var(--text);
@@ -2228,7 +2246,7 @@ section {
 .carl-fgroup-label {
   display: block;
   margin-bottom: 0.55rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.66rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2274,7 +2292,7 @@ section {
 }
 .carl-spec-aim-k {
   flex-shrink: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.64rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2303,7 +2321,7 @@ section {
 }
 .carl-spec-field dt {
   flex-shrink: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   color: var(--text-muted);
 }
@@ -2319,14 +2337,14 @@ section {
   word-break: break-word;
 }
 .carl-spec-field dd code {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text);
 }
 .carl-spec-field dd.is-empty {
   color: var(--text-muted);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
 }
 
 .carl-spec-config {
@@ -2338,7 +2356,7 @@ section {
 .carl-spec-config-label {
   display: inline-block;
   margin-bottom: 0.5rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.64rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -2351,7 +2369,7 @@ section {
   gap: 0.35rem;
 }
 .carl-schema-prop {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--text);
@@ -2384,6 +2402,68 @@ section {
   .carl-step-panel:not([hidden]) {
     animation: none;
   }
+}
+
+/* CARL — unified Inter text tiers */
+.carl-chain {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+.carl-chain-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-subheading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.carl-chain :is(
+  .carl-chain-badge,
+  .carl-chain-count,
+  .carl-phase-label,
+  .carl-phase-badge,
+  .carl-phase-count,
+  .carl-phase-step,
+  .carl-node-idx,
+  .carl-node-type,
+  .carl-field dt,
+  .carl-payload-saved,
+  .carl-steps-hint,
+  .carl-topo-k,
+  .carl-topo-type,
+  .carl-fgroup-label,
+  .carl-spec-type,
+  .carl-spec-num,
+  .carl-chip,
+  .carl-spec-aim-k,
+  .carl-spec-field dt,
+  .carl-spec-config-label,
+  .carl-schema-prop
+) {
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  line-height: 1.45;
+}
+
+.carl-chain :is(
+  .carl-chain-task,
+  .carl-io-row,
+  .carl-node-name,
+  .carl-field dd,
+  .carl-fkey,
+  .carl-fval,
+  .carl-fval code,
+  .carl-spec-title,
+  .carl-spec-prose-row p,
+  .carl-topo-node code,
+  .carl-spec-field dd,
+  .carl-spec-field dd code,
+  .carl-spec-field dd.is-empty
+) {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
 }
 
 /* Install */
@@ -2481,7 +2561,7 @@ section {
   border-radius: var(--radius-sm);
   padding: 0.35rem 0.6rem;
   font-family: inherit;
-  font-size: 0.76rem;
+  font-size: var(--fs-caption);
   font-weight: 600;
   cursor: pointer;
   transition: background var(--transition), color var(--transition), border-color var(--transition);
@@ -2522,8 +2602,9 @@ section {
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text);
 }
 
 .req-dot {
@@ -2574,11 +2655,11 @@ section {
 
 .install-oneliner-label {
   display: block;
-  font-size: 0.78rem;
+  font-size: var(--fs-caption);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-muted);
+  color: var(--text-caption);
   margin-bottom: 0.5rem;
 }
 
@@ -2587,7 +2668,7 @@ section {
 }
 
 .code-block--compact code {
-  font-size: 0.78rem;
+  font-size: var(--fs-caption);
 }
 
 .pkg-switch {
@@ -2612,8 +2693,9 @@ section {
 
 .pkg-hint {
   margin: 0.1rem 0 0;
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text);
 }
 
 .pkg-hint a {
@@ -2724,7 +2806,7 @@ section {
 /* Hero & CTA action buttons — larger than nav controls */
 .btn-lg {
   padding: 0.9rem 1.7rem;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   border-radius: var(--radius-md);
 }
 
@@ -2745,11 +2827,11 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.78rem;
+  font-size: var(--fs-caption);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-caption);
   z-index: 2;
 }
 
@@ -2858,7 +2940,7 @@ section {
 
 .marquee-sep {
   color: var(--accent);
-  font-size: 0.9rem;
+  font-size: var(--fs-caption);
   font-style: normal;
 }
 
@@ -3065,10 +3147,10 @@ section {
 }
 
 .footer-brand-text > :first-child {
-  font-size: 0.95rem;
+  font-size: var(--fs-body);
   font-weight: 600;
   color: var(--text);
-  line-height: 1.45;
+  line-height: 1.6;
 }
 
 .footer-columns {
@@ -3079,11 +3161,11 @@ section {
 
 .footer-col-title {
   margin: 0 0 0.85rem;
-  font-size: 0.72rem;
+  font-size: var(--fs-caption);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-caption);
 }
 
 .footer-links {
@@ -3097,7 +3179,7 @@ section {
 
 .footer-links a {
   color: var(--text-caption);
-  font-size: 0.88rem;
+  font-size: var(--fs-caption);
   font-weight: 500;
 }
 
@@ -3121,7 +3203,7 @@ section {
 }
 
 .footer-contact-list a {
-  font-size: 0.88rem;
+  font-size: var(--fs-caption);
   font-weight: 600;
   color: var(--text-caption);
 }
@@ -3131,22 +3213,22 @@ section {
 }
 
 .footer-contact-list span {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.4;
+  font-size: var(--fs-caption);
+  color: var(--text-caption);
+  line-height: 1.45;
 }
 
 .footer-meta {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: var(--fs-caption);
+  color: var(--text-caption);
   margin-top: 0.35rem;
 }
 
 .footer-bottom {
   padding-top: 1.25rem;
   border-top: 1px solid var(--border);
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: var(--fs-caption);
+  color: var(--text-caption);
 }
 
 @media (max-width: 860px) {
@@ -3586,7 +3668,7 @@ section {
   background: var(--accent);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: var(--fs-ui);
   font-weight: 600;
   cursor: pointer;
   box-shadow: var(--shadow-md), var(--shadow-glow);
@@ -3595,7 +3677,7 @@ section {
 
 .feedback-fab:hover {
   background: var(--accent-2);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .feedback-fab:focus-visible {

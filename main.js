@@ -699,9 +699,6 @@ function initFeedbackModal() {
       iframe.setAttribute("name", "ya-form-6a35070002848f66d7bf3d27");
       iframe.loading = "lazy";
 
-      // The iframe is cross-origin, so we can't inspect its content. If the
-      // load event hasn't fired within a few seconds (network blocked, refused,
-      // etc.), assume it's broken and reveal a direct link as a fallback.
       const fallback = document.createElement("a");
       fallback.className = "feedback-link feedback-fallback";
       fallback.href = YANDEX_URL;
