@@ -194,6 +194,15 @@ const TRANSLATIONS = {
 
     "footer.tagline": "Собери, запусти и улучши AI-агента из терминала",
     "footer.mascot": "MAESTRO CARE",
+    "footer.airTitle": "AIRI",
+    "footer.about": "Об институте",
+    "footer.events": "Мероприятия",
+    "footer.career": "Карьера",
+    "footer.contacts": "Контакты",
+    "footer.contact.events": "Для приглашений на мероприятия",
+    "footer.contact.partner": "По вопросам научного сотрудничества и партнёрства",
+    "footer.contact.pr": "Для журналистов и СМИ",
+    "footer.careTitle": "MAESTRO CARE",
     "footer.docs": "Документация",
     "footer.arch": "Архитектура",
     "footer.team": "Команда",
@@ -404,6 +413,15 @@ const TRANSLATIONS = {
 
     "footer.tagline": "Build, run, and improve an AI agent from your terminal",
     "footer.mascot": "MAESTRO CARE",
+    "footer.airTitle": "AIRI",
+    "footer.about": "About the institute",
+    "footer.events": "Events",
+    "footer.career": "Career",
+    "footer.contacts": "Contacts",
+    "footer.contact.events": "For event invitations",
+    "footer.contact.partner": "For scientific cooperation and partnership",
+    "footer.contact.pr": "For journalists and media",
+    "footer.careTitle": "MAESTRO CARE",
     "footer.docs": "Documentation",
     "footer.arch": "Architecture",
     "footer.team": "Team",
@@ -422,6 +440,13 @@ const TRANSLATIONS = {
 };
 
 const LANG_STORAGE_KEY = "care-landing-lang";
+
+const AIRI_BASE = "https://airi.net";
+const AIRI_PATHS = {
+  about: { ru: "/ru/", en: "/?force=en" },
+  events: { ru: "/ru/events", en: "/ru/events?force=en" },
+  career: { ru: "/ru/hr", en: "/hr?force=en" },
+};
 
 function detectLanguage() {
   // Explicit ?lang=ru / ?lang=en override — lets you share a link in a fixed language.
@@ -485,6 +510,12 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-doc-path]").forEach((el) => {
     const path = el.getAttribute("data-doc-path");
     el.setAttribute("href", docsBase + (lang === "ru" ? "ru/" : "") + path);
+  });
+
+  document.querySelectorAll("[data-airi-path]").forEach((el) => {
+    const key = el.getAttribute("data-airi-path");
+    const paths = AIRI_PATHS[key];
+    if (paths) el.setAttribute("href", AIRI_BASE + paths[lang]);
   });
 }
 

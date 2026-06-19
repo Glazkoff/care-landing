@@ -23,10 +23,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=7" />
+    <link rel="stylesheet" href="styles.css?v=8" />
     <script>
       (function () {
         var VALID = ["warm", "crystal"];
@@ -2151,16 +2151,31 @@
     <footer class="footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <svg
-            class="brand-icon"
-            viewBox="0 0 32 32"
-            width="28"
-            height="28"
-            aria-hidden="true"
+          <a
+            href="https://airi.net/ru/"
+            class="footer-airi-link"
+            data-airi-path="about"
+            target="_blank"
+            rel="noopener"
           >
-            <polygon points="16,8 22,16 16,24 10,16" fill="var(--accent)" />
-          </svg>
-          <div>
+            <img
+              class="airi-logo airi-logo--warm"
+              src="assets/airi-logo.png"
+              width="120"
+              height="32"
+              alt="AIRI"
+              decoding="async"
+            />
+            <img
+              class="airi-logo airi-logo--crystal"
+              src="assets/airi-logo-white.png"
+              width="120"
+              height="32"
+              alt="AIRI"
+              decoding="async"
+            />
+          </a>
+          <div class="footer-brand-text">
             <div data-i18n="footer.tagline">
               Собери, запусти и улучши AI-агента из терминала
             </div>
@@ -2169,29 +2184,100 @@
             </div>
           </div>
         </div>
-        <ul class="footer-links">
-          <li>
-            <a
-              href="https://airi-maestro.github.io/care-docs/"
-              data-doc-path=""
-              data-i18n="footer.docs"
-              target="_blank"
-              rel="noopener"
-              >Документация</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://github.com/AIRI-MAESTRO/care/blob/main/docs/ARCHITECTURE.md"
-              data-i18n="footer.arch"
-              target="_blank"
-              rel="noopener"
-              >Архитектура</a
-            >
-          </li>
-          <li><a href="#team" data-i18n="footer.team">Команда</a></li>
-        </ul>
-        <div class="footer-meta">
+
+        <div class="footer-columns">
+          <nav class="footer-col" aria-label="AIRI">
+            <h3 class="footer-col-title" data-i18n="footer.airTitle">AIRI</h3>
+            <ul class="footer-links">
+              <li>
+                <a
+                  href="https://airi.net/ru/"
+                  data-airi-path="about"
+                  data-i18n="footer.about"
+                  target="_blank"
+                  rel="noopener"
+                  >Об институте</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://airi.net/ru/events"
+                  data-airi-path="events"
+                  data-i18n="footer.events"
+                  target="_blank"
+                  rel="noopener"
+                  >Мероприятия</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://airi.net/ru/hr"
+                  data-airi-path="career"
+                  data-i18n="footer.career"
+                  target="_blank"
+                  rel="noopener"
+                  >Карьера</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <div class="footer-col footer-contacts">
+            <h3 class="footer-col-title" data-i18n="footer.contacts">
+              Контакты
+            </h3>
+            <ul class="footer-contact-list">
+              <li>
+                <a href="mailto:event@airi.net">event@airi.net</a>
+                <span data-i18n="footer.contact.events"
+                  >Для приглашений на мероприятия</span
+                >
+              </li>
+              <li>
+                <a href="mailto:partner@airi.net">partner@airi.net</a>
+                <span data-i18n="footer.contact.partner"
+                  >По вопросам научного сотрудничества и партнёрства</span
+                >
+              </li>
+              <li>
+                <a href="mailto:pr@airi.net">pr@airi.net</a>
+                <span data-i18n="footer.contact.pr"
+                  >Для журналистов и СМИ</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <nav class="footer-col" aria-label="MAESTRO CARE">
+            <h3 class="footer-col-title" data-i18n="footer.careTitle">
+              MAESTRO CARE
+            </h3>
+            <ul class="footer-links">
+              <li>
+                <a
+                  href="https://airi-maestro.github.io/care-docs/"
+                  data-doc-path=""
+                  data-i18n="footer.docs"
+                  target="_blank"
+                  rel="noopener"
+                  >Документация</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/AIRI-MAESTRO/care/blob/main/docs/ARCHITECTURE.md"
+                  data-i18n="footer.arch"
+                  target="_blank"
+                  rel="noopener"
+                  >Архитектура</a
+                >
+              </li>
+              <li><a href="#team" data-i18n="footer.team">Команда</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-bottom">
           <span data-i18n="footer.copy"
             >© 2026 MAESTRO CARE. Открытый код.</span
           >
@@ -2267,7 +2353,7 @@
       </div>
     </div>
 
-    <script src="i18n.js?v=8"></script>
+    <script src="i18n.js?v=9"></script>
     <script src="main.js?v=15"></script>
   </body>
 </html>
