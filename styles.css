@@ -1122,7 +1122,7 @@ section {
 .team-grid {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -1131,6 +1131,7 @@ section {
   align-items: center;
   gap: 1rem;
   padding: 1.4rem 1.5rem;
+  min-width: 0;
 }
 
 .team-member:hover {
@@ -1149,6 +1150,23 @@ section {
   box-shadow: 0 8px 20px var(--accent-glow);
 }
 
+.team-avatar--empty {
+  background: var(--surface-2);
+  border: 1px dashed color-mix(in srgb, var(--accent) 35%, var(--border));
+  box-shadow: none;
+}
+
+.team-avatar--empty::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 38%,
+    color-mix(in srgb, var(--text-muted) 18%, transparent),
+    transparent 68%
+  );
+}
+
 .team-avatar img {
   width: 100%;
   height: 100%;
@@ -1162,6 +1180,14 @@ section {
 
 .team-info h3 {
   margin: 0 0 0.25rem;
+  font-size: var(--fs-body);
+  line-height: 1.35;
+}
+
+@media (min-width: 1025px) {
+  .team-member:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
 }
 
 .team-role {
@@ -3418,7 +3444,7 @@ section {
   }
 
   .team-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .pillars-row .scene,
@@ -3805,6 +3831,14 @@ body.feedback-open {
 }
 
 @media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-card {
+    padding: 2rem 1.25rem;
+  }
+
   .feedback-fab {
     right: 1rem;
     bottom: 1rem;
