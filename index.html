@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=7" />
     <script>
       (function () {
         var VALID = ["warm", "crystal"];
@@ -869,7 +869,37 @@
           </div>
         </div>
 
-        <div class="carl-chain reveal reveal-delay-2">
+        <div class="demo-showcase reveal reveal-delay-2">
+          <div class="demo-showcase-switch">
+            <div
+              class="pill-group"
+              data-demo-view-switch
+              role="group"
+              aria-label="Demo view"
+            >
+              <button
+                class="pill-btn active"
+                type="button"
+                data-demo-view-btn="chain"
+                aria-pressed="true"
+                data-i18n="demo.view.chain"
+              >
+                Формат цепочки
+              </button>
+              <button
+                class="pill-btn"
+                type="button"
+                data-demo-view-btn="terminal"
+                aria-pressed="false"
+                data-i18n="demo.view.terminal"
+              >
+                В терминале
+              </button>
+            </div>
+          </div>
+
+          <div class="demo-view-panel" data-demo-view-panel="chain">
+            <div class="carl-chain">
           <div class="carl-chain-head">
             <span class="carl-chain-badge" data-i18n="chain.badge"
               >Формат CARL</span
@@ -1214,6 +1244,41 @@
                   </dl>
                 </div>
               </div>
+            </div>
+          </div>
+            </div>
+          </div>
+
+          <div class="demo-view-panel" data-demo-view-panel="terminal" hidden>
+            <div class="demo-terminal-shots">
+              <figure class="demo-terminal-shot">
+                <img
+                  src="assets/1.jpg"
+                  width="1280"
+                  height="720"
+                  alt=""
+                  data-i18n-alt="demo.terminal.alt1"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption data-i18n="demo.terminal.caption1">
+                  Сборка цепочки в режиме чата
+                </figcaption>
+              </figure>
+              <figure class="demo-terminal-shot">
+                <img
+                  src="assets/2.jpg"
+                  width="1280"
+                  height="720"
+                  alt=""
+                  data-i18n-alt="demo.terminal.alt2"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption data-i18n="demo.terminal.caption2">
+                  DAG цепочки и детали шага
+                </figcaption>
+              </figure>
             </div>
           </div>
         </div>
@@ -2135,6 +2200,6 @@
     </footer>
 
     <script src="i18n.js?v=6"></script>
-    <script src="main.js?v=9"></script>
+    <script src="main.js?v=11"></script>
   </body>
 </html>

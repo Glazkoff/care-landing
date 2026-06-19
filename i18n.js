@@ -95,6 +95,12 @@ const TRANSLATIONS = {
     "demo.subtitle": "Прикладываешь документ — получаешь готовую цепочку CARL и структурный результат",
     "demo.mode": "Production",
     "demo.note": "Анимация интерфейса",
+    "demo.view.chain": "Формат цепочки",
+    "demo.view.terminal": "В терминале",
+    "demo.terminal.caption1": "Сборка цепочки в режиме чата",
+    "demo.terminal.caption2": "DAG цепочки и детали шага",
+    "demo.terminal.alt1": "Скриншот CARE TUI: генерация цепочки агента в чате",
+    "demo.terminal.alt2": "Скриншот CARE TUI: просмотр DAG и конфигурации шага",
     "chain.badge": "Формат CARL",
     "chain.title": "Итоговая цепочка",
     "chain.steps": "3 шага",
@@ -294,6 +300,12 @@ const TRANSLATIONS = {
     "demo.subtitle": "Attach a document — get a ready CARL chain and a structured result",
     "demo.mode": "Production",
     "demo.note": "Interface animation",
+    "demo.view.chain": "Chain format",
+    "demo.view.terminal": "In the terminal",
+    "demo.terminal.caption1": "Building a chain in chat mode",
+    "demo.terminal.caption2": "Chain DAG and step details",
+    "demo.terminal.alt1": "CARE TUI screenshot: agent chain generation in chat",
+    "demo.terminal.alt2": "CARE TUI screenshot: DAG view and step configuration",
     "chain.badge": "CARL format",
     "chain.title": "Resulting chain",
     "chain.steps": "3 steps",
@@ -430,6 +442,11 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-i18n-title]").forEach((el) => {
     const key = el.getAttribute("data-i18n-title");
     if (dict[key]) el.setAttribute("title", dict[key]);
+  });
+
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-alt");
+    if (dict[key]) el.setAttribute("alt", dict[key]);
   });
 
   const title = dict["meta.title"];

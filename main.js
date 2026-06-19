@@ -670,6 +670,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.CARE_I18N.initI18n();
   initSwitch("data-pkg-btn", "data-pkg-panel", "care-landing-pkg");
   initSwitch("data-agent-btn", "data-agent-panel", "care-landing-agent");
+  initSwitch("data-demo-view-btn", "data-demo-view-panel", "care-landing-demo-view");
   initNav();
   initScrollReveal();
   initParticles();

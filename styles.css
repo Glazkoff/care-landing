@@ -1465,9 +1465,88 @@ section {
   width: min(280px, 80vw);
 }
 
+/* Demo showcase — chain format vs terminal screenshots */
+.demo-showcase {
+  margin-top: 2.5rem;
+}
+
+.demo-showcase-switch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.demo-view-panel[hidden] {
+  display: none;
+}
+
+.demo-view-panel:not([hidden]) {
+  animation: demo-view-in 0.28s ease;
+}
+
+@keyframes demo-view-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.demo-terminal-shots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.6rem 1.75rem 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.demo-terminal-shot {
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--terminal-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.demo-terminal-shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.demo-terminal-shot figcaption {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .demo-terminal-shots {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-view-panel:not([hidden]) {
+    animation: none;
+  }
+}
+
 /* CARL chain graph */
 .carl-chain {
-  margin-top: 2.5rem;
+  margin-top: 0;
   padding: 1.6rem 1.75rem 1.75rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -1780,16 +1859,16 @@ section {
   margin: -3.5px 0 0 -3.5px;
 }
 
-.carl-chain.visible .carl-link:not(.carl-link--v) {
+.demo-showcase.visible .carl-link:not(.carl-link--v) {
   animation: carl-flow-x 0.9s linear infinite;
 }
-.carl-chain.visible .carl-link:not(.carl-link--v) .carl-spark {
+.demo-showcase.visible .carl-link:not(.carl-link--v) .carl-spark {
   animation: carl-spark-x 1.9s ease-in-out infinite;
 }
-.carl-chain.visible .carl-link--v {
+.demo-showcase.visible .carl-link--v {
   animation: carl-flow-y 0.9s linear infinite;
 }
-.carl-chain.visible .carl-link--v .carl-spark {
+.demo-showcase.visible .carl-link--v .carl-spark {
   animation: carl-spark-y 1.9s ease-in-out infinite;
 }
 
@@ -1880,19 +1959,19 @@ section {
 }
 
 /* Sequential reveal (gated on JS; static without it) */
-.js .carl-chain:not(.visible) .carl-phase {
+.js .demo-showcase:not(.visible) .carl-phase {
   opacity: 0;
 }
-.carl-chain.visible .carl-phase {
+.demo-showcase.visible .carl-phase {
   animation: carl-pop 0.5s ease backwards;
 }
-.carl-chain.visible .carl-phase:nth-child(1) {
+.demo-showcase.visible .carl-phase:nth-child(1) {
   animation-delay: 0.05s;
 }
-.carl-chain.visible .carl-phase:nth-child(3) {
+.demo-showcase.visible .carl-phase:nth-child(3) {
   animation-delay: 0.25s;
 }
-.carl-chain.visible .carl-phase:nth-child(5) {
+.demo-showcase.visible .carl-phase:nth-child(5) {
   animation-delay: 0.45s;
 }
 
@@ -3172,7 +3251,7 @@ section {
     background-size: 100% 24px;
   }
 
-  .carl-chain.visible .carl-link:not(.carl-link--v) {
+  .demo-showcase.visible .carl-link:not(.carl-link--v) {
     animation: carl-flow-y 0.9s linear infinite;
   }
 
@@ -3182,7 +3261,7 @@ section {
     margin: -3.5px 0 0 -3.5px;
   }
 
-  .carl-chain.visible .carl-link:not(.carl-link--v) .carl-spark {
+  .demo-showcase.visible .carl-link:not(.carl-link--v) .carl-spark {
     animation: carl-spark-y 1.9s ease-in-out infinite;
   }
 
