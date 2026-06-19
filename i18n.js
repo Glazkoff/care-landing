@@ -466,13 +466,24 @@ function detectLanguage() {
   return "ru";
 }
 
+// Keep short prepositions/conjunctions glued to the next word so they never
+// dangle at the end of a line. Uses a real non-breaking space (U+00A0) because
+// values are written via textContent, where "&nbsp;" would show literally.
+const ORPHAN_RE =
+  /(?<=^|[\s(«"„])(во|со|ко|об|обо|изо|ото|над|под|при|без|для|про|или|the|and|for|with|from|that|в|с|к|о|у|и|а|но|не|ни|из|от|по|за|до|на|an|in|on|of|to|or|is|it|as|at|by|a) /gi;
+
+function preventOrphans(text) {
+  if (!text) return text;
+  return text.replace(ORPHAN_RE, "$1\u00A0");
+}
+
 function applyTranslations(lang) {
   const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
   document.documentElement.lang = lang;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    if (dict[key]) el.textContent = dict[key];
+    if (dict[key]) el.textContent = preventOrphans(dict[key]);
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
