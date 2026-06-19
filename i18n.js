@@ -196,8 +196,6 @@ const TRANSLATIONS = {
     "footer.mascot": "MAESTRO CARE",
     "footer.airTitle": "AIRI",
     "footer.about": "Об институте",
-    "footer.events": "Мероприятия",
-    "footer.career": "Карьера",
     "footer.contacts": "Контакты",
     "footer.contact.events": "Для приглашений на мероприятия",
     "footer.contact.partner": "По вопросам научного сотрудничества и партнёрства",
@@ -415,8 +413,6 @@ const TRANSLATIONS = {
     "footer.mascot": "MAESTRO CARE",
     "footer.airTitle": "AIRI",
     "footer.about": "About the institute",
-    "footer.events": "Events",
-    "footer.career": "Career",
     "footer.contacts": "Contacts",
     "footer.contact.events": "For event invitations",
     "footer.contact.partner": "For scientific cooperation and partnership",
@@ -444,8 +440,6 @@ const LANG_STORAGE_KEY = "care-landing-lang";
 const AIRI_BASE = "https://airi.net";
 const AIRI_PATHS = {
   about: { ru: "/ru/", en: "/?force=en" },
-  events: { ru: "/ru/events", en: "/ru/events?force=en" },
-  career: { ru: "/ru/hr", en: "/hr?force=en" },
 };
 
 function detectLanguage() {

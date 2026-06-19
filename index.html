@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="styles.css?v=12" />
     <script>
       (function () {
         var VALID = ["warm", "crystal"];
@@ -103,19 +103,14 @@
     <nav class="nav" aria-label="Main navigation">
       <div class="nav-inner">
         <a href="#hero" class="brand">
-          <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
-            <circle
-              cx="16"
-              cy="16"
-              r="14"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              opacity="0.3"
-            />
-            <circle cx="16" cy="16" r="10" fill="var(--accent)" opacity="0.2" />
-            <polygon points="16,8 22,16 16,24 10,16" fill="var(--accent)" />
-          </svg>
+          <img
+            class="brand-icon"
+            src="assets/airi-icon.png"
+            width="32"
+            height="32"
+            alt="AIRI"
+            decoding="async"
+          />
           MAESTRO CARE
         </a>
 
@@ -262,12 +257,9 @@
       <div class="hero-aurora" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-content reveal">
-          <div class="badge">
-            <span class="badge-dot"></span>
-            <span data-i18n="hero.badge"
-              >Открытый инструмент для AI-агентов</span
-            >
-          </div>
+          <p class="text-label" data-i18n="hero.badge">
+            Открытый инструмент для AI-агентов
+          </p>
           <h1 data-i18n="hero.title">
             Опиши задачу словами — остальное MAESTRO CARE берёт на себя
           </h1>
@@ -350,21 +342,21 @@
               "
             ></span>
             <span
-              class="doodle doodle-plus"
+              class="doodle doodle-diamond"
               style="
                 --top: 80%;
                 --left: 6%;
-                --size: 16px;
+                --size: 14px;
                 --delay: 0.6s;
                 --depth: -20;
               "
             ></span>
             <span
-              class="doodle doodle-plus"
+              class="doodle doodle-ring"
               style="
                 --top: 30%;
                 --left: -4%;
-                --size: 12px;
+                --size: 18px;
                 --delay: 2.2s;
                 --depth: 14;
               "
@@ -496,7 +488,7 @@
             </div>
           </div>
           <div class="pillar-text">
-            <span class="pillar-tag" data-i18n="p1.tag">Шаг 1 · Генерация</span>
+            <span class="text-label" data-i18n="p1.tag">Шаг 1 · Генерация</span>
             <h3 data-i18n="p1.title">
               MAESTRO CARE собирает агента из твоих слов
             </h3>
@@ -513,16 +505,13 @@
         <div class="pillars-row pillars-row--reverse reveal">
           <div class="scene scene--run">
             <div class="chip chip--tl">
-              <span class="dot"></span
-              ><span data-i18n="p2.chip1">Песочница</span>
+              <span data-i18n="p2.chip1">Песочница</span>
             </div>
             <div class="chip chip--tr">
-              <span class="dot"></span
-              ><span data-i18n="p2.chip2">Поток токенов</span>
+              <span data-i18n="p2.chip2">Поток токенов</span>
             </div>
             <div class="chip chip--br">
-              <span class="dot"></span
-              ><span data-i18n="p2.chip3">Инструменты и навыки</span>
+              <span data-i18n="p2.chip3">Инструменты и навыки</span>
             </div>
             <div class="mascot-stage mascot-stage--scene" data-mood="work">
               <div class="mascot-float">
@@ -542,7 +531,7 @@
             </div>
           </div>
           <div class="pillar-text">
-            <span class="pillar-tag" data-i18n="p2.tag">Шаг 2 · Запуск</span>
+            <span class="text-label" data-i18n="p2.tag">Шаг 2 · Запуск</span>
             <h3 data-i18n="p2.title">Агент работает у тебя на глазах</h3>
             <p data-i18n="p2.desc">
               MAESTRO CARE запускает шаги в изолированной песочнице и показывает
@@ -557,16 +546,13 @@
         <div class="pillars-row reveal">
           <div class="scene scene--evo">
             <div class="chip chip--tl">
-              <span class="dot"></span
-              ><span data-i18n="p3.chip1">Генетический алгоритм</span>
+              <span data-i18n="p3.chip1">Генетический алгоритм</span>
             </div>
             <div class="chip chip--tr">
-              <span class="dot"></span
-              ><span data-i18n="p3.chip2">Несколько метрик</span>
+              <span data-i18n="p3.chip2">Несколько метрик</span>
             </div>
             <div class="chip chip--br">
-              <span class="dot"></span
-              ><span data-i18n="p3.chip3">Сильнейший вариант</span>
+              <span data-i18n="p3.chip3">Сильнейший вариант</span>
             </div>
             <div class="mascot-stage mascot-stage--scene" data-mood="success">
               <div class="mascot-float">
@@ -586,7 +572,7 @@
             </div>
           </div>
           <div class="pillar-text">
-            <span class="pillar-tag" data-i18n="p3.tag">Шаг 3 · Эволюция</span>
+            <span class="text-label" data-i18n="p3.tag">Шаг 3 · Эволюция</span>
             <h3 data-i18n="p3.title">Агент становится лучше сам</h3>
             <p data-i18n="p3.desc">
               MAESTRO CARE перебирает варианты цепочки по нескольким метрикам и
@@ -604,7 +590,7 @@
       <div class="benefits-aurora" aria-hidden="true"></div>
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-eyebrow" data-i18n="benefits.eyebrow"
+          <span class="text-label" data-i18n="benefits.eyebrow"
             >Почему именно MAESTRO CARE</span
           >
           <h2 data-i18n="benefits.title">
@@ -616,7 +602,7 @@
         </div>
         <div class="benefits-grid">
           <article class="benefit-card">
-            <span class="benefit-tag" data-i18n="benefits.b1.tag"
+            <span class="text-label benefit-card-label" data-i18n="benefits.b1.tag"
               >Один запрос</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -639,7 +625,7 @@
           </article>
 
           <article class="benefit-card">
-            <span class="benefit-tag" data-i18n="benefits.b2.tag"
+            <span class="text-label benefit-card-label" data-i18n="benefits.b2.tag"
               >История версий</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -664,7 +650,7 @@
           </article>
 
           <article class="benefit-card">
-            <span class="benefit-tag" data-i18n="benefits.b3.tag"
+            <span class="text-label benefit-card-label" data-i18n="benefits.b3.tag"
               >Прозрачно</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -688,7 +674,7 @@
           </article>
 
           <article class="benefit-card benefit-card--accent">
-            <span class="benefit-tag" data-i18n="benefits.b4.tag"
+            <span class="text-label benefit-card-label" data-i18n="benefits.b4.tag"
               >Авто-улучшение</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -714,7 +700,7 @@
           </article>
 
           <article class="benefit-card">
-            <span class="benefit-tag" data-i18n="benefits.b5.tag"
+            <span class="text-label benefit-card-label" data-i18n="benefits.b5.tag"
               >TUI + CLI</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -739,7 +725,7 @@
           </article>
 
           <article class="benefit-card">
-            <span class="benefit-tag" data-i18n="benefits.b6.tag"
+            <span class="text-label benefit-card-label" data-i18n="benefits.b6.tag"
               >Открытый код</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -1646,7 +1632,7 @@
     <section id="skill" class="install skill-install">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-eyebrow" data-i18n="skill.eyebrow"
+          <span class="text-label" data-i18n="skill.eyebrow"
             >Агентный навык</span
           >
           <h2 data-i18n="skill.title">Добавь CARE как навык своему агенту</h2>
@@ -1996,11 +1982,11 @@
               "
             ></span>
             <span
-              class="doodle doodle-plus"
+              class="doodle doodle-ring"
               style="
                 --top: 24%;
                 --left: 46%;
-                --size: 14px;
+                --size: 16px;
                 --delay: 1.6s;
                 --depth: 0;
               "
@@ -2057,7 +2043,7 @@
       <div class="container">
         <div class="team-card reveal">
           <div class="team-head">
-            <span class="team-eyebrow" data-i18n="team.eyebrow">Команда</span>
+            <span class="text-label" data-i18n="team.eyebrow">Команда</span>
             <h2 data-i18n="team.title">Кто делает MAESTRO CARE</h2>
             <p data-i18n="team.subtitle">
               Исследователи AIRI, которые развивают проект
@@ -2199,26 +2185,6 @@
                   >Об институте</a
                 >
               </li>
-              <li>
-                <a
-                  href="https://airi.net/ru/events"
-                  data-airi-path="events"
-                  data-i18n="footer.events"
-                  target="_blank"
-                  rel="noopener"
-                  >Мероприятия</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://airi.net/ru/hr"
-                  data-airi-path="career"
-                  data-i18n="footer.career"
-                  target="_blank"
-                  rel="noopener"
-                  >Карьера</a
-                >
-              </li>
             </ul>
           </nav>
 
@@ -2353,7 +2319,7 @@
       </div>
     </div>
 
-    <script src="i18n.js?v=9"></script>
-    <script src="main.js?v=15"></script>
+    <script src="i18n.js?v=10"></script>
+    <script src="main.js?v=17"></script>
   </body>
 </html>

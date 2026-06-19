@@ -12,6 +12,10 @@
   --nav-h: 72px;
   --max-w: 1180px;
   --transition: 0.25s ease;
+
+  --fs-heading: clamp(2rem, 4.5vw, 3.15rem);
+  --fs-subheading: clamp(1.35rem, 2.4vw, 1.9rem);
+  --fs-body: 1.05rem;
 }
 
 /* Warm Sand (default) */
@@ -23,6 +27,8 @@
   --surface-2: #fff9f0;
   --text: #2a2520;
   --text-muted: #6b5f52;
+  --text-caption: #6b5f52;
+  --text-info: #2a7d6f;
   --accent: #2a7d6f;
   --accent-2: #1f6358;
   --accent-glow: rgba(42, 125, 111, 0.3);
@@ -47,6 +53,8 @@
   --surface-2: #252b35;
   --text: #e6e6e6;
   --text-muted: #a0a8b4;
+  --text-caption: #a0a8b4;
+  --text-info: #33d9b2;
   --accent: #33d9b2;
   --accent-2: #2ebfae;
   --accent-glow: rgba(51, 217, 178, 0.4);
@@ -103,13 +111,13 @@ img {
 }
 
 a {
-  color: var(--accent);
+  color: var(--text-caption);
   text-decoration: none;
   transition: color var(--transition);
 }
 
 a:hover {
-  color: var(--accent-2);
+  color: var(--text);
 }
 
 .container {
@@ -156,46 +164,26 @@ a:hover {
   line-height: 1.1em;
 }
 
-.brand:hover {
-  color: var(--text);
-}
-
 .brand-icon {
   width: 32px;
   height: 32px;
   flex-shrink: 0;
+  display: block;
 }
 
-.brand-icon polygon {
-  transform-box: fill-box;
-  transform-origin: center;
+.brand-mark {
+  display: block;
+  line-height: 0;
+  flex-shrink: 0;
 }
 
-.brand:hover .brand-icon polygon,
-.footer-brand:hover .brand-icon polygon {
-  animation: brand-pulse 1.4s ease-in-out infinite;
+.nav .airi-logo {
+  height: 28px;
+  max-width: min(120px, 34vw);
 }
 
-@keyframes brand-pulse {
-  0%,
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.15) rotate(45deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .brand-icon polygon {
-    animation: none;
-  }
-}
-
-/* The brand-icon ring detaches and trails the cursor while it's in the viewport,
-   then returns to the logo when the pointer leaves (driven by initCursorOrb). */
-html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
-  opacity: 0;
+.brand:hover {
+  color: var(--text);
 }
 
 .cursor-orb {
@@ -226,7 +214,7 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
 }
 
 .nav-links a {
-  color: var(--text-muted);
+  color: var(--text);
   font-size: 0.92rem;
   font-weight: 500;
   line-height: 1.2;
@@ -264,7 +252,8 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
   font-family: inherit;
 }
 
-.pill-btn:hover {
+.pill-btn:hover:not(.active) {
+  background: var(--card-hover);
   color: var(--text);
 }
 
@@ -273,7 +262,16 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
   color: #fff;
 }
 
+.pill-btn.active:hover {
+  background: var(--accent-2);
+  color: #fff;
+}
+
 :root[data-theme="crystal"] .pill-btn.active {
+  color: #0f1115;
+}
+
+:root[data-theme="crystal"] .pill-btn.active:hover {
   color: #0f1115;
 }
 
@@ -330,6 +328,25 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
   transform: translateY(-1px);
 }
 
+.btn-primary:hover,
+.feedback-fab:hover {
+  background: var(--accent-2);
+  color: #fff;
+}
+
+:root[data-theme="crystal"] .btn-primary:hover,
+:root[data-theme="crystal"] .feedback-fab:hover {
+  color: #0f1115;
+}
+
+.btn-secondary:hover,
+.nav-toggle:hover,
+.install-connect:hover {
+  background: var(--card-hover);
+  color: var(--text);
+  border-color: var(--border);
+}
+
 .btn-primary {
   background: var(--accent);
   color: #fff;
@@ -340,24 +357,10 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
   color: #0f1115;
 }
 
-.btn-primary:hover {
-  background: var(--accent-2);
-  color: #fff;
-}
-
-:root[data-theme="crystal"] .btn-primary:hover {
-  color: #0f1115;
-}
-
 .btn-secondary {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
-}
-
-.btn-secondary:hover {
-  background: var(--card-hover);
-  color: var(--text);
 }
 
 .btn-ghost {
@@ -379,6 +382,7 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
   border-radius: var(--radius-sm);
   color: var(--text);
   cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
 }
 
 .nav-toggle svg {
@@ -446,41 +450,132 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
   animation: aurora 22s ease-in-out infinite reverse;
 }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.85rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+/* ---- Typography system ---- */
+.text-label {
+  display: inline-block;
+  margin: 0 0 0.75rem;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--accent);
-  margin-bottom: 1.25rem;
+  line-height: 1.35;
+  color: var(--text-caption);
 }
 
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: pulse 2s ease infinite;
+.benefit-card-label {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 1;
+  margin: 0;
+}
+
+.hero h1,
+.section-header h2,
+.team-head h2,
+.cta-card h2 {
+  font-size: var(--fs-heading);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--text);
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 4.5vw, 3.15rem);
-  line-height: 1.12;
-  letter-spacing: -0.03em;
   margin: 0 0 1.25rem;
-  font-weight: 800;
+}
+
+.section-header h2,
+.team-head h2,
+.cta-card h2 {
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.pillar-text h3,
+.benefit-card h3,
+.install-step-body h3,
+.stack-module h3,
+.team-info h3 {
+  font-size: var(--fs-subheading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.hero-lead,
+.section-header p,
+.pillar-text p,
+.benefit-card p,
+.install-step-body p,
+.team-head p,
+.team-role,
+.cta-card p,
+.stack-module p {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text);
 }
 
 .hero-lead {
-  font-size: 1.1rem;
-  color: var(--text-muted);
   margin: 0 0 2rem;
   max-width: 52ch;
+}
+
+.section-header p,
+.team-head p {
+  margin: 0;
+}
+
+.pillar-text p {
+  margin: 0 0 1.5rem;
+  max-width: 46ch;
+}
+
+.benefit-card p,
+.install-step-body p {
+  margin: 0;
+}
+
+.cta-card p {
+  margin: 0 0 2rem;
+  max-width: 520px;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-info);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--text-caption);
+  margin-top: 0.15rem;
+}
+
+.pillar-text .text-label,
+.pillar-text .pillar-link {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.pillar-text .text-label {
+  margin-bottom: 0.75rem;
+}
+
+.pillar-link {
+  font-weight: 600;
+  color: var(--text-caption);
+}
+
+.pillar-link:hover {
+  color: var(--text);
+}
+
+.stack-module .role {
+  color: var(--text-caption);
 }
 
 .hero-actions {
@@ -499,19 +594,6 @@ html.has-cursor-orb .nav .brand-icon > circle:first-of-type {
 .stat {
   display: flex;
   flex-direction: column;
-}
-
-.stat-value {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--accent);
-  line-height: 1.1;
-}
-
-.stat-label {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-top: 0.15rem;
 }
 
 .hero-visual {
@@ -688,18 +770,6 @@ section {
 .section-header {
   text-align: center;
   margin: 0 auto 3rem;
-}
-
-.section-header h2 {
-  font-size: clamp(1.75rem, 3vw, 2.35rem);
-  margin: 0 0 0.75rem;
-  letter-spacing: -0.02em;
-}
-
-.section-header p {
-  color: var(--text-muted);
-  margin: 0;
-  font-size: 1.05rem;
 }
 
 /* Balance multi-line headings and avoid a lone orphan word on the last line.
@@ -883,20 +953,6 @@ section {
   z-index: 1;
 }
 
-.section-eyebrow {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  background: var(--card-hover);
-  border: 1px solid var(--border);
-}
-
 .benefits-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -959,22 +1015,6 @@ section {
   box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow-sm);
 }
 
-.benefit-tag {
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
-  z-index: 1;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  padding: 0.22rem 0.55rem;
-  border-radius: 999px;
-  color: var(--accent);
-  background: var(--card-hover);
-  border: 1px solid var(--border);
-}
-
 .benefit-ico {
   position: relative;
   z-index: 1;
@@ -1008,16 +1048,12 @@ section {
   position: relative;
   z-index: 1;
   margin: 0 0 0.45rem;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
 }
 
 .benefit-card p {
   position: relative;
   z-index: 1;
   margin: 0;
-  color: var(--text-muted);
-  font-size: 0.92rem;
 }
 
 /* Chain-assembly animation: cards snap into place one-by-one and links draw
@@ -1096,28 +1132,6 @@ section {
   margin: 0 auto 2.5rem;
 }
 
-.team-eyebrow {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  margin-bottom: 0.65rem;
-}
-
-.team-head h2 {
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-  letter-spacing: -0.02em;
-  margin: 0 0 0.75rem;
-}
-
-.team-head p {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 1.05rem;
-}
-
 .team-grid {
   position: relative;
   display: grid;
@@ -1167,14 +1181,10 @@ section {
 
 .team-info h3 {
   margin: 0 0 0.25rem;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
 }
 
 .team-role {
   margin: 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
   line-height: 1.45;
 }
 
@@ -1342,22 +1352,18 @@ section {
 
 .stack-module h3 {
   margin: 0 0 0.25rem;
-  color: var(--accent);
-  font-size: 1rem;
 }
 
 .stack-module .role {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
 .stack-module p {
   margin: 0;
   font-size: 0.82rem;
-  color: var(--text-muted);
 }
 
 /* Demo */
@@ -2459,7 +2465,7 @@ section {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: var(--accent);
+  background: var(--text-info);
   color: #fff;
   font-weight: 800;
   font-size: 0.95rem;
@@ -2476,13 +2482,10 @@ section {
 
 .install-step-body h3 {
   margin: 0 0 0.35rem;
-  font-size: 1.05rem;
 }
 
 .install-step-body p {
   margin: 0 0 0.85rem;
-  color: var(--text-muted);
-  font-size: 0.9rem;
 }
 
 .code-block {
@@ -2527,9 +2530,9 @@ section {
 }
 
 .copy-btn:hover {
-  background: rgba(46, 191, 174, 0.22);
+  background: rgba(255, 255, 255, 0.14);
   color: #fff;
-  border-color: var(--accent);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .copy-btn.copied {
@@ -2663,7 +2666,6 @@ section {
 }
 
 .pkg-hint a {
-  color: var(--accent);
   font-weight: 600;
 }
 
@@ -2706,16 +2708,9 @@ section {
   z-index: 1;
 }
 
-.cta-card h2 {
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-  margin: 0 0 0.75rem;
-  letter-spacing: -0.02em;
-}
-
+.cta-card h2,
 .cta-card p {
-  margin: 0 0 2rem;
-  max-width: 520px;
-  opacity: 0.92;
+  color: #fff;
 }
 
 .cta-actions {
@@ -2765,8 +2760,13 @@ section {
   border-color: rgba(255, 255, 255, 0.35);
 }
 
+.cta-card .btn-primary:hover {
+  background: color-mix(in srgb, #fff 86%, #000);
+  color: var(--accent-2);
+}
+
 .cta-card .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
   color: inherit;
 }
 
@@ -2974,57 +2974,28 @@ section {
   position: absolute;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.5rem 0.85rem;
+  padding: 0.45rem 0.85rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--text-caption);
   box-shadow: var(--shadow-sm);
   z-index: 3;
   animation: maestric-float 5s ease-in-out infinite;
-}
-
-.chip .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent-glow);
 }
 
 .chip--tl { top: 12%; left: 4%; animation-delay: 0s; }
 .chip--tr { top: 20%; right: 4%; animation-delay: 1s; }
 .chip--br { bottom: 14%; right: 8%; animation-delay: 2s; }
 
-.pillar-tag {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
-}
-
 .pillar-text h3 {
-  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-  letter-spacing: -0.02em;
   margin: 0 0 1rem;
   line-height: 1.15;
 }
 
-.pillar-text p {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  margin: 0 0 1.5rem;
-  max-width: 46ch;
-}
-
 .pillar-link {
-  font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -3053,13 +3024,14 @@ section {
   right: 0;
   left: auto;
   transform: none;
-  max-width: 230px;
+  max-width: min(300px, 42vw);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 0.7rem 1rem;
-  font-size: 0.88rem;
-  font-weight: 600;
+  padding: 0.85rem 1.1rem;
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--text);
   box-shadow: var(--shadow-md);
   z-index: 5;
@@ -3165,13 +3137,13 @@ section {
 }
 
 .footer-links a {
-  color: var(--text);
+  color: var(--text-caption);
   font-size: 0.88rem;
   font-weight: 500;
 }
 
 .footer-links a:hover {
-  color: var(--accent);
+  color: var(--text);
 }
 
 .footer-contact-list {
@@ -3192,6 +3164,10 @@ section {
 .footer-contact-list a {
   font-size: 0.88rem;
   font-weight: 600;
+  color: var(--text-caption);
+}
+
+.footer-contact-list a:hover {
   color: var(--text);
 }
 
@@ -3596,7 +3572,6 @@ section {
   .mascot-glow,
   .particle,
   .crystal-accent,
-  .badge-dot,
   .doodle,
   .chip,
   .marquee-track,
@@ -3661,7 +3636,7 @@ section {
 
 .feedback-fab:hover {
   background: var(--accent-2);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .feedback-fab:focus-visible {
