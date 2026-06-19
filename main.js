@@ -664,13 +664,101 @@ function initAnalytics() {
   );
 }
 
+function initFeedbackModal() {
+  const YANDEX_SRC = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27?iframe=1";
+  const YANDEX_URL = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27";
+  const GOOGLE_URL = "https://forms.gle/4StLteUCgH4xu5y8A";
+  const modal = document.querySelector("[data-feedback-modal]");
+  const body = document.querySelector("[data-feedback-body]");
+  const openers = document.querySelectorAll("[data-feedback-open]");
+  if (!modal || !body || !openers.length) return;
+
+  let lastFocused = null;
+  let builtLang = null;
+
+  function buildContent() {
+    const lang = document.documentElement.lang === "en" ? "en" : "ru";
+    if (builtLang === lang && body.firstChild) return;
+    body.innerHTML = "";
+
+    if (lang === "en") {
+      const dict = window.CARE_I18N.TRANSLATIONS.en;
+      const link = document.createElement("a");
+      link.className = "feedback-link";
+      link.href = GOOGLE_URL;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = dict["feedback.open"] || "Open feedback form";
+      body.appendChild(link);
+    } else {
+      const dict = window.CARE_I18N.TRANSLATIONS.ru;
+      const iframe = document.createElement("iframe");
+      iframe.src = YANDEX_SRC;
+      iframe.title = "Feedback form";
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute("name", "ya-form-6a35070002848f66d7bf3d27");
+      iframe.loading = "lazy";
+
+      // The iframe is cross-origin, so we can't inspect its content. If the
+      // load event hasn't fired within a few seconds (network blocked, refused,
+      // etc.), assume it's broken and reveal a direct link as a fallback.
+      const fallback = document.createElement("a");
+      fallback.className = "feedback-link feedback-fallback";
+      fallback.href = YANDEX_URL;
+      fallback.target = "_blank";
+      fallback.rel = "noopener";
+      fallback.textContent = dict["feedback.open"] || "Open feedback form";
+      fallback.hidden = true;
+
+      let loaded = false;
+      const showFallback = () => {
+        if (loaded) return;
+        iframe.hidden = true;
+        fallback.hidden = false;
+      };
+      iframe.addEventListener("load", () => {
+        loaded = true;
+      });
+      iframe.addEventListener("error", showFallback);
+      window.setTimeout(showFallback, 8000);
+
+      body.appendChild(iframe);
+      body.appendChild(fallback);
+    }
+    builtLang = lang;
+  }
+
+  function open() {
+    lastFocused = document.activeElement;
+    buildContent();
+    modal.hidden = false;
+    document.body.classList.add("feedback-open");
+    const closeBtn = modal.querySelector(".feedback-modal-close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function close() {
+    modal.hidden = true;
+    document.body.classList.remove("feedback-open");
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
+  openers.forEach((btn) => btn.addEventListener("click", open));
+  modal.querySelectorAll("[data-feedback-close]").forEach((el) => {
+    el.addEventListener("click", close);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) close();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("js");
   initTheme();
   window.CARE_I18N.initI18n();
   initSwitch("data-pkg-btn", "data-pkg-panel", "care-landing-pkg");
   initSwitch("data-agent-btn", "data-agent-panel", "care-landing-agent");
-  initSwitch("data-demo-view-btn", "data-demo-view-panel", "care-landing-demo-view");
+  initSwitch("data-demo-view-btn", "data-demo-view-panel", null);
   initNav();
   initScrollReveal();
   initParticles();
@@ -683,6 +771,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroParallax();
   initCursorOrb();
   initAnalytics();
+  initFeedbackModal();
 
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {

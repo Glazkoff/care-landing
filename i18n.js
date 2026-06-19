@@ -199,6 +199,11 @@ const TRANSLATIONS = {
     "footer.team": "Команда",
     "footer.copy": "© 2026 MAESTRO CARE. Открытый код.",
 
+    "feedback.button": "Обратная связь",
+    "feedback.title": "Обратная связь",
+    "feedback.close": "Закрыть",
+    "feedback.open": "Открыть форму обратной связи",
+
     "theme.warm": "Тёплая",
     "theme.dark": "Тёмная",
     "lang.ru": "RU",
@@ -404,6 +409,11 @@ const TRANSLATIONS = {
     "footer.team": "Team",
     "footer.copy": "© 2026 MAESTRO CARE. Open source.",
 
+    "feedback.button": "Feedback",
+    "feedback.title": "Feedback",
+    "feedback.close": "Close",
+    "feedback.open": "Open feedback form",
+
     "theme.warm": "Warm",
     "theme.dark": "Dark",
     "lang.ru": "RU",
@@ -447,6 +457,11 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
     const key = el.getAttribute("data-i18n-alt");
     if (dict[key]) el.setAttribute("alt", dict[key]);
+  });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-aria-label");
+    if (dict[key]) el.setAttribute("aria-label", dict[key]);
   });
 
   const title = dict["meta.title"];

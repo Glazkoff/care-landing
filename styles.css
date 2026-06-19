@@ -1507,6 +1507,8 @@ section {
 }
 
 .demo-terminal-shot {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -1518,10 +1520,16 @@ section {
 .demo-terminal-shot img {
   width: 100%;
   height: auto;
+  aspect-ratio: 1210 / 1062;
+  object-fit: cover;
   display: block;
 }
 
 .demo-terminal-shot figcaption {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
   padding: 0.55rem 0.75rem;
   font-size: 0.78rem;
   font-weight: 600;
@@ -3515,5 +3523,195 @@ section {
 
   .benefit-card::after {
     display: none;
+  }
+}
+
+/* Feedback floating button + modal */
+.feedback-fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.feedback-fab:hover {
+  background: var(--accent-2);
+  transform: translateY(-2px);
+}
+
+.feedback-fab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.feedback-fab svg {
+  flex: 0 0 auto;
+}
+
+.feedback-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.feedback-modal[hidden] {
+  display: none;
+}
+
+.feedback-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  animation: feedback-fade 0.2s ease;
+}
+
+.feedback-modal-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(680px, 100%);
+  max-height: min(90vh, 900px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  animation: feedback-pop 0.22s ease;
+}
+
+.feedback-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.feedback-modal-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.feedback-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+
+.feedback-modal-close:hover {
+  color: var(--text);
+  background: var(--card-hover);
+}
+
+.feedback-modal-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.feedback-modal-body {
+  flex: 1 1 auto;
+  overflow: auto;
+  background: #fff;
+}
+
+.feedback-modal-body iframe {
+  display: block;
+  width: 100%;
+  min-height: 70vh;
+  border: 0;
+}
+
+.feedback-link {
+  display: block;
+  width: fit-content;
+  text-align: center;
+  margin: 3rem auto;
+  padding: 0.95rem 1.75rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.feedback-link:hover {
+  background: var(--accent-2);
+  transform: translateY(-2px);
+}
+
+.feedback-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+body.feedback-open {
+  overflow: hidden;
+}
+
+@keyframes feedback-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes feedback-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+@media (max-width: 600px) {
+  .feedback-fab {
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.8rem;
+  }
+
+  .feedback-fab-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback-fab,
+  .feedback-modal-backdrop,
+  .feedback-modal-dialog {
+    transition: none;
+    animation: none;
   }
 }
