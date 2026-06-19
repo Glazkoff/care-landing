@@ -665,9 +665,9 @@ function initAnalytics() {
 }
 
 function initFeedbackModal() {
-  const YANDEX_SRC = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27?iframe=1";
-  const YANDEX_URL = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27";
-  const GOOGLE_URL = "https://forms.gle/4StLteUCgH4xu5y8A";
+  const FORM_SRC = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27?iframe=1";
+  const FORM_URL = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27";
+  const FORM_NAME = "ya-form-6a35070002848f66d7bf3d27";
   const modal = document.querySelector("[data-feedback-modal]");
   const body = document.querySelector("[data-feedback-body]");
   const openers = document.querySelectorAll("[data-feedback-open]");
@@ -681,47 +681,36 @@ function initFeedbackModal() {
     if (builtLang === lang && body.firstChild) return;
     body.innerHTML = "";
 
-    if (lang === "en") {
-      const dict = window.CARE_I18N.TRANSLATIONS.en;
-      const link = document.createElement("a");
-      link.className = "feedback-link";
-      link.href = GOOGLE_URL;
-      link.target = "_blank";
-      link.rel = "noopener";
-      link.textContent = dict["feedback.open"] || "Open feedback form";
-      body.appendChild(link);
-    } else {
-      const dict = window.CARE_I18N.TRANSLATIONS.ru;
-      const iframe = document.createElement("iframe");
-      iframe.src = YANDEX_SRC;
-      iframe.title = "Feedback form";
-      iframe.setAttribute("frameborder", "0");
-      iframe.setAttribute("name", "ya-form-6a35070002848f66d7bf3d27");
-      iframe.loading = "lazy";
+    const dict = window.CARE_I18N.TRANSLATIONS[lang];
+    const iframe = document.createElement("iframe");
+    iframe.src = FORM_SRC;
+    iframe.title = dict["feedback.title"] || "Feedback";
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("name", FORM_NAME);
+    iframe.loading = "lazy";
 
-      const fallback = document.createElement("a");
-      fallback.className = "feedback-link feedback-fallback";
-      fallback.href = YANDEX_URL;
-      fallback.target = "_blank";
-      fallback.rel = "noopener";
-      fallback.textContent = dict["feedback.open"] || "Open feedback form";
-      fallback.hidden = true;
+    const fallback = document.createElement("a");
+    fallback.className = "feedback-link feedback-fallback";
+    fallback.href = FORM_URL;
+    fallback.target = "_blank";
+    fallback.rel = "noopener";
+    fallback.textContent = dict["feedback.open"] || "Open feedback form";
+    fallback.hidden = true;
 
-      let loaded = false;
-      const showFallback = () => {
-        if (loaded) return;
-        iframe.hidden = true;
-        fallback.hidden = false;
-      };
-      iframe.addEventListener("load", () => {
-        loaded = true;
-      });
-      iframe.addEventListener("error", showFallback);
-      window.setTimeout(showFallback, 8000);
+    let loaded = false;
+    const showFallback = () => {
+      if (loaded) return;
+      iframe.hidden = true;
+      fallback.hidden = false;
+    };
+    iframe.addEventListener("load", () => {
+      loaded = true;
+    });
+    iframe.addEventListener("error", showFallback);
+    window.setTimeout(showFallback, 8000);
 
-      body.appendChild(iframe);
-      body.appendChild(fallback);
-    }
+    body.appendChild(iframe);
+    body.appendChild(fallback);
     builtLang = lang;
   }
 
