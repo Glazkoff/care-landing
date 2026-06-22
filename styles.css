@@ -199,8 +199,11 @@ a:hover {
 }
 
 .brand-icon {
-  width: 34px;
+  width: 32px;
   height: 32px;
+  /* Source PNG is 451×420 (not square) — contain keeps its aspect ratio
+     inside the 32×32 box instead of stretching it into a square. */
+  object-fit: contain;
   flex-shrink: 0;
   display: block;
 }
