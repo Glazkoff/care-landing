@@ -513,6 +513,28 @@ a:hover {
   color: var(--text-caption);
 }
 
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease infinite;
+}
+
 .benefit-card-label {
   position: absolute;
   top: 1.2rem;
@@ -2690,7 +2712,6 @@ section {
   display: block;
   font-size: var(--fs-caption);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-caption);
   margin-bottom: 0.5rem;

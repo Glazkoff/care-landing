@@ -262,15 +262,19 @@
     <header class="hero" id="hero">
       <div class="container hero-grid">
         <div class="hero-content reveal">
-          <p class="text-label" data-i18n="hero.badge">
-            Открытый инструмент для AI-агентов
-          </p>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span data-i18n="hero.badge"
+              >Открытый инструмент для AI-агентов</span
+            >
+          </div>
           <h1 data-i18n="hero.title">
             Опиши задачу словами — остальное MAESTRO CARE берёт на себя
           </h1>
           <p class="hero-lead" data-i18n="hero.subtitle">
             Соберёт агента, запустит и сам улучшит результат — без ручной
-            настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.
+            настройки пайплайнов, прямо в терминале или в любимом агенте для
+            кодинга.
           </p>
           <div class="hero-actions">
             <a
@@ -294,7 +298,9 @@
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <span class="stat-value" data-i18n="hero.stat1.value">≈1 мин</span>
+              <span class="stat-value" data-i18n="hero.stat1.value"
+                >≈1 мин</span
+              >
               <span class="stat-label" data-i18n="hero.stat1.label"
                 >до первого агента</span
               >
@@ -594,9 +600,6 @@
     <section id="benefits" class="benefits">
       <div class="container">
         <div class="section-header reveal">
-          <span class="text-label" data-i18n="benefits.eyebrow"
-            >Почему именно MAESTRO CARE</span
-          >
           <h2 data-i18n="benefits.title">
             Ты описываешь — MAESTRO CARE делает остальное
           </h2>
@@ -606,7 +609,9 @@
         </div>
         <div class="benefits-grid">
           <article class="benefit-card">
-            <span class="text-label benefit-card-label" data-i18n="benefits.b1.tag"
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b1.tag"
               >Один запрос</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -629,7 +634,9 @@
           </article>
 
           <article class="benefit-card">
-            <span class="text-label benefit-card-label" data-i18n="benefits.b2.tag"
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b2.tag"
               >История версий</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -654,7 +661,9 @@
           </article>
 
           <article class="benefit-card">
-            <span class="text-label benefit-card-label" data-i18n="benefits.b3.tag"
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b3.tag"
               >Прозрачно</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -678,7 +687,9 @@
           </article>
 
           <article class="benefit-card">
-            <span class="text-label benefit-card-label" data-i18n="benefits.b4.tag"
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b4.tag"
               >Авто-улучшение</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -704,7 +715,9 @@
           </article>
 
           <article class="benefit-card">
-            <span class="text-label benefit-card-label" data-i18n="benefits.b5.tag"
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b5.tag"
               >TUI + CLI</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -729,7 +742,9 @@
           </article>
 
           <article class="benefit-card">
-            <span class="text-label benefit-card-label" data-i18n="benefits.b6.tag"
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b6.tag"
               >Открытый код</span
             >
             <span class="benefit-ico" aria-hidden="true">
@@ -890,352 +905,358 @@
 
           <div class="demo-view-panel" data-demo-view-panel="chain">
             <div class="carl-chain">
-          <div class="carl-chain-head">
-            <span class="carl-chain-badge" data-i18n="chain.badge"
-              >Формат CARL</span
-            >
-            <h3 class="carl-chain-title" data-i18n="chain.title">
-              Итоговая цепочка
-            </h3>
-            <span class="carl-chain-count" data-i18n="chain.steps">3 шага</span>
-            <span class="carl-chain-task" data-i18n="chain.task">
-              достать показатели из квартального PDF
-            </span>
-          </div>
-
-          <div class="carl-graph" role="list">
-            <!-- Phase 1 — input: query + data -->
-            <div class="carl-phase carl-phase--io" role="listitem">
-              <div class="carl-phase-head">
-                <span class="carl-phase-step">1</span>
-                <span class="carl-phase-label" data-i18n="chain.p1">Вход</span>
-              </div>
-              <div class="carl-phase-body">
-                <span class="carl-io-row">
-                  <span class="carl-io-ic" aria-hidden="true">💬</span>
-                  <span class="carl-io-txt" data-i18n="chain.query"
-                    >запрос пользователя</span
-                  >
-                </span>
-                <span class="carl-io-row">
-                  <span class="carl-io-ic" aria-hidden="true">📄</span>
-                  <span class="carl-io-txt">q3-report.pdf</span>
-                </span>
-              </div>
-            </div>
-
-            <span class="carl-link" aria-hidden="true"
-              ><i class="carl-spark"></i
-            ></span>
-
-            <!-- Phase 2 — the CARL chain (3 steps) -->
-            <div class="carl-phase carl-phase--chain" role="listitem">
-              <div class="carl-phase-head">
-                <span class="carl-phase-badge" data-i18n="chain.badge"
+              <div class="carl-chain-head">
+                <span class="carl-chain-badge" data-i18n="chain.badge"
                   >Формат CARL</span
                 >
-                <span class="carl-phase-label" data-i18n="chain.p2"
-                  >Цепочка</span
-                >
-                <span class="carl-phase-count" data-i18n="chain.steps"
+                <h3 class="carl-chain-title" data-i18n="chain.title">
+                  Итоговая цепочка
+                </h3>
+                <span class="carl-chain-count" data-i18n="chain.steps"
                   >3 шага</span
                 >
+                <span class="carl-chain-task" data-i18n="chain.task">
+                  достать показатели из квартального PDF
+                </span>
               </div>
-              <div class="carl-phase-body carl-chain-box">
-                <button
-                  type="button"
-                  class="carl-node carl-node--llm carl-step-btn"
-                  aria-expanded="false"
-                  aria-controls="carl-step-1"
-                >
-                  <span class="carl-node-idx">1</span>
-                  <span class="carl-node-name">plan_extraction</span>
-                  <span class="carl-node-type">llm</span>
-                  <span class="carl-step-chevron" aria-hidden="true"></span>
-                </button>
-                <span class="carl-link carl-link--v" aria-hidden="true"
+
+              <div class="carl-graph" role="list">
+                <!-- Phase 1 — input: query + data -->
+                <div class="carl-phase carl-phase--io" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-step">1</span>
+                    <span class="carl-phase-label" data-i18n="chain.p1"
+                      >Вход</span
+                    >
+                  </div>
+                  <div class="carl-phase-body">
+                    <span class="carl-io-row">
+                      <span class="carl-io-ic" aria-hidden="true">💬</span>
+                      <span class="carl-io-txt" data-i18n="chain.query"
+                        >запрос пользователя</span
+                      >
+                    </span>
+                    <span class="carl-io-row">
+                      <span class="carl-io-ic" aria-hidden="true">📄</span>
+                      <span class="carl-io-txt">q3-report.pdf</span>
+                    </span>
+                  </div>
+                </div>
+
+                <span class="carl-link" aria-hidden="true"
                   ><i class="carl-spark"></i
                 ></span>
-                <button
-                  type="button"
-                  class="carl-node carl-node--tool carl-step-btn"
-                  aria-expanded="false"
-                  aria-controls="carl-step-2"
-                >
-                  <span class="carl-node-idx">2</span>
-                  <span class="carl-node-name">extract_pdf_text</span>
-                  <span class="carl-node-type">tool</span>
-                  <span class="carl-step-chevron" aria-hidden="true"></span>
-                </button>
-                <span class="carl-link carl-link--v" aria-hidden="true"
+
+                <!-- Phase 2 — the CARL chain (3 steps) -->
+                <div class="carl-phase carl-phase--chain" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-badge" data-i18n="chain.badge"
+                      >Формат CARL</span
+                    >
+                    <span class="carl-phase-label" data-i18n="chain.p2"
+                      >Цепочка</span
+                    >
+                    <span class="carl-phase-count" data-i18n="chain.steps"
+                      >3 шага</span
+                    >
+                  </div>
+                  <div class="carl-phase-body carl-chain-box">
+                    <button
+                      type="button"
+                      class="carl-node carl-node--llm carl-step-btn"
+                      aria-expanded="false"
+                      aria-controls="carl-step-1"
+                    >
+                      <span class="carl-node-idx">1</span>
+                      <span class="carl-node-name">plan_extraction</span>
+                      <span class="carl-node-type">llm</span>
+                      <span class="carl-step-chevron" aria-hidden="true"></span>
+                    </button>
+                    <span class="carl-link carl-link--v" aria-hidden="true"
+                      ><i class="carl-spark"></i
+                    ></span>
+                    <button
+                      type="button"
+                      class="carl-node carl-node--tool carl-step-btn"
+                      aria-expanded="false"
+                      aria-controls="carl-step-2"
+                    >
+                      <span class="carl-node-idx">2</span>
+                      <span class="carl-node-name">extract_pdf_text</span>
+                      <span class="carl-node-type">tool</span>
+                      <span class="carl-step-chevron" aria-hidden="true"></span>
+                    </button>
+                    <span class="carl-link carl-link--v" aria-hidden="true"
+                      ><i class="carl-spark"></i
+                    ></span>
+                    <button
+                      type="button"
+                      class="carl-node carl-node--struct carl-step-btn"
+                      aria-expanded="false"
+                      aria-controls="carl-step-3"
+                    >
+                      <span class="carl-node-idx">3</span>
+                      <span class="carl-node-name">normalise_financials</span>
+                      <span class="carl-node-type">structured_output</span>
+                      <span class="carl-step-chevron" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+
+                <span class="carl-link" aria-hidden="true"
                   ><i class="carl-spark"></i
                 ></span>
-                <button
-                  type="button"
-                  class="carl-node carl-node--struct carl-step-btn"
-                  aria-expanded="false"
-                  aria-controls="carl-step-3"
+
+                <!-- Phase 3 — result -->
+                <div class="carl-phase carl-phase--out" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-step carl-phase-step--ok">✓</span>
+                    <span class="carl-phase-label" data-i18n="chain.p3"
+                      >Результат</span
+                    >
+                    <span class="carl-phase-count carl-phase-count--crystal"
+                      >QuarterlyFinancials</span
+                    >
+                  </div>
+                  <div class="carl-phase-body">
+                    <dl class="carl-payload-grid">
+                      <div class="carl-field">
+                        <dt>period</dt>
+                        <dd>Q3 2025</dd>
+                      </div>
+                      <div class="carl-field">
+                        <dt>currency</dt>
+                        <dd>USD</dd>
+                      </div>
+                      <div class="carl-field">
+                        <dt>revenue</dt>
+                        <dd>$4.20M</dd>
+                      </div>
+                      <div class="carl-field">
+                        <dt>net_income</dt>
+                        <dd>$0.91M</dd>
+                      </div>
+                    </dl>
+                    <span class="carl-payload-saved" data-i18n="chain.saved"
+                      >💾 memory_card · fin-report</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <p class="carl-steps-hint" data-i18n="chain.hint">
+                Нажмите на шаг — развернётся его структура в формате CARL
+              </p>
+
+              <div class="carl-step-panels">
+                <div
+                  class="carl-step-panel"
+                  id="carl-step-1"
+                  role="region"
+                  aria-label="plan_extraction"
+                  hidden
                 >
-                  <span class="carl-node-idx">3</span>
-                  <span class="carl-node-name">normalise_financials</span>
-                  <span class="carl-node-type">structured_output</span>
-                  <span class="carl-step-chevron" aria-hidden="true"></span>
-                </button>
-              </div>
-            </div>
+                  <div class="carl-spec carl-spec--llm">
+                    <div class="carl-spec-head">
+                      <span class="carl-spec-num">1</span>
+                      <code class="carl-spec-title">plan_extraction</code>
+                      <span class="carl-spec-type">llm</span>
+                    </div>
+                    <dl class="carl-fields">
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">step_type</dt>
+                        <dd class="carl-fval"><code>llm</code></dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">aim</dt>
+                        <dd class="carl-fval" data-i18n="step.s1.aim">
+                          понять структуру отчёта и спланировать извлечение
+                          нужных показателей
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">reasoning_questions</dt>
+                        <dd class="carl-fval" data-i18n="step.s1.rq">
+                          Где в отчёте итоговые цифры? Какой период и валюта?
+                          Есть ли сноски о рисках или пересчётах?
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">step_context_queries</dt>
+                        <dd class="carl-fval carl-fval--chips">
+                          <span class="carl-chip" data-i18n="step.s1.ctx1"
+                            >структура квартального отчёта</span
+                          >
+                          <span class="carl-chip" data-i18n="step.s1.ctx2"
+                            >ключевые метрики P&amp;L</span
+                          >
+                          <span class="carl-chip" data-i18n="step.s1.ctx3"
+                            >валюта и отчётный период</span
+                          >
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">stage_action</dt>
+                        <dd class="carl-fval" data-i18n="step.s1.stage">
+                          определи разделы PDF и список метрик — выручка, чистая
+                          прибыль, расходы; зафиксируй валюту и отчётный период
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">example_reasoning</dt>
+                        <dd class="carl-fval" data-i18n="step.s1.ex">
+                          напр.: строка «Revenue» в итоговой таблице → revenue;
+                          суммы в тыс. → перевести в абсолютные значения валюты
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">dependencies</dt>
+                        <dd class="carl-fval"><code>[]</code></dd>
+                      </div>
+                    </dl>
+                    <div class="carl-fgroup">
+                      <span class="carl-fgroup-label">llm_config</span>
+                      <dl class="carl-fields carl-fields--nested">
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">model</dt>
+                          <dd class="carl-fval"><code>auto</code></dd>
+                        </div>
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">temperature</dt>
+                          <dd class="carl-fval"><code>0.2</code></dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
 
-            <span class="carl-link" aria-hidden="true"
-              ><i class="carl-spark"></i
-            ></span>
-
-            <!-- Phase 3 — result -->
-            <div class="carl-phase carl-phase--out" role="listitem">
-              <div class="carl-phase-head">
-                <span class="carl-phase-step carl-phase-step--ok">✓</span>
-                <span class="carl-phase-label" data-i18n="chain.p3"
-                  >Результат</span
+                <div
+                  class="carl-step-panel"
+                  id="carl-step-2"
+                  role="region"
+                  aria-label="extract_pdf_text"
+                  hidden
                 >
-                <span class="carl-phase-count carl-phase-count--crystal"
-                  >QuarterlyFinancials</span
+                  <div class="carl-spec carl-spec--tool">
+                    <div class="carl-spec-head">
+                      <span class="carl-spec-num">2</span>
+                      <code class="carl-spec-title">extract_pdf_text</code>
+                      <span class="carl-spec-type">tool</span>
+                    </div>
+                    <dl class="carl-fields">
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">step_type</dt>
+                        <dd class="carl-fval"><code>tool</code></dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">aim</dt>
+                        <dd class="carl-fval" data-i18n="step.s2.aim">
+                          извлечь из PDF чистый текст и таблицы для дальнейшей
+                          структуризации
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">dependencies</dt>
+                        <dd class="carl-fval"><code>[1]</code></dd>
+                      </div>
+                    </dl>
+                    <div class="carl-fgroup">
+                      <span class="carl-fgroup-label">step_config</span>
+                      <dl class="carl-fields carl-fields--nested">
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">tool_name</dt>
+                          <dd class="carl-fval"><code>pdf_extractor</code></dd>
+                        </div>
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">input_mapping</dt>
+                          <dd class="carl-fval">
+                            <code>pdf_path ← $inputs.pdf_path</code>
+                          </dd>
+                        </div>
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">output_key</dt>
+                          <dd class="carl-fval"><code>extracted</code></dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="carl-step-panel"
+                  id="carl-step-3"
+                  role="region"
+                  aria-label="normalise_financials"
+                  hidden
                 >
-              </div>
-              <div class="carl-phase-body">
-                <dl class="carl-payload-grid">
-                  <div class="carl-field">
-                    <dt>period</dt>
-                    <dd>Q3 2025</dd>
-                  </div>
-                  <div class="carl-field">
-                    <dt>currency</dt>
-                    <dd>USD</dd>
-                  </div>
-                  <div class="carl-field">
-                    <dt>revenue</dt>
-                    <dd>$4.20M</dd>
-                  </div>
-                  <div class="carl-field">
-                    <dt>net_income</dt>
-                    <dd>$0.91M</dd>
-                  </div>
-                </dl>
-                <span class="carl-payload-saved" data-i18n="chain.saved"
-                  >💾 memory_card · fin-report</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <p class="carl-steps-hint" data-i18n="chain.hint">
-            Нажмите на шаг — развернётся его структура в формате CARL
-          </p>
-
-          <div class="carl-step-panels">
-            <div
-              class="carl-step-panel"
-              id="carl-step-1"
-              role="region"
-              aria-label="plan_extraction"
-              hidden
-            >
-              <div class="carl-spec carl-spec--llm">
-                <div class="carl-spec-head">
-                  <span class="carl-spec-num">1</span>
-                  <code class="carl-spec-title">plan_extraction</code>
-                  <span class="carl-spec-type">llm</span>
-                </div>
-                <dl class="carl-fields">
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">step_type</dt>
-                    <dd class="carl-fval"><code>llm</code></dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">aim</dt>
-                    <dd class="carl-fval" data-i18n="step.s1.aim">
-                      понять структуру отчёта и спланировать извлечение нужных
-                      показателей
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">reasoning_questions</dt>
-                    <dd class="carl-fval" data-i18n="step.s1.rq">
-                      Где в отчёте итоговые цифры? Какой период и валюта? Есть
-                      ли сноски о рисках или пересчётах?
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">step_context_queries</dt>
-                    <dd class="carl-fval carl-fval--chips">
-                      <span class="carl-chip" data-i18n="step.s1.ctx1"
-                        >структура квартального отчёта</span
-                      >
-                      <span class="carl-chip" data-i18n="step.s1.ctx2"
-                        >ключевые метрики P&amp;L</span
-                      >
-                      <span class="carl-chip" data-i18n="step.s1.ctx3"
-                        >валюта и отчётный период</span
-                      >
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">stage_action</dt>
-                    <dd class="carl-fval" data-i18n="step.s1.stage">
-                      определи разделы PDF и список метрик — выручка, чистая
-                      прибыль, расходы; зафиксируй валюту и отчётный период
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">example_reasoning</dt>
-                    <dd class="carl-fval" data-i18n="step.s1.ex">
-                      напр.: строка «Revenue» в итоговой таблице → revenue;
-                      суммы в тыс. → перевести в абсолютные значения валюты
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">dependencies</dt>
-                    <dd class="carl-fval"><code>[]</code></dd>
-                  </div>
-                </dl>
-                <div class="carl-fgroup">
-                  <span class="carl-fgroup-label">llm_config</span>
-                  <dl class="carl-fields carl-fields--nested">
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">model</dt>
-                      <dd class="carl-fval"><code>auto</code></dd>
+                  <div class="carl-spec carl-spec--struct">
+                    <div class="carl-spec-head">
+                      <span class="carl-spec-num">3</span>
+                      <code class="carl-spec-title">normalise_financials</code>
+                      <span class="carl-spec-type">structured_output</span>
                     </div>
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">temperature</dt>
-                      <dd class="carl-fval"><code>0.2</code></dd>
+                    <dl class="carl-fields">
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">step_type</dt>
+                        <dd class="carl-fval">
+                          <code>structured_output</code>
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">aim</dt>
+                        <dd class="carl-fval" data-i18n="step.s3.aim">
+                          привести извлечённый текст к строгой схеме
+                          QuarterlyFinancials
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">instruction</dt>
+                        <dd class="carl-fval" data-i18n="step.s3.instruction">
+                          распарсить текст в форму QuarterlyFinancials: числа —
+                          в единицах валюты, неуверенные поля пропускать, а не
+                          угадывать
+                        </dd>
+                      </div>
+                      <div class="carl-frow">
+                        <dt class="carl-fkey">dependencies</dt>
+                        <dd class="carl-fval"><code>[2]</code></dd>
+                      </div>
+                    </dl>
+                    <div class="carl-fgroup">
+                      <span class="carl-fgroup-label">step_config</span>
+                      <dl class="carl-fields carl-fields--nested">
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">input_source</dt>
+                          <dd class="carl-fval"><code>$history[-1]</code></dd>
+                        </div>
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">schema_name</dt>
+                          <dd class="carl-fval">
+                            <code>QuarterlyFinancials</code>
+                          </dd>
+                        </div>
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">strict_json</dt>
+                          <dd class="carl-fval"><code>true</code></dd>
+                        </div>
+                        <div class="carl-frow">
+                          <dt class="carl-fkey">output_schema</dt>
+                          <dd class="carl-fval carl-fval--chips">
+                            <span class="carl-chip">period</span>
+                            <span class="carl-chip">currency</span>
+                            <span class="carl-chip">revenue</span>
+                            <span class="carl-chip">net_income</span>
+                            <span class="carl-chip">total_expenses</span>
+                            <span class="carl-chip carl-chip--opt"
+                              >notable_alerts?</span
+                            >
+                          </dd>
+                        </div>
+                      </dl>
                     </div>
-                  </dl>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div
-              class="carl-step-panel"
-              id="carl-step-2"
-              role="region"
-              aria-label="extract_pdf_text"
-              hidden
-            >
-              <div class="carl-spec carl-spec--tool">
-                <div class="carl-spec-head">
-                  <span class="carl-spec-num">2</span>
-                  <code class="carl-spec-title">extract_pdf_text</code>
-                  <span class="carl-spec-type">tool</span>
-                </div>
-                <dl class="carl-fields">
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">step_type</dt>
-                    <dd class="carl-fval"><code>tool</code></dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">aim</dt>
-                    <dd class="carl-fval" data-i18n="step.s2.aim">
-                      извлечь из PDF чистый текст и таблицы для дальнейшей
-                      структуризации
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">dependencies</dt>
-                    <dd class="carl-fval"><code>[1]</code></dd>
-                  </div>
-                </dl>
-                <div class="carl-fgroup">
-                  <span class="carl-fgroup-label">step_config</span>
-                  <dl class="carl-fields carl-fields--nested">
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">tool_name</dt>
-                      <dd class="carl-fval"><code>pdf_extractor</code></dd>
-                    </div>
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">input_mapping</dt>
-                      <dd class="carl-fval">
-                        <code>pdf_path ← $inputs.pdf_path</code>
-                      </dd>
-                    </div>
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">output_key</dt>
-                      <dd class="carl-fval"><code>extracted</code></dd>
-                    </div>
-                  </dl>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="carl-step-panel"
-              id="carl-step-3"
-              role="region"
-              aria-label="normalise_financials"
-              hidden
-            >
-              <div class="carl-spec carl-spec--struct">
-                <div class="carl-spec-head">
-                  <span class="carl-spec-num">3</span>
-                  <code class="carl-spec-title">normalise_financials</code>
-                  <span class="carl-spec-type">structured_output</span>
-                </div>
-                <dl class="carl-fields">
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">step_type</dt>
-                    <dd class="carl-fval"><code>structured_output</code></dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">aim</dt>
-                    <dd class="carl-fval" data-i18n="step.s3.aim">
-                      привести извлечённый текст к строгой схеме
-                      QuarterlyFinancials
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">instruction</dt>
-                    <dd class="carl-fval" data-i18n="step.s3.instruction">
-                      распарсить текст в форму QuarterlyFinancials: числа — в
-                      единицах валюты, неуверенные поля пропускать, а не
-                      угадывать
-                    </dd>
-                  </div>
-                  <div class="carl-frow">
-                    <dt class="carl-fkey">dependencies</dt>
-                    <dd class="carl-fval"><code>[2]</code></dd>
-                  </div>
-                </dl>
-                <div class="carl-fgroup">
-                  <span class="carl-fgroup-label">step_config</span>
-                  <dl class="carl-fields carl-fields--nested">
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">input_source</dt>
-                      <dd class="carl-fval"><code>$history[-1]</code></dd>
-                    </div>
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">schema_name</dt>
-                      <dd class="carl-fval">
-                        <code>QuarterlyFinancials</code>
-                      </dd>
-                    </div>
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">strict_json</dt>
-                      <dd class="carl-fval"><code>true</code></dd>
-                    </div>
-                    <div class="carl-frow">
-                      <dt class="carl-fkey">output_schema</dt>
-                      <dd class="carl-fval carl-fval--chips">
-                        <span class="carl-chip">period</span>
-                        <span class="carl-chip">currency</span>
-                        <span class="carl-chip">revenue</span>
-                        <span class="carl-chip">net_income</span>
-                        <span class="carl-chip">total_expenses</span>
-                        <span class="carl-chip carl-chip--opt"
-                          >notable_alerts?</span
-                        >
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
-              </div>
-            </div>
-          </div>
             </div>
           </div>
 
@@ -1623,7 +1644,7 @@
         </div>
 
         <div class="install-connect-cta reveal">
-          <a href="#skill" class="btn btn-secondary install-connect">
+          <a href="#skill" class="btn btn-secondary install-connect btn-lg">
             <span data-i18n="install.connectskill"
               >Подключить в Claude Code / Hermes / Codex / OpenClaw</span
             >
@@ -1636,9 +1657,6 @@
     <section id="skill" class="install skill-install">
       <div class="container">
         <div class="section-header reveal">
-          <span class="text-label" data-i18n="skill.eyebrow"
-            >Агентный навык</span
-          >
           <h2 data-i18n="skill.title">Добавь CARE как навык своему агенту</h2>
           <p data-i18n="skill.subtitle">
             Дай агенту управлять CARE CLI — Claude Code, Codex, Hermes или
@@ -2047,7 +2065,6 @@
       <div class="container">
         <div class="team-card reveal">
           <div class="team-head">
-            <span class="text-label" data-i18n="team.eyebrow">Команда</span>
             <h2 data-i18n="team.title">Кто делает MAESTRO CARE</h2>
             <p data-i18n="team.subtitle">
               Исследователи AIRI, которые развивают проект
@@ -2268,9 +2285,7 @@
               </li>
               <li>
                 <a href="mailto:pr@airi.net">pr@airi.net</a>
-                <span data-i18n="footer.contact.pr"
-                  >Для журналистов и СМИ</span
-                >
+                <span data-i18n="footer.contact.pr">Для журналистов и СМИ</span>
               </li>
             </ul>
           </div>
@@ -2331,9 +2346,13 @@
         stroke-linejoin="round"
         aria-hidden="true"
       >
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        <path
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+        />
       </svg>
-      <span class="feedback-fab-label" data-i18n="feedback.button">Обратная связь</span>
+      <span class="feedback-fab-label" data-i18n="feedback.button"
+        >Обратная связь</span
+      >
     </button>
 
     <div

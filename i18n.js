@@ -53,7 +53,6 @@ const TRANSLATIONS = {
     "pillar.learn": "Подробнее в стеке",
     "pillar.demo": "Смотреть демо",
 
-    "benefits.eyebrow": "Почему именно MAESTRO CARE",
     "benefits.title": "Ты описываешь — MAESTRO CARE делает остальное",
     "benefits.subtitle": "Конкретная польза на каждом этапе работы с агентной цепочкой CARL",
     "benefits.b1.tag": "Один запрос",
@@ -162,7 +161,6 @@ const TRANSLATIONS = {
     "install.oneliner": "Обновить до последней версии:",
     "install.docs": "Полная документация",
 
-    "skill.eyebrow": "Агентный навык",
     "skill.title": "Добавь CARE как навык своему агенту",
     "skill.subtitle": "Дай агенту управлять CARE CLI — Claude Code, Codex, Hermes или OpenClaw.",
     "skill.s1.title": "Скачай навык",
@@ -180,7 +178,6 @@ const TRANSLATIONS = {
     "cta.primary": "Открыть на GitHub",
     "cta.secondary": "Читать документацию",
 
-    "team.eyebrow": "Команда",
     "team.title": "Кто делает MAESTRO CARE",
     "team.subtitle": "Исследователи AIRI, которые развивают проект",
     "team.m1.name": "Пчелин Константин Константинович",
@@ -276,7 +273,6 @@ const TRANSLATIONS = {
     "pillar.learn": "More in the stack",
     "pillar.demo": "See the demo",
 
-    "benefits.eyebrow": "Why MAESTRO CARE",
     "benefits.title": "You describe it — MAESTRO CARE does the rest",
     "benefits.subtitle": "Concrete value at every stage of working with a CARL agent chain",
     "benefits.b1.tag": "One prompt",
@@ -385,7 +381,6 @@ const TRANSLATIONS = {
     "install.oneliner": "Update to the latest version:",
     "install.docs": "Full documentation",
 
-    "skill.eyebrow": "Agent Skill",
     "skill.title": "Add CARE as a skill to your agent",
     "skill.subtitle": "Let your agent drive the CARE CLI — Claude Code, Codex, Hermes, or OpenClaw.",
     "skill.s1.title": "Download the skill",
@@ -403,7 +398,6 @@ const TRANSLATIONS = {
     "cta.primary": "Open on GitHub",
     "cta.secondary": "Read the docs",
 
-    "team.eyebrow": "Team",
     "team.title": "The team behind MAESTRO CARE",
     "team.subtitle": "AIRI researchers building the project",
     "team.m1.name": "Konstantin Pchelin",
