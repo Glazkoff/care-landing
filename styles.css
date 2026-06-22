@@ -232,7 +232,14 @@ a:hover {
   pointer-events: none;
   z-index: 150;
   transform: translate(-60px, -60px) translate(-50%, -50%);
-  will-change: transform;
+  will-change: transform, opacity;
+  transition: opacity 0.45s ease;
+}
+
+/* Faded out while parked at the logo (cursor outside the viewport); fades
+   back in when the cursor re-enters and the orb starts following again. */
+.cursor-orb.is-hidden {
+  opacity: 0;
 }
 
 .nav-links {

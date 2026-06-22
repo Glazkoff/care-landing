@@ -431,7 +431,7 @@ function initCursorOrb() {
   if (!brandIcon) return;
 
   const orb = document.createElement("div");
-  orb.className = "cursor-orb";
+  orb.className = "cursor-orb is-hidden";
   orb.setAttribute("aria-hidden", "true");
   document.body.appendChild(orb);
   document.documentElement.classList.add("has-cursor-orb");
@@ -471,6 +471,7 @@ function initCursorOrb() {
 
   window.addEventListener("mousemove", (e) => {
     following = true;
+    orb.classList.remove("is-hidden");
     target.x = e.clientX;
     target.y = e.clientY;
     kick();
@@ -478,6 +479,7 @@ function initCursorOrb() {
 
   const goHome = () => {
     following = false;
+    orb.classList.add("is-hidden");
     const h = homePos();
     target.x = h.x;
     target.y = h.y;
