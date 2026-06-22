@@ -45,7 +45,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp index.html styles.css main.js i18n.js _site/
+          cp index.html styles.css main.js i18n.js robots.txt sitemap.xml _site/
           cp -r assets _site/
 
       - name: Inject Yandex Metrica counter ID
