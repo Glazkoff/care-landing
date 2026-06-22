@@ -3799,6 +3799,7 @@ section {
 .feedback-modal-body {
   flex: 1 1 auto;
   overflow: auto;
+  padding-inline: 1.25rem;
   background: #fff;
 }
 
