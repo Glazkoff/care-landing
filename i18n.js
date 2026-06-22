@@ -1,8 +1,8 @@
 const TRANSLATIONS = {
   ru: {
-    "meta.title": "MAESTRO CARE — собери и запусти AI-агента из одного запроса",
+    "meta.title": "MAESTRO CARE — текстовый запрос в исполняемую агентную цепочку CARL",
     "meta.description":
-      "Опиши задачу словами — MAESTRO CARE соберёт AI-агента, запустит его и сам улучшит результат. Открытый инструмент с интерфейсом в терминале (TUI и CLI).",
+      "MAESTRO CARE превращает текстовый запрос в исполняемую агентную цепочку в формате CARL — её можно проверить, сохранить, повторно запустить, сравнить версии и улучшать по метрикам. Открытая экосистема AIRI с интерфейсом в терминале (TUI и CLI).",
 
     "nav.how": "Как работает",
     "nav.benefits": "Преимущества",
@@ -12,10 +12,10 @@ const TRANSLATIONS = {
     "nav.github": "GitHub",
     "nav.docs": "Документация",
 
-    "hero.badge": "Открытый инструмент для AI-агентов",
+    "hero.badge": "Открытая экосистема AIRI для агентных цепочек CARL",
     "hero.title": "Опиши задачу словами — остальное MAESTRO CARE берёт на себя",
     "hero.subtitle":
-      "Соберёт агента, запустит и сам улучшит результат — без ручной настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.",
+      "Превращает запрос в агентную цепочку рассуждений формата CARL — без ручной настройки пайплайнов, прямо в терминале или в любимом агенте для кодинга.",
     "hero.cta.primary": "Начать",
     "hero.cta.secondary": "Смотреть демо",
     "hero.cta.skill": "Добавить как навык",
@@ -33,8 +33,8 @@ const TRANSLATIONS = {
     "marquee.5": "Повтори",
     "marquee.6": "Опиши",
 
-    "pillars.title": "Один поток — от идеи до готового агента",
-    "pillars.subtitle": "Генерация, запуск и эволюция — три шага одного потока",
+    "pillars.title": "Один поток — от запроса до исполняемой цепочки CARL",
+    "pillars.subtitle": "Сборка цепочки, запуск и эволюция — три шага над одной цепочкой CARL",
     "p1.tag": "Шаг 1 · Генерация",
     "p1.title": "MAESTRO CARE собирает агента из твоих слов",
     "p1.desc": "Опиши цель — MAESTRO CARE разберёт задачу, спланирует шаги и построит готовую цепочку агента.",
@@ -55,7 +55,7 @@ const TRANSLATIONS = {
 
     "benefits.eyebrow": "Почему именно MAESTRO CARE",
     "benefits.title": "Ты описываешь — MAESTRO CARE делает остальное",
-    "benefits.subtitle": "Конкретная польза на каждом этапе работы с агентом",
+    "benefits.subtitle": "Конкретная польза на каждом этапе работы с агентной цепочкой CARL",
     "benefits.b1.tag": "Один запрос",
     "benefits.b1.title": "Агент за минуту",
     "benefits.b1.desc": "Опиши цель словами — MAESTRO CARE соберёт и запустит агента. Обычно это занимает около минуты.",
@@ -95,6 +95,12 @@ const TRANSLATIONS = {
     "demo.subtitle": "Прикладываешь документ — получаешь готовую цепочку CARL и структурный результат",
     "demo.mode": "Production",
     "demo.note": "Анимация интерфейса",
+    "demo.view.chain": "Формат цепочки",
+    "demo.view.terminal": "В терминале",
+    "demo.terminal.caption1": "Сборка цепочки в режиме чата",
+    "demo.terminal.caption2": "DAG цепочки и детали шага",
+    "demo.terminal.alt1": "Скриншот CARE TUI: генерация цепочки агента в чате",
+    "demo.terminal.alt2": "Скриншот CARE TUI: просмотр DAG и конфигурации шага",
     "chain.badge": "Формат CARL",
     "chain.title": "Итоговая цепочка",
     "chain.steps": "3 шага",
@@ -169,8 +175,8 @@ const TRANSLATIONS = {
     "skill.check": "Проверь навык:",
     "skill.docs": "Документация по навыку",
 
-    "cta.title": "Готов собрать своего агента?",
-    "cta.subtitle": "Поставь MAESTRO CARE и собери первого агента уже сегодня.",
+    "cta.title": "Готов собрать свою цепочку рассуждений?",
+    "cta.subtitle": "Поставь MAESTRO CARE и собери первую цепочку CARL уже сегодня.",
     "cta.primary": "Открыть на GitHub",
     "cta.secondary": "Читать документацию",
 
@@ -185,13 +191,31 @@ const TRANSLATIONS = {
     "team.m3.role": "Младший научный сотрудник AIRI",
     "team.m4.name": "Беспалов Ярослав Радионович",
     "team.m4.role": "Научный сотрудник, руководитель группы «Мультимодальные архитектуры ИИ», AIRI",
+    "team.m5.name": "Боков Алексей Александрович",
+    "team.m5.role": "Инженер-исследователь",
+    "team.m6.name": "Анохин Петр Константинович",
+    "team.m6.role": "Ведущий научный сотрудник, руководитель группы",
+    "team.m7.name": "Хрульков Валентин Андреевич",
+    "team.m7.role": "Ведущий научный сотрудник, руководитель группы",
 
-    "footer.tagline": "Собери, запусти и улучши AI-агента из терминала",
+    "footer.tagline": "Собери, запусти и улучши агентную цепочку CARL из терминала",
     "footer.mascot": "MAESTRO CARE",
+    "footer.airTitle": "AIRI",
+    "footer.about": "Об институте",
+    "footer.contacts": "Контакты",
+    "footer.contact.events": "Для приглашений на мероприятия",
+    "footer.contact.partner": "По вопросам научного сотрудничества и партнёрства",
+    "footer.contact.pr": "Для журналистов и СМИ",
+    "footer.careTitle": "MAESTRO CARE",
     "footer.docs": "Документация",
     "footer.arch": "Архитектура",
     "footer.team": "Команда",
     "footer.copy": "© 2026 MAESTRO CARE. Открытый код.",
+
+    "feedback.button": "Обратная связь",
+    "feedback.title": "Обратная связь",
+    "feedback.close": "Закрыть",
+    "feedback.open": "Открыть форму обратной связи",
 
     "theme.warm": "Тёплая",
     "theme.dark": "Тёмная",
@@ -199,9 +223,9 @@ const TRANSLATIONS = {
     "lang.en": "EN",
   },
   en: {
-    "meta.title": "MAESTRO CARE — build and run an AI agent from a single prompt",
+    "meta.title": "MAESTRO CARE — turn a prompt into an executable CARL agent chain",
     "meta.description":
-      "Describe a task in plain words — MAESTRO CARE builds an AI agent, runs it, and improves the result on its own. An open-source tool with a terminal interface (TUI and CLI).",
+      "MAESTRO CARE turns a text prompt into an executable agent chain in the CARL format — inspect it, save it, replay it, compare versions, and improve it by metrics. An open-source AIRI ecosystem with a terminal interface (TUI and CLI).",
 
     "nav.how": "How it works",
     "nav.benefits": "Benefits",
@@ -211,10 +235,10 @@ const TRANSLATIONS = {
     "nav.github": "GitHub",
     "nav.docs": "Documentation",
 
-    "hero.badge": "Open-source toolkit for AI agents",
+    "hero.badge": "Open-source AIRI ecosystem for CARL agent chains",
     "hero.title": "Describe your task — MAESTRO CARE takes care of the rest",
     "hero.subtitle":
-      "It builds the agent, runs it, and keeps improving the result — no manual pipeline wiring, right in your terminal or your favorite coding agent.",
+      "It turns your prompt into an agent reasoning chain in the CARL format — no manual pipeline wiring, right in your terminal or your favorite coding agent.",
     "hero.cta.primary": "Get started",
     "hero.cta.secondary": "Watch demo",
     "hero.cta.skill": "Add as skill",
@@ -232,8 +256,8 @@ const TRANSLATIONS = {
     "marquee.5": "Repeat",
     "marquee.6": "Describe",
 
-    "pillars.title": "One flow — from idea to a working agent",
-    "pillars.subtitle": "Generation, execution, and evolution — three steps of one flow",
+    "pillars.title": "One flow — from a prompt to an executable CARL chain",
+    "pillars.subtitle": "Chain assembly, execution, and evolution — three steps over one CARL chain",
     "p1.tag": "Step 1 · Generation",
     "p1.title": "MAESTRO CARE builds an agent from your words",
     "p1.desc": "Describe the goal — MAESTRO CARE breaks down the task, plans the steps, and builds a ready agent chain.",
@@ -254,7 +278,7 @@ const TRANSLATIONS = {
 
     "benefits.eyebrow": "Why MAESTRO CARE",
     "benefits.title": "You describe it — MAESTRO CARE does the rest",
-    "benefits.subtitle": "Concrete value at every stage of working with an agent",
+    "benefits.subtitle": "Concrete value at every stage of working with a CARL agent chain",
     "benefits.b1.tag": "One prompt",
     "benefits.b1.title": "An agent in a minute",
     "benefits.b1.desc": "Describe the goal in words — MAESTRO CARE builds and runs the agent. It usually takes about a minute.",
@@ -294,6 +318,12 @@ const TRANSLATIONS = {
     "demo.subtitle": "Attach a document — get a ready CARL chain and a structured result",
     "demo.mode": "Production",
     "demo.note": "Interface animation",
+    "demo.view.chain": "Chain format",
+    "demo.view.terminal": "In the terminal",
+    "demo.terminal.caption1": "Building a chain in chat mode",
+    "demo.terminal.caption2": "Chain DAG and step details",
+    "demo.terminal.alt1": "CARE TUI screenshot: agent chain generation in chat",
+    "demo.terminal.alt2": "CARE TUI screenshot: DAG view and step configuration",
     "chain.badge": "CARL format",
     "chain.title": "Resulting chain",
     "chain.steps": "3 steps",
@@ -368,8 +398,8 @@ const TRANSLATIONS = {
     "skill.check": "Check the skill:",
     "skill.docs": "Skill documentation",
 
-    "cta.title": "Ready to build your agent?",
-    "cta.subtitle": "Install MAESTRO CARE and build your first agent today.",
+    "cta.title": "Ready to build your reasoning chain?",
+    "cta.subtitle": "Install MAESTRO CARE and build your first CARL chain today.",
     "cta.primary": "Open on GitHub",
     "cta.secondary": "Read the docs",
 
@@ -384,13 +414,31 @@ const TRANSLATIONS = {
     "team.m3.role": "Junior Research Scientist, AIRI",
     "team.m4.name": "Yaroslav Bespalov",
     "team.m4.role": "Research Scientist, Head of the “Multimodal AI Architectures” group, AIRI",
+    "team.m5.name": "Alexey Bokov",
+    "team.m5.role": "Research engineer",
+    "team.m6.name": "Pyotr Anokhin",
+    "team.m6.role": "Principal Research Scientist, Research manager",
+    "team.m7.name": "Valentin Khrulkov",
+    "team.m7.role": "Principal Research Scientist, Research manager",
 
-    "footer.tagline": "Build, run, and improve an AI agent from your terminal",
+    "footer.tagline": "Build, run, and improve a CARL agent chain from your terminal",
     "footer.mascot": "MAESTRO CARE",
+    "footer.airTitle": "AIRI",
+    "footer.about": "About the institute",
+    "footer.contacts": "Contacts",
+    "footer.contact.events": "For event invitations",
+    "footer.contact.partner": "For scientific cooperation and partnership",
+    "footer.contact.pr": "For journalists and media",
+    "footer.careTitle": "MAESTRO CARE",
     "footer.docs": "Documentation",
     "footer.arch": "Architecture",
     "footer.team": "Team",
     "footer.copy": "© 2026 MAESTRO CARE. Open source.",
+
+    "feedback.button": "Feedback",
+    "feedback.title": "Feedback",
+    "feedback.close": "Close",
+    "feedback.open": "Open feedback form",
 
     "theme.warm": "Warm",
     "theme.dark": "Dark",
@@ -400,6 +448,11 @@ const TRANSLATIONS = {
 };
 
 const LANG_STORAGE_KEY = "care-landing-lang";
+
+const AIRI_BASE = "https://airi.net";
+const AIRI_PATHS = {
+  about: { ru: "/ru/", en: "/?force=en" },
+};
 
 function detectLanguage() {
   // Explicit ?lang=ru / ?lang=en override — lets you share a link in a fixed language.
@@ -413,13 +466,24 @@ function detectLanguage() {
   return "ru";
 }
 
+// Keep short prepositions/conjunctions glued to the next word so they never
+// dangle at the end of a line. Uses a real non-breaking space (U+00A0) because
+// values are written via textContent, where "&nbsp;" would show literally.
+const ORPHAN_RE =
+  /(?<=^|[\s(«"„])(во|со|ко|об|обо|изо|ото|над|под|при|без|для|про|или|the|and|for|with|from|that|в|с|к|о|у|и|а|но|не|ни|из|от|по|за|до|на|an|in|on|of|to|or|is|it|as|at|by|a) /gi;
+
+function preventOrphans(text) {
+  if (!text) return text;
+  return text.replace(ORPHAN_RE, "$1\u00A0");
+}
+
 function applyTranslations(lang) {
   const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
   document.documentElement.lang = lang;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    if (dict[key]) el.textContent = dict[key];
+    if (dict[key]) el.textContent = preventOrphans(dict[key]);
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
@@ -430,6 +494,16 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-i18n-title]").forEach((el) => {
     const key = el.getAttribute("data-i18n-title");
     if (dict[key]) el.setAttribute("title", dict[key]);
+  });
+
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-alt");
+    if (dict[key]) el.setAttribute("alt", dict[key]);
+  });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-aria-label");
+    if (dict[key]) el.setAttribute("aria-label", dict[key]);
   });
 
   const title = dict["meta.title"];
@@ -453,6 +527,12 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-doc-path]").forEach((el) => {
     const path = el.getAttribute("data-doc-path");
     el.setAttribute("href", docsBase + (lang === "ru" ? "ru/" : "") + path);
+  });
+
+  document.querySelectorAll("[data-airi-path]").forEach((el) => {
+    const key = el.getAttribute("data-airi-path");
+    const paths = AIRI_PATHS[key];
+    if (paths) el.setAttribute("href", AIRI_BASE + paths[lang]);
   });
 }
 

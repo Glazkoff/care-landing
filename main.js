@@ -664,12 +664,87 @@ function initAnalytics() {
   );
 }
 
+function initFeedbackModal() {
+  const FORM_SRC = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27?iframe=1";
+  const FORM_URL = "https://forms.yandex.ru/u/6a35070002848f66d7bf3d27";
+  const FORM_NAME = "ya-form-6a35070002848f66d7bf3d27";
+  const modal = document.querySelector("[data-feedback-modal]");
+  const body = document.querySelector("[data-feedback-body]");
+  const openers = document.querySelectorAll("[data-feedback-open]");
+  if (!modal || !body || !openers.length) return;
+
+  let lastFocused = null;
+  let builtLang = null;
+
+  function buildContent() {
+    const lang = document.documentElement.lang === "en" ? "en" : "ru";
+    if (builtLang === lang && body.firstChild) return;
+    body.innerHTML = "";
+
+    const dict = window.CARE_I18N.TRANSLATIONS[lang];
+    const iframe = document.createElement("iframe");
+    iframe.src = FORM_SRC;
+    iframe.title = dict["feedback.title"] || "Feedback";
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("name", FORM_NAME);
+    iframe.loading = "lazy";
+
+    const fallback = document.createElement("a");
+    fallback.className = "feedback-link feedback-fallback";
+    fallback.href = FORM_URL;
+    fallback.target = "_blank";
+    fallback.rel = "noopener";
+    fallback.textContent = dict["feedback.open"] || "Open feedback form";
+    fallback.hidden = true;
+
+    let loaded = false;
+    const showFallback = () => {
+      if (loaded) return;
+      iframe.hidden = true;
+      fallback.hidden = false;
+    };
+    iframe.addEventListener("load", () => {
+      loaded = true;
+    });
+    iframe.addEventListener("error", showFallback);
+    window.setTimeout(showFallback, 8000);
+
+    body.appendChild(iframe);
+    body.appendChild(fallback);
+    builtLang = lang;
+  }
+
+  function open() {
+    lastFocused = document.activeElement;
+    buildContent();
+    modal.hidden = false;
+    document.body.classList.add("feedback-open");
+    const closeBtn = modal.querySelector(".feedback-modal-close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function close() {
+    modal.hidden = true;
+    document.body.classList.remove("feedback-open");
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
+  openers.forEach((btn) => btn.addEventListener("click", open));
+  modal.querySelectorAll("[data-feedback-close]").forEach((el) => {
+    el.addEventListener("click", close);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) close();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("js");
   initTheme();
   window.CARE_I18N.initI18n();
   initSwitch("data-pkg-btn", "data-pkg-panel", "care-landing-pkg");
   initSwitch("data-agent-btn", "data-agent-panel", "care-landing-agent");
+  initSwitch("data-demo-view-btn", "data-demo-view-panel", null);
   initNav();
   initScrollReveal();
   initParticles();
@@ -682,6 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroParallax();
   initCursorOrb();
   initAnalytics();
+  initFeedbackModal();
 
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {
