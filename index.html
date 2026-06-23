@@ -1697,23 +1697,22 @@
             <li class="install-step">
               <span class="install-step-num">1</span>
               <div class="install-step-body">
-                <h3 data-i18n="skill.s1.title">Скачай навык</h3>
+                <h3 data-i18n="skill.s1.title">Установи навык</h3>
                 <p data-i18n="skill.s1.desc">
-                  care-cli.skill — это бандл, который учит агента находить и
-                  запускать care.
+                  Одна команда ставит навык в каталог skills твоего агента —
+                  Claude Code, Codex, Hermes или OpenClaw.
                 </p>
                 <div class="code-block">
                   <code
                     ><span class="code-prompt">$</span>
                     <span class="code-text"
-                      >curl -LO
-                      https://airi-maestro.github.io/care-docs/care-cli.skill</span
+                      >uvx care-install --skill</span
                     ></code
                   >
                   <button
                     class="copy-btn"
                     type="button"
-                    data-cmd="curl -LO https://airi-maestro.github.io/care-docs/care-cli.skill"
+                    data-cmd="uvx care-install --skill"
                     data-i18n-title="install.copy"
                     title="Скопировать"
                   >
@@ -1743,199 +1742,11 @@
             <li class="install-step">
               <span class="install-step-num">2</span>
               <div class="install-step-body">
-                <h3 data-i18n="skill.s2.title">Распакуй в свой агент</h3>
+                <h3 data-i18n="skill.s2.title">Используй в агенте</h3>
                 <p data-i18n="skill.s2.desc">
-                  Выбери агента — навык встанет в его каталог skills.
+                  Готово — открой агента и вызови <code>/care-cli</code> или
+                  просто опиши задачу для MAESTRO: навык подхватится сам.
                 </p>
-                <div class="pkg-switch">
-                  <div
-                    class="pill-group"
-                    data-agent-switch
-                    role="group"
-                    aria-label="Агент"
-                  >
-                    <button
-                      class="pill-btn active"
-                      type="button"
-                      data-agent-btn="claude"
-                      aria-pressed="true"
-                    >
-                      Claude Code
-                    </button>
-                    <button
-                      class="pill-btn"
-                      type="button"
-                      data-agent-btn="codex"
-                      aria-pressed="false"
-                    >
-                      Codex
-                    </button>
-                    <button
-                      class="pill-btn"
-                      type="button"
-                      data-agent-btn="hermes"
-                      aria-pressed="false"
-                    >
-                      Hermes
-                    </button>
-                    <button
-                      class="pill-btn"
-                      type="button"
-                      data-agent-btn="openclaw"
-                      aria-pressed="false"
-                    >
-                      OpenClaw
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pkg-panel" data-agent-panel="claude">
-                  <div class="code-block">
-                    <code
-                      ><span class="code-prompt">$</span>
-                      <span class="code-text"
-                        >unzip care-cli.skill -d ~/.claude/skills/</span
-                      ></code
-                    >
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.claude/skills/"
-                      data-i18n-title="install.copy"
-                      title="Скопировать"
-                    >
-                      <svg
-                        class="copy-ico"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <rect x="9" y="9" width="11" height="11" rx="2" />
-                        <path
-                          d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-                        />
-                      </svg>
-                      <span class="copy-label" data-i18n="install.copy"
-                        >Копировать</span
-                      >
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pkg-panel" data-agent-panel="codex" hidden>
-                  <div class="code-block">
-                    <code
-                      ><span class="code-prompt">$</span>
-                      <span class="code-text"
-                        >unzip care-cli.skill -d ~/.codex/skills/</span
-                      ></code
-                    >
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.codex/skills/"
-                      data-i18n-title="install.copy"
-                      title="Скопировать"
-                    >
-                      <svg
-                        class="copy-ico"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <rect x="9" y="9" width="11" height="11" rx="2" />
-                        <path
-                          d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-                        />
-                      </svg>
-                      <span class="copy-label" data-i18n="install.copy"
-                        >Копировать</span
-                      >
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pkg-panel" data-agent-panel="hermes" hidden>
-                  <div class="code-block">
-                    <code
-                      ><span class="code-prompt">$</span>
-                      <span class="code-text"
-                        >unzip care-cli.skill -d ~/.hermes/skills/</span
-                      ></code
-                    >
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.hermes/skills/"
-                      data-i18n-title="install.copy"
-                      title="Скопировать"
-                    >
-                      <svg
-                        class="copy-ico"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <rect x="9" y="9" width="11" height="11" rx="2" />
-                        <path
-                          d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-                        />
-                      </svg>
-                      <span class="copy-label" data-i18n="install.copy"
-                        >Копировать</span
-                      >
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pkg-panel" data-agent-panel="openclaw" hidden>
-                  <div class="code-block">
-                    <code
-                      ><span class="code-prompt">$</span>
-                      <span class="code-text"
-                        >unzip care-cli.skill -d ~/.openclaw/skills/</span
-                      ></code
-                    >
-                    <button
-                      class="copy-btn"
-                      type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.openclaw/skills/"
-                      data-i18n-title="install.copy"
-                      title="Скопировать"
-                    >
-                      <svg
-                        class="copy-ico"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <rect x="9" y="9" width="11" height="11" rx="2" />
-                        <path
-                          d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-                        />
-                      </svg>
-                      <span class="copy-label" data-i18n="install.copy"
-                        >Копировать</span
-                      >
-                    </button>
-                  </div>
-                </div>
               </div>
             </li>
           </ol>
