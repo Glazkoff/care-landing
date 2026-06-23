@@ -1685,9 +1685,9 @@
     <section id="skill" class="install skill-install">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="skill.title">Добавь CARE как навык своему агенту</h2>
+          <h2 data-i18n="skill.title">Добавь Maestro как навык своему агенту</h2>
           <p data-i18n="skill.subtitle">
-            Дай агенту управлять CARE CLI — Claude Code, Codex, Hermes или
+            Дай агенту управлять Maestro — Claude Code, Codex, Hermes или
             OpenClaw.
           </p>
         </div>
@@ -1697,23 +1697,22 @@
             <li class="install-step">
               <span class="install-step-num">1</span>
               <div class="install-step-body">
-                <h3 data-i18n="skill.s1.title">Скачай навык</h3>
+                <h3 data-i18n="skill.s1.title">Поставь команду <code>care</code></h3>
                 <p data-i18n="skill.s1.desc">
-                  care-cli.skill — это бандл, который учит агента находить и
-                  запускать care.
+                  Одна команда настраивает CLI Maestro, которым будет управлять
+                  навык.
                 </p>
                 <div class="code-block">
                   <code
                     ><span class="code-prompt">$</span>
                     <span class="code-text"
-                      >curl -LO
-                      https://airi-maestro.github.io/care-docs/care-cli.skill</span
+                      >uvx care-install</span
                     ></code
                   >
                   <button
                     class="copy-btn"
                     type="button"
-                    data-cmd="curl -LO https://airi-maestro.github.io/care-docs/care-cli.skill"
+                    data-cmd="uvx care-install"
                     data-i18n-title="install.copy"
                     title="Скопировать"
                   >
@@ -1743,9 +1742,10 @@
             <li class="install-step">
               <span class="install-step-num">2</span>
               <div class="install-step-body">
-                <h3 data-i18n="skill.s2.title">Распакуй в свой агент</h3>
+                <h3 data-i18n="skill.s2.title">Установи навык</h3>
                 <p data-i18n="skill.s2.desc">
-                  Выбери агента — навык встанет в его каталог skills.
+                  Выбери агента — навык встанет в его каталог skills
+                  (~/.&lt;агент&gt;/skills/maestro).
                 </p>
                 <div class="pkg-switch">
                   <div
@@ -1794,13 +1794,13 @@
                     <code
                       ><span class="code-prompt">$</span>
                       <span class="code-text"
-                        >unzip care-cli.skill -d ~/.claude/skills/</span
+                        >uvx care-install skill --agent claude</span
                       ></code
                     >
                     <button
                       class="copy-btn"
                       type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.claude/skills/"
+                      data-cmd="uvx care-install skill --agent claude"
                       data-i18n-title="install.copy"
                       title="Скопировать"
                     >
@@ -1831,13 +1831,13 @@
                     <code
                       ><span class="code-prompt">$</span>
                       <span class="code-text"
-                        >unzip care-cli.skill -d ~/.codex/skills/</span
+                        >uvx care-install skill --agent codex</span
                       ></code
                     >
                     <button
                       class="copy-btn"
                       type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.codex/skills/"
+                      data-cmd="uvx care-install skill --agent codex"
                       data-i18n-title="install.copy"
                       title="Скопировать"
                     >
@@ -1868,13 +1868,13 @@
                     <code
                       ><span class="code-prompt">$</span>
                       <span class="code-text"
-                        >unzip care-cli.skill -d ~/.hermes/skills/</span
+                        >uvx care-install skill --agent hermes</span
                       ></code
                     >
                     <button
                       class="copy-btn"
                       type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.hermes/skills/"
+                      data-cmd="uvx care-install skill --agent hermes"
                       data-i18n-title="install.copy"
                       title="Скопировать"
                     >
@@ -1905,13 +1905,13 @@
                     <code
                       ><span class="code-prompt">$</span>
                       <span class="code-text"
-                        >unzip care-cli.skill -d ~/.openclaw/skills/</span
+                        >uvx care-install skill --agent openclaw</span
                       ></code
                     >
                     <button
                       class="copy-btn"
                       type="button"
-                      data-cmd="unzip care-cli.skill -d ~/.openclaw/skills/"
+                      data-cmd="uvx care-install skill --agent openclaw"
                       data-i18n-title="install.copy"
                       title="Скопировать"
                     >
@@ -1952,7 +1952,7 @@
               <li>
                 <span class="req-dot"></span
                 ><span data-i18n="skill.req2"
-                  >Вызови /care-cli или опиши задачу словами</span
+                  >Вызови /maestro или опиши задачу словами</span
                 >
               </li>
             </ul>
