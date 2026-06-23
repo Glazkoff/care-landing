@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAESTRO CARE — текстовый запрос в исполняемую агентную цепочку CARL</title>
+    <title>MAESTRO — агентные цепочки из текстового запроса</title>
     <meta
       name="description"
-      content="MAESTRO CARE превращает текстовый запрос в исполняемую агентную цепочку в формате CARL — её можно проверить, сохранить, повторно запустить, сравнить версии и улучшать по метрикам. Открытая экосистема AIRI с интерфейсом в терминале (TUI и CLI)."
+      content="MAESTRO превращает текстовый запрос в агентную цепочку — запусти, открой по шагам, сохрани, переиспользуй и улучшай. Открытый код, TUI и CLI."
     />
     <link rel="canonical" href="https://airi-maestro.github.io/" />
     <link rel="alternate" hreflang="ru" href="https://airi-maestro.github.io/?lang=ru" />
@@ -18,19 +18,19 @@
     <meta property="og:url" content="https://airi-maestro.github.io/" />
     <meta
       property="og:title"
-      content="MAESTRO CARE — текстовый запрос в исполняемую агентную цепочку CARL"
+      content="MAESTRO — агентные цепочки из текстового запроса"
     />
     <meta
       property="og:description"
-      content="MAESTRO CARE превращает текстовый запрос в исполняемую агентную цепочку в формате CARL — её можно проверить, сохранить, повторно запустить, сравнить версии и улучшать по метрикам. Открытая экосистема AIRI с интерфейсом в терминале (TUI и CLI)."
+      content="MAESTRO превращает текстовый запрос в агентную цепочку — запусти, открой по шагам, сохрани, переиспользуй и улучшай. Открытый код, TUI и CLI."
     />
     <meta property="og:image" content="https://airi-maestro.github.io/assets/mascot.png" />
     <meta property="og:image:alt" content="MAESTRO CARE — маскот EVOC" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="MAESTRO CARE — текстовый запрос в исполняемую агентную цепочку CARL" />
-    <meta name="twitter:description" content="Превращает текстовый запрос в исполняемую агентную цепочку CARL: проверить, запустить, сравнить версии, улучшать по метрикам. Открытый код, TUI и CLI." />
+    <meta name="twitter:title" content="MAESTRO — агентные цепочки из текстового запроса" />
+    <meta name="twitter:description" content="Текстовый запрос → агентная цепочка: запусти, открой по шагам, сохрани, переиспользуй и улучшай. Открытый код, TUI и CLI." />
     <meta name="twitter:image" content="https://airi-maestro.github.io/assets/mascot.png" />
     <script type="application/ld+json">
       {
@@ -39,7 +39,7 @@
         "name": "MAESTRO CARE",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Linux, macOS, Windows",
-        "description": "MAESTRO CARE turns a text prompt into an executable CARL reasoning chain you can verify, run, version, compare, and evolve — open source, from the terminal (TUI and CLI).",
+        "description": "MAESTRO turns a text prompt into an agent chain you can launch, inspect step by step, save, reuse, and evolve — open source, from the terminal (TUI and CLI).",
         "url": "https://airi-maestro.github.io/",
         "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -293,35 +293,36 @@
           <div class="badge">
             <span class="badge-dot"></span>
             <span data-i18n="hero.badge"
-              >Открытый инструмент для AI-агентов</span
+              >Открытый инструмент для агентных цепочек</span
             >
           </div>
           <h1 data-i18n="hero.title">
-            Опиши задачу словами — остальное MAESTRO CARE берёт на себя
+            MAESTRO собирает агентные цепочки из обычного запроса
           </h1>
           <p class="hero-lead" data-i18n="hero.subtitle">
-            Соберёт агента, запустит и сам улучшит результат — без ручной
-            настройки пайплайнов, прямо в терминале или в любимом агенте для
-            кодинга.
+            Не просто ответ в чате, а готовая к работе агентная цепочка: запусти,
+            открой по шагам, сохрани, переиспользуй и эволюционируй.
           </p>
           <div class="hero-actions">
-            <a
-              href="#install"
-              class="btn btn-primary btn-lg"
-              data-i18n="hero.cta.primary"
-              >Начать</a
-            >
-            <a
-              href="#demo"
-              class="btn btn-secondary btn-lg"
-              data-i18n="hero.cta.secondary"
-              >Смотреть демо</a
-            >
+            <div class="hero-actions-pair">
+              <a
+                href="#demo"
+                class="btn btn-primary btn-lg"
+                data-i18n="hero.cta.primary"
+                >Смотреть пример</a
+              >
+              <a
+                href="#install"
+                class="btn btn-secondary btn-lg"
+                data-i18n="hero.cta.secondary"
+                >Установить</a
+              >
+            </div>
             <a
               href="#skill"
-              class="btn btn-secondary btn-lg"
+              class="btn btn-secondary btn-lg hero-actions-skill"
               data-i18n="hero.cta.skill"
-              >Добавить как навык</a
+              >Добавить как навык в кодинговый агент</a
             >
           </div>
           <div class="hero-stats">
@@ -496,366 +497,12 @@
       </div>
     </div>
 
-    <section id="pillars" class="pillars">
-      <div class="container">
-        <div class="section-header reveal">
-          <h2 data-i18n="pillars.title">
-            Один поток — от идеи до готового агента
-          </h2>
-          <p data-i18n="pillars.subtitle">
-            Генерация, запуск и эволюция — три шага одного потока
-          </p>
-        </div>
-
-        <div class="pillars-row reveal">
-          <div class="scene scene--gen">
-            <div class="mascot-stage mascot-stage--scene" data-mood="idle">
-              <div class="mascot-float">
-                <div class="mascot-body">
-                  <img
-                    class="mascot-img"
-                    src="assets/magic_wand_slow.gif"
-                    width="256"
-                    height="256"
-                    alt="Maestric строит цепочку агента из запроса"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-              <span class="mascot-shadow" aria-hidden="true"></span>
-              <div class="mascot-particles" aria-hidden="true"></div>
-            </div>
-          </div>
-          <div class="pillar-text">
-            <span class="text-label" data-i18n="p1.tag">Шаг 1 · Генерация</span>
-            <h3 data-i18n="p1.title">
-              MAESTRO CARE собирает агента из твоих слов
-            </h3>
-            <p data-i18n="p1.desc">
-              Опиши цель — MAESTRO CARE разберёт задачу, спланирует шаги и
-              построит готовую цепочку агента.
-            </p>
-            <a href="#stack" class="pillar-link" data-i18n="pillar.learn"
-              >Подробнее в стеке</a
-            >
-          </div>
-        </div>
-
-        <div class="pillars-row pillars-row--reverse reveal">
-          <div class="scene scene--run">
-            <div class="chip chip--tl">
-              <span data-i18n="p2.chip1">Песочница</span>
-            </div>
-            <div class="chip chip--tr">
-              <span data-i18n="p2.chip2">Поток токенов</span>
-            </div>
-            <div class="chip chip--br">
-              <span data-i18n="p2.chip3">Инструменты и навыки</span>
-            </div>
-            <div class="mascot-stage mascot-stage--scene" data-mood="work">
-              <div class="mascot-float">
-                <div class="mascot-body">
-                  <img
-                    class="mascot-img"
-                    src="assets/start_button.gif"
-                    width="255"
-                    height="166"
-                    alt="Maestric запускает цепочку инструментов"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-              <span class="mascot-shadow" aria-hidden="true"></span>
-              <div class="mascot-particles" aria-hidden="true"></div>
-            </div>
-          </div>
-          <div class="pillar-text">
-            <span class="text-label" data-i18n="p2.tag">Шаг 2 · Запуск</span>
-            <h3 data-i18n="p2.title">Агент работает у тебя на глазах</h3>
-            <p data-i18n="p2.desc">
-              MAESTRO CARE запускает шаги в изолированной песочнице и показывает
-              прогресс в реальном времени — виден каждый шаг агента.
-            </p>
-            <a href="#demo" class="pillar-link" data-i18n="pillar.demo"
-              >Смотреть демо</a
-            >
-          </div>
-        </div>
-
-        <div class="pillars-row reveal">
-          <div class="scene scene--evo">
-            <div class="chip chip--tl">
-              <span data-i18n="p3.chip1">Генетический алгоритм</span>
-            </div>
-            <div class="chip chip--tr">
-              <span data-i18n="p3.chip2">Несколько метрик</span>
-            </div>
-            <div class="chip chip--br">
-              <span data-i18n="p3.chip3">Сильнейший вариант</span>
-            </div>
-            <div class="mascot-stage mascot-stage--scene" data-mood="success">
-              <div class="mascot-float">
-                <div class="mascot-body">
-                  <img
-                    class="mascot-img mascot-img--gif"
-                    src="assets/evo1-3.gif"
-                    width="256"
-                    height="256"
-                    alt="Maestric эволюционирует: три поколения становятся сильнее"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-              <span class="mascot-shadow" aria-hidden="true"></span>
-              <div class="mascot-particles" aria-hidden="true"></div>
-            </div>
-          </div>
-          <div class="pillar-text">
-            <span class="text-label" data-i18n="p3.tag">Шаг 3 · Эволюция</span>
-            <h3 data-i18n="p3.title">Агент становится лучше сам</h3>
-            <p data-i18n="p3.desc">
-              MAESTRO CARE перебирает варианты цепочки по нескольким метрикам и
-              продвигает сильнейший в стабильную версию.
-            </p>
-            <a href="#stack" class="pillar-link" data-i18n="pillar.learn"
-              >Подробнее в стеке</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="benefits" class="benefits">
-      <div class="container">
-        <div class="section-header reveal">
-          <h2 data-i18n="benefits.title">
-            Ты описываешь — MAESTRO CARE делает остальное
-          </h2>
-          <p data-i18n="benefits.subtitle">
-            Конкретная польза на каждом этапе работы с агентом
-          </p>
-        </div>
-        <div class="benefits-grid">
-          <article class="benefit-card">
-            <span
-              class="text-label benefit-card-label"
-              data-i18n="benefits.b1.tag"
-              >Один запрос</span
-            >
-            <span class="benefit-ico" aria-hidden="true">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10.5H13z" />
-              </svg>
-            </span>
-            <h3 data-i18n="benefits.b1.title">Агент за минуту</h3>
-            <p data-i18n="benefits.b1.desc">
-              Опиши цель словами — MAESTRO CARE соберёт и запустит агента.
-              Обычно это занимает около минуты.
-            </p>
-          </article>
-
-          <article class="benefit-card">
-            <span
-              class="text-label benefit-card-label"
-              data-i18n="benefits.b2.tag"
-              >История версий</span
-            >
-            <span class="benefit-ico" aria-hidden="true">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 12a9 9 0 1 0 2.6-6.4" />
-                <path d="M3 4v4h4" />
-                <path d="M12 8v4l3 2" />
-              </svg>
-            </span>
-            <h3 data-i18n="benefits.b2.title">Ничего не теряется</h3>
-            <p data-i18n="benefits.b2.desc">
-              MAESTRO CARE хранит каждую цепочку со всеми её версиями — повтори,
-              сравни или откатись в один клик.
-            </p>
-          </article>
-
-          <article class="benefit-card">
-            <span
-              class="text-label benefit-card-label"
-              data-i18n="benefits.b3.tag"
-              >Прозрачно</span
-            >
-            <span class="benefit-ico" aria-hidden="true">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" />
-                <circle cx="12" cy="12" r="3" />
-              </svg>
-            </span>
-            <h3 data-i18n="benefits.b3.title">Видно каждый шаг</h3>
-            <p data-i18n="benefits.b3.desc">
-              Видно, что и зачем делает агент: каждый шаг и результат в реальном
-              времени, в изолированной песочнице.
-            </p>
-          </article>
-
-          <article class="benefit-card">
-            <span
-              class="text-label benefit-card-label"
-              data-i18n="benefits.b4.tag"
-              >Авто-улучшение</span
-            >
-            <span class="benefit-ico" aria-hidden="true">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 17l6-6 4 4 7-7.5" />
-                <path d="M17 7.5h4v4" />
-              </svg>
-            </span>
-            <h3 data-i18n="benefits.b4.title">
-              Улучшается без ручной настройки
-            </h3>
-            <p data-i18n="benefits.b4.desc">
-              MAESTRO CARE сам перебирает варианты агента и оставляет тот, что
-              работает лучше.
-            </p>
-          </article>
-
-          <article class="benefit-card">
-            <span
-              class="text-label benefit-card-label"
-              data-i18n="benefits.b5.tag"
-              >TUI + CLI</span
-            >
-            <span class="benefit-ico" aria-hidden="true">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-                <path d="M7 9l3 3-3 3" />
-                <path d="M13 15h4" />
-              </svg>
-            </span>
-            <h3 data-i18n="benefits.b5.title">Из терминала — в продакшен</h3>
-            <p data-i18n="benefits.b5.desc">
-              Один и тот же MAESTRO CARE в интерактивном режиме и в CI —
-              автоматизируй агентов в пайплайнах без переписывания.
-            </p>
-          </article>
-
-          <article class="benefit-card">
-            <span
-              class="text-label benefit-card-label"
-              data-i18n="benefits.b6.tag"
-              >Открытый код</span
-            >
-            <span class="benefit-ico" aria-hidden="true">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M12 3l9 5-9 5-9-5z" />
-                <path d="M3 13l9 5 9-5" />
-              </svg>
-            </span>
-            <h3 data-i18n="benefits.b6.title">Твой стек, твои правила</h3>
-            <p data-i18n="benefits.b6.desc">
-              Свои инструменты и навыки, подключение внешних сервисов и
-              ребрендинг — без привязки к вендору.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="stack">
-      <div class="container">
-        <div class="section-header reveal">
-          <h2 data-i18n="stack.title">Что под капотом</h2>
-          <p data-i18n="stack.subtitle">
-            MAESTRO CARE — экосистема для генерации и эволюции цепочек
-          </p>
-        </div>
-        <div class="stack-diagram reveal">
-          <div class="stack-care" data-i18n="stack.care.label">
-            MAESTRO CARE
-          </div>
-          <div class="stack-connector" aria-hidden="true"></div>
-          <div class="stack-modules">
-            <div class="stack-module stack-module--mage">
-              <h3 data-i18n="stack.mage.name">Генерация</h3>
-              <div class="role" data-i18n="stack.mage.role">Сборка цепочки</div>
-              <p data-i18n="stack.mage.desc">
-                Превращает твой запрос в готовую цепочку агента.
-              </p>
-            </div>
-            <div class="stack-module stack-module--carl">
-              <h3 data-i18n="stack.carl.name">CARL</h3>
-              <div class="role" data-i18n="stack.carl.role">Формат цепочек</div>
-              <p data-i18n="stack.carl.desc">
-                Документация по формату цепочек рассуждений.
-              </p>
-            </div>
-            <div class="stack-module stack-module--memory">
-              <h3 data-i18n="stack.memory.name">Память</h3>
-              <div class="role" data-i18n="stack.memory.role">
-                Хранение версий
-              </div>
-              <p data-i18n="stack.memory.desc">
-                Хранит агентов, цепочки и все их версии.
-              </p>
-            </div>
-            <div class="stack-module stack-module--platform">
-              <h3 data-i18n="stack.platform.name">Эволюция</h3>
-              <div class="role" data-i18n="stack.platform.role">
-                Отбор лучших
-              </div>
-              <p data-i18n="stack.platform.desc">
-                Улучшает цепочки и продвигает лучшие варианты.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="demo" class="demo-section">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="demo.title">Как выглядит работа в MAESTRO CARE</h2>
+          <h2 data-i18n="demo.title">Пример работы MAESTRO</h2>
           <p data-i18n="demo.subtitle">
-            Прикладываешь документ — получаешь готовую цепочку CARL и
-            структурный результат
+            PDF с отчётом → агентная цепочка из 3 шагов → таблица с цифрами.
           </p>
         </div>
         <div class="demo-grid">
@@ -935,7 +582,7 @@
             <div class="carl-chain">
               <div class="carl-chain-head">
                 <span class="carl-chain-badge" data-i18n="chain.badge"
-                  >Формат CARL</span
+                  >Формат цепочки</span
                 >
                 <h3 class="carl-chain-title" data-i18n="chain.title">
                   Итоговая цепочка
@@ -975,11 +622,11 @@
                   ><i class="carl-spark"></i
                 ></span>
 
-                <!-- Phase 2 — the CARL chain (3 steps) -->
+                <!-- Phase 2 — the chain (3 steps) -->
                 <div class="carl-phase carl-phase--chain" role="listitem">
                   <div class="carl-phase-head">
                     <span class="carl-phase-badge" data-i18n="chain.badge"
-                      >Формат CARL</span
+                      >Формат цепочки</span
                     >
                     <span class="carl-phase-label" data-i18n="chain.p2"
                       >Цепочка</span
@@ -1073,7 +720,7 @@
               </div>
 
               <p class="carl-steps-hint" data-i18n="chain.hint">
-                Нажмите на шаг — развернётся его структура в формате CARL
+                Нажмите на шаг — развернётся его техническая структура
               </p>
 
               <div class="carl-step-panels">
@@ -1318,6 +965,359 @@
                   DAG цепочки и детали шага
                 </figcaption>
               </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pillars" class="pillars">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="pillars.title">
+            Один поток — от идеи до готового агента
+          </h2>
+          <p data-i18n="pillars.subtitle">
+            Генерация, запуск и эволюция — три шага одного потока
+          </p>
+        </div>
+
+        <div class="pillars-row reveal">
+          <div class="scene scene--gen">
+            <div class="mascot-stage mascot-stage--scene" data-mood="idle">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img"
+                    src="assets/magic_wand_slow.gif"
+                    width="256"
+                    height="256"
+                    alt="Maestric строит цепочку агента из запроса"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="pillar-text">
+            <span class="text-label" data-i18n="p1.tag">Шаг 1 · Генерация</span>
+            <h3 data-i18n="p1.title">
+              MAESTRO CARE собирает агента из твоих слов
+            </h3>
+            <p data-i18n="p1.desc">
+              Опиши цель — MAESTRO CARE разберёт задачу, спланирует шаги и
+              построит готовую цепочку агента.
+            </p>
+            <a href="#stack" class="pillar-link" data-i18n="pillar.learn"
+              >Подробнее в стеке</a
+            >
+          </div>
+        </div>
+
+        <div class="pillars-row pillars-row--reverse reveal">
+          <div class="scene scene--run">
+            <div class="chip chip--tl">
+              <span data-i18n="p2.chip1">Песочница</span>
+            </div>
+            <div class="chip chip--tr">
+              <span data-i18n="p2.chip2">Поток токенов</span>
+            </div>
+            <div class="chip chip--br">
+              <span data-i18n="p2.chip3">Инструменты и навыки</span>
+            </div>
+            <div class="mascot-stage mascot-stage--scene" data-mood="work">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img"
+                    src="assets/start_button.gif"
+                    width="255"
+                    height="166"
+                    alt="Maestric запускает цепочку инструментов"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="pillar-text">
+            <span class="text-label" data-i18n="p2.tag">Шаг 2 · Запуск</span>
+            <h3 data-i18n="p2.title">Агент работает у тебя на глазах</h3>
+            <p data-i18n="p2.desc">
+              MAESTRO CARE запускает шаги в изолированной песочнице и показывает
+              прогресс в реальном времени — виден каждый шаг агента.
+            </p>
+            <a href="#demo" class="pillar-link" data-i18n="pillar.demo"
+              >Смотреть демо</a
+            >
+          </div>
+        </div>
+
+        <div class="pillars-row reveal">
+          <div class="scene scene--evo">
+            <div class="chip chip--tl">
+              <span data-i18n="p3.chip1">Генетический алгоритм</span>
+            </div>
+            <div class="chip chip--tr">
+              <span data-i18n="p3.chip2">Несколько метрик</span>
+            </div>
+            <div class="chip chip--br">
+              <span data-i18n="p3.chip3">Сильнейший вариант</span>
+            </div>
+            <div class="mascot-stage mascot-stage--scene" data-mood="success">
+              <div class="mascot-float">
+                <div class="mascot-body">
+                  <img
+                    class="mascot-img mascot-img--gif"
+                    src="assets/evo1-3.gif"
+                    width="256"
+                    height="256"
+                    alt="Maestric эволюционирует: три поколения становятся сильнее"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <span class="mascot-shadow" aria-hidden="true"></span>
+              <div class="mascot-particles" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="pillar-text">
+            <span class="text-label" data-i18n="p3.tag">Шаг 3 · Эволюция</span>
+            <h3 data-i18n="p3.title">Агент становится лучше сам</h3>
+            <p data-i18n="p3.desc">
+              MAESTRO CARE перебирает варианты цепочки по нескольким метрикам и
+              продвигает сильнейший в стабильную версию.
+            </p>
+            <a href="#stack" class="pillar-link" data-i18n="pillar.learn"
+              >Подробнее в стеке</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="benefits.title">
+            Зачем агентная цепочка, а не один ответ в чате
+          </h2>
+          <p data-i18n="benefits.subtitle">
+            Конкретная польза на каждом этапе работы с агентом
+          </p>
+        </div>
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b1.tag"
+              >Один запрос</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10.5H13z" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b1.title">Агент за минуту</h3>
+            <p data-i18n="benefits.b1.desc">
+              Опиши цель словами — MAESTRO CARE соберёт и запустит агента.
+              Обычно это занимает около минуты.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b2.tag"
+              >История версий</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 12a9 9 0 1 0 2.6-6.4" />
+                <path d="M3 4v4h4" />
+                <path d="M12 8v4l3 2" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b2.title">Ничего не теряется</h3>
+            <p data-i18n="benefits.b2.desc">
+              MAESTRO CARE хранит каждую цепочку со всеми её версиями — повтори,
+              сравни или откатись в один клик.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b3.tag"
+              >Прозрачно</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b3.title">Видно каждый шаг</h3>
+            <p data-i18n="benefits.b3.desc">
+              Видно, что и зачем делает агент: каждый шаг и результат в реальном
+              времени, в изолированной песочнице.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b4.tag"
+              >Авто-улучшение</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 17l6-6 4 4 7-7.5" />
+                <path d="M17 7.5h4v4" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b4.title">
+              Автоулучшение цепочки
+            </h3>
+            <p data-i18n="benefits.b4.desc">
+              Не нужно менять промпт, MAESTRO пробует варианты цепочки и
+              оставляет тот, что даёт лучший результат по метрикам.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b5.tag"
+              >TUI + CLI</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M7 9l3 3-3 3" />
+                <path d="M13 15h4" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b5.title">Из терминала — в продакшен</h3>
+            <p data-i18n="benefits.b5.desc">
+              Один и тот же MAESTRO CARE в интерактивном режиме и в CI —
+              автоматизируй агентов в пайплайнах без переписывания.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <span
+              class="text-label benefit-card-label"
+              data-i18n="benefits.b6.tag"
+              >Открытый код</span
+            >
+            <span class="benefit-ico" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3l9 5-9 5-9-5z" />
+                <path d="M3 13l9 5 9-5" />
+              </svg>
+            </span>
+            <h3 data-i18n="benefits.b6.title">Твой стек, твои правила</h3>
+            <p data-i18n="benefits.b6.desc">
+              Свои инструменты и навыки, подключение внешних сервисов и
+              ребрендинг — без привязки к вендору.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="stack.title">Что под капотом</h2>
+          <p data-i18n="stack.subtitle">
+            MAESTRO CARE — экосистема для генерации и эволюции цепочек
+          </p>
+        </div>
+        <div class="stack-diagram reveal">
+          <div class="stack-care" data-i18n="stack.care.label">
+            MAESTRO CARE
+          </div>
+          <div class="stack-connector" aria-hidden="true"></div>
+          <div class="stack-modules">
+            <div class="stack-module stack-module--mage">
+              <h3 data-i18n="stack.mage.name">Генерация</h3>
+              <div class="role" data-i18n="stack.mage.role">Сборка цепочки</div>
+              <p data-i18n="stack.mage.desc">
+                Превращает твой запрос в готовую цепочку агента.
+              </p>
+            </div>
+            <div class="stack-module stack-module--carl">
+              <h3 data-i18n="stack.carl.name">Формат цепочки</h3>
+              <div class="role" data-i18n="stack.carl.role">Агентные цепочки</div>
+              <p data-i18n="stack.carl.desc">
+                Как описаны шаги: цель, инструменты, результат.
+              </p>
+            </div>
+            <div class="stack-module stack-module--memory">
+              <h3 data-i18n="stack.memory.name">Память</h3>
+              <div class="role" data-i18n="stack.memory.role">
+                Хранение версий
+              </div>
+              <p data-i18n="stack.memory.desc">
+                Хранит агентов, цепочки и все их версии.
+              </p>
+            </div>
+            <div class="stack-module stack-module--platform">
+              <h3 data-i18n="stack.platform.name">Эволюция</h3>
+              <div class="role" data-i18n="stack.platform.role">
+                Отбор лучших
+              </div>
+              <p data-i18n="stack.platform.desc">
+                Улучшает цепочки и продвигает лучшие варианты.
+              </p>
             </div>
           </div>
         </div>
@@ -1685,7 +1685,7 @@
     <section id="skill" class="install skill-install">
       <div class="container">
         <div class="section-header reveal">
-          <h2 data-i18n="skill.title">Добавь CARE как навык своему агенту</h2>
+          <h2 data-i18n="skill.title">Добавь MAESTRO как навык своему агенту</h2>
           <p data-i18n="skill.subtitle">
             Дай агенту управлять CARE CLI — Claude Code, Codex, Hermes или
             OpenClaw.
@@ -2043,9 +2043,9 @@
             ></span>
           </div>
           <div class="cta-text">
-            <h2 data-i18n="cta.title">Готов собрать своего агента?</h2>
+            <h2 data-i18n="cta.title">Попробуй MAESTRO на своём примере</h2>
             <p data-i18n="cta.subtitle">
-              Поставь MAESTRO CARE и собери первого агента уже сегодня.
+              Собери агентную цепочку под текстовый запрос уже сегодня.
             </p>
             <div class="cta-actions">
               <a
