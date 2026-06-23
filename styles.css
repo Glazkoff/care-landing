@@ -3152,6 +3152,19 @@ section {
   border-bottom: 1px solid var(--border);
 }
 
+/* Show the speech bubble only while the mascot is hovered */
+.hero-visual .speech-bubble.reveal {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.hero-visual:has(.mascot-float:hover) .speech-bubble {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Footer */
 .footer {
   padding: 2.5rem 0 2rem;
