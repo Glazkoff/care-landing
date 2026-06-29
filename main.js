@@ -215,6 +215,70 @@ function getDemoLines() {
   return document.documentElement.lang === "ru" ? DEMO_LINES_RU : DEMO_LINES_EN;
 }
 
+const EVOLUTION_LOG_RU = [
+  {
+    role: "user",
+    text: "> maestro evolve summarizer --test-data eval.jsonl --wait",
+  },
+  { role: "tool", text: "[mutant 1] evaluated ind-seed fitness=0.582" },
+  { role: "tool", text: "[mutant 3] best now ind-m2 fitness=0.641" },
+  { role: "evo", text: "[mutant 7] best now ind-m5 fitness=0.698" },
+  { role: "evo", text: "[mutant 10] best now ind-m7 fitness=0.724" },
+  { role: "result", text: "[done] evolution completed" },
+  { role: "result", text: "best mutant=10 fitness=0.724 id=ind-m7" },
+];
+
+const EVOLUTION_LOG_EN = [
+  {
+    role: "user",
+    text: "> maestro evolve summarizer --test-data eval.jsonl --wait",
+  },
+  { role: "tool", text: "[mutant 1] evaluated ind-seed fitness=0.582" },
+  { role: "tool", text: "[mutant 3] best now ind-m2 fitness=0.641" },
+  { role: "evo", text: "[mutant 7] best now ind-m5 fitness=0.698" },
+  { role: "evo", text: "[mutant 10] best now ind-m7 fitness=0.724" },
+  { role: "result", text: "[done] evolution completed" },
+  { role: "result", text: "best mutant=10 fitness=0.724 id=ind-m7" },
+];
+
+const EVOLUTION_STATUS_RU = [
+  { role: "tool", text: "evolution: exp_d4969d73" },
+  { role: "tool", text: "status: completed" },
+  { role: "tool", text: "mutants: 10 / 40" },
+  { role: "tool", text: "metric: ROUGE-L · 8 cases" },
+  { role: "tool", text: "start fitness: 0.5820" },
+  { role: "evo", text: "best fitness:  0.7240" },
+  { role: "tool", text: "" },
+  { role: "tool", text: "best fitness:" },
+  { role: "result", text: "▁▂▅▇█▆▄▃" },
+  { role: "result", text: "mutant 1..10 · min 0.582 · max 0.724" },
+];
+
+const EVOLUTION_STATUS_EN = [
+  { role: "tool", text: "evolution: exp_d4969d73" },
+  { role: "tool", text: "status: completed" },
+  { role: "tool", text: "mutants: 10 / 40" },
+  { role: "tool", text: "metric: ROUGE-L · 8 cases" },
+  { role: "tool", text: "start fitness: 0.5820" },
+  { role: "evo", text: "best fitness:  0.7240" },
+  { role: "tool", text: "" },
+  { role: "tool", text: "best fitness:" },
+  { role: "result", text: "▁▂▅▇█▆▄▃" },
+  { role: "result", text: "mutant 1..10 · min 0.582 · max 0.724" },
+];
+
+function getEvolutionLogLines() {
+  return document.documentElement.lang === "ru"
+    ? EVOLUTION_LOG_RU
+    : EVOLUTION_LOG_EN;
+}
+
+function getEvolutionStatusLines() {
+  return document.documentElement.lang === "ru"
+    ? EVOLUTION_STATUS_RU
+    : EVOLUTION_STATUS_EN;
+}
+
 
 function startTypewriter({
   output,
@@ -294,7 +358,7 @@ function startTypewriter({
 }
 
 function initTerminalDemo() {
-  const output = document.querySelector(".terminal-output");
+  const output = document.querySelector("#demo .terminal-output");
   const mascot = document.querySelector("#demo .mascot-stage");
   startTypewriter({
     output,
@@ -308,6 +372,27 @@ function initTerminalDemo() {
     onReset: () => {
       if (mascot) mascot.dataset.mood = "idle";
     },
+  });
+}
+
+function initEvolutionDemo() {
+  const logOutput = document.querySelector(".evolution-terminal-log");
+  const statusOutput = document.querySelector(".evolution-terminal-status");
+  const section = document.querySelector("#evolution");
+  if (!logOutput || !statusOutput || !section) return;
+
+  startTypewriter({
+    output: logOutput,
+    getLines: getEvolutionLogLines,
+    section,
+    loopPause: 4000,
+  });
+
+  startTypewriter({
+    output: statusOutput,
+    getLines: getEvolutionStatusLines,
+    section,
+    loopPause: 4200,
   });
 }
 
@@ -751,6 +836,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initParticles();
   initTerminalDemo();
+  initEvolutionDemo();
   initChainSteps();
   initChainReveal();
   initCopyButtons();
