@@ -581,6 +581,7 @@ a:hover {
 
 .pillar-text h3,
 .benefit-card h3,
+.evolution-step h3,
 .install-step-body h3,
 .stack-module h3,
 .team-info h3 {
@@ -592,9 +593,11 @@ a:hover {
 }
 
 .hero-lead,
+.hero-lead-detail,
 .section-header p,
 .pillar-text p,
 .benefit-card p,
+.evolution-step p,
 .install-step-body p,
 .team-head p,
 .team-role,
@@ -610,6 +613,20 @@ a:hover {
   max-width: 52ch;
 }
 
+.hero-lead-emphasis {
+  margin-bottom: 0.65rem;
+  font-size: calc(var(--fs-body) * 1.05);
+}
+
+.hero-lead-emphasis strong {
+  font-weight: 650;
+}
+
+.hero-lead-detail {
+  margin: 0 0 2rem;
+  max-width: 52ch;
+}
+
 .section-header p,
 .team-head p {
   margin: 0;
@@ -621,6 +638,7 @@ a:hover {
 }
 
 .benefit-card p,
+.evolution-step p,
 .install-step-body p {
   margin: 0;
 }
@@ -1021,6 +1039,7 @@ section {
 /* Unified surface panels */
 .surface-panel,
 .benefit-card,
+.evolution-step,
 .install-step,
 .install-aside,
 .team-member,
@@ -1035,6 +1054,7 @@ section {
 
 .surface-panel:hover,
 .benefit-card:hover,
+.evolution-step:hover,
 .install-step:hover,
 .install-aside:hover,
 .team-member:hover,
@@ -2552,6 +2572,265 @@ section {
   font-family: var(--font-sans);
   font-size: var(--fs-body);
   line-height: 1.6;
+}
+
+/* Evolution */
+.evolution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.evolution-step {
+  position: relative;
+  padding: 1.6rem 1.5rem 1.5rem;
+}
+
+.evolution-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.85rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--crystal));
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 6px 16px var(--accent-glow);
+}
+
+:root[data-theme="crystal"] .evolution-step-num {
+  color: #0f1115;
+}
+
+.evolution-step h3 {
+  margin: 0 0 0.45rem;
+}
+
+.evolution-step p {
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .evolution-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
+
+.evolution-showcase {
+  margin-top: 3rem;
+}
+
+.evolution-example-label {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.evolution-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.evolution-metric {
+  padding: 1.1rem 1.15rem;
+  border-radius: var(--panel-radius);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  text-align: center;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.evolution-metric--best {
+  border-color: color-mix(in srgb, var(--crystal) 45%, var(--panel-border));
+  background: color-mix(in srgb, var(--crystal) 6%, var(--panel-bg));
+  box-shadow: 0 0 24px color-mix(in srgb, var(--crystal) 10%, transparent);
+}
+
+.evolution-metric-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.evolution-metric-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.evolution-metric-value--delta {
+  color: var(--crystal);
+}
+
+.evolution-metric-hint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.evolution-compare {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin-bottom: 2rem;
+}
+
+.evolution-chain {
+  margin: 0;
+  min-width: 0;
+}
+
+.evolution-chain-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 6px;
+}
+
+.evolution-chain-label--before {
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--text-muted) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text-muted) 28%, transparent);
+}
+
+.evolution-chain-label--after {
+  color: var(--crystal);
+  background: color-mix(in srgb, var(--crystal) 24%, transparent);
+  border: 1px solid color-mix(in srgb, var(--crystal) 55%, transparent);
+}
+
+.evolution-graph .carl-phase {
+  min-width: 0;
+}
+
+.evolution-graph .carl-phase--chain {
+  flex: 1.35 1 0;
+}
+
+.evolution-graph .carl-node-name {
+  font-size: 0.72rem;
+}
+
+.evolution-graph .carl-node-type {
+  font-size: 0.62rem;
+}
+
+.carl-node--evo {
+  border-color: color-mix(in srgb, var(--crystal) 40%, var(--border));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--crystal) 8%, transparent);
+}
+
+.evolution-chain-foot {
+  margin: 1rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.evolution-compare-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0 0.25rem;
+  color: var(--accent);
+}
+
+.evolution-compare-arrow-ico {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.evolution-compare-arrow-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.evolution-terminals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.evolution-terminal .terminal-output {
+  min-height: 220px;
+  max-height: 260px;
+}
+
+.terminal-line--evo {
+  color: var(--crystal);
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .evolution-compare {
+    grid-template-columns: 1fr;
+  }
+
+  .evolution-compare-arrow {
+    flex-direction: row;
+    padding: 0.25rem 0;
+  }
+
+  .evolution-compare-arrow-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+
+  .evolution-compare-arrow-ico {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .evolution-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .evolution-terminals {
+    grid-template-columns: 1fr;
+  }
+
+  .evolution-graph {
+    flex-direction: column;
+  }
+
+  .evolution-graph .carl-link:not(.carl-link--v) {
+    width: 2px;
+    height: 1.25rem;
+    margin: 0 auto;
+    transform: rotate(90deg);
+  }
 }
 
 /* Install */
