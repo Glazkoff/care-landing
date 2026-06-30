@@ -10,10 +10,10 @@ const TRANSLATIONS = {
     "nav.install": "Установка",
     "nav.github": "GitHub",
     "nav.docs": "Документация",
-    "hero.badge": "Открытый инструмент для агентных цепочек",
-    "hero.title": "MAESTRO собирает агентные цепочки из обычного запроса",
-    "hero.subtitle":
-      "Не просто ответ в чате, а готовая к работе агентная цепочка: запусти, открой по шагам, сохрани, переиспользуй и эволюционируй.",
+    "hero.badge": "Открытый инструмент для цепочек рассуждений и действий",
+    "hero.title": "MAESTRO делает вашего агента умнее",
+    "hero.subtitle.detail":
+      "За счёт цепочек рассуждений и действий — готовых к запуску, сохранению и эволюции прямо в вашем агенте.",
     "hero.cta.primary": "Смотреть пример",
     "hero.cta.secondary": "Установить",
     "hero.cta.skill": "Добавить как навык в кодинговый агент",
@@ -252,10 +252,10 @@ const TRANSLATIONS = {
     "nav.install": "Install",
     "nav.github": "GitHub",
     "nav.docs": "Documentation",
-    "hero.badge": "Open tool for agent chains",
-    "hero.title": "MAESTRO builds agent chains from an ordinary prompt",
-    "hero.subtitle":
-      "Not just a chat reply, but a ready-to-run agent chain: launch it, inspect step by step, save, reuse, and evolve.",
+    "hero.badge": "Open tool for reasoning and action chains",
+    "hero.title": "MAESTRO makes your agent smarter",
+    "hero.subtitle.detail":
+      "Thanks to reasoning and action chains — ready to launch, save, and evolve right in your agent.",
     "hero.cta.primary": "See example",
     "hero.cta.secondary": "Install",
     "hero.cta.skill": "Add as skill to a coding agent",

@@ -593,6 +593,7 @@ a:hover {
 }
 
 .hero-lead,
+.hero-lead-detail,
 .section-header p,
 .pillar-text p,
 .benefit-card p,
@@ -608,6 +609,20 @@ a:hover {
 }
 
 .hero-lead {
+  margin: 0 0 2rem;
+  max-width: 52ch;
+}
+
+.hero-lead-emphasis {
+  margin-bottom: 0.65rem;
+  font-size: calc(var(--fs-body) * 1.05);
+}
+
+.hero-lead-emphasis strong {
+  font-weight: 650;
+}
+
+.hero-lead-detail {
   margin: 0 0 2rem;
   max-width: 52ch;
 }
