@@ -54,7 +54,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=26" />
+    <link rel="stylesheet" href="styles.css?v=28" />
     <script>
       (function () {
         var VALID = ["warm", "crystal"];
@@ -293,15 +293,13 @@
           <div class="badge">
             <span class="badge-dot"></span>
             <span data-i18n="hero.badge"
-              >Открытый инструмент для агентных цепочек</span
+              >Открытый инструмент для цепочек рассуждений и действий</span
             >
           </div>
-          <h1 data-i18n="hero.title">
-            MAESTRO собирает агентные цепочки из обычного запроса
-          </h1>
-          <p class="hero-lead" data-i18n="hero.subtitle">
-            Не просто ответ в чате, а готовая к работе агентная цепочка: запусти,
-            открой по шагам, сохрани, переиспользуй и эволюционируй.
+          <h1 data-i18n="hero.title">MAESTRO делает вашего агента умнее</h1>
+          <p class="hero-lead-detail" data-i18n="hero.subtitle.detail">
+            За счёт цепочек рассуждений и действий — готовых к запуску,
+            сохранению и эволюции прямо в вашем агенте.
           </p>
           <div class="hero-actions">
             <div class="hero-actions-pair">
@@ -1324,6 +1322,292 @@
       </div>
     </section>
 
+    <section id="evolution" class="evolution">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="evolution.title">Подробнее про эволюцию</h2>
+          <p data-i18n="evolution.subtitle">
+            Цепочка улучшается сама — без ручной правки промптов
+          </p>
+        </div>
+        <div class="evolution-grid reveal">
+          <article class="evolution-step">
+            <span class="evolution-step-num">1</span>
+            <h3 data-i18n="evolution.s1.title">Варианты</h3>
+            <p data-i18n="evolution.s1.desc">
+              MAESTRO создаёт несколько версий цепочки — с разными шагами и
+              формулировками.
+            </p>
+          </article>
+          <article class="evolution-step">
+            <span class="evolution-step-num">2</span>
+            <h3 data-i18n="evolution.s2.title">Метрики</h3>
+            <p data-i18n="evolution.s2.desc">
+              Каждый вариант прогоняется на тестах — качество считается по
+              нескольким метрикам.
+            </p>
+          </article>
+          <article class="evolution-step">
+            <span class="evolution-step-num">3</span>
+            <h3 data-i18n="evolution.s3.title">Отбор</h3>
+            <p data-i18n="evolution.s3.desc">
+              Лучший вариант сохраняется как новая стабильная версия — готов к
+              повторному запуску.
+            </p>
+          </article>
+        </div>
+
+        <div class="evolution-showcase reveal reveal-delay-1">
+          <p class="evolution-example-label" data-i18n="evolution.example">
+            Пример: пресет Summarizer · 8 тестовых кейсов · метрика ROUGE-L
+          </p>
+
+          <div class="evolution-metrics">
+            <div class="evolution-metric">
+              <span class="evolution-metric-label" data-i18n="evolution.metric.start"
+                >Стартовый fitness</span
+              >
+              <span class="evolution-metric-value">0.582</span>
+              <span class="evolution-metric-hint" data-i18n="evolution.metric.startHint"
+                >исходная цепочка</span
+              >
+            </div>
+            <div class="evolution-metric evolution-metric--best">
+              <span class="evolution-metric-label" data-i18n="evolution.metric.best"
+                >Лучший fitness</span
+              >
+              <span class="evolution-metric-value">0.724</span>
+              <span class="evolution-metric-hint" data-i18n="evolution.metric.bestHint"
+                >после 10 мутантов</span
+              >
+            </div>
+            <div class="evolution-metric">
+              <span class="evolution-metric-label">ROUGE-L</span>
+              <span class="evolution-metric-value evolution-metric-value--delta"
+                >+0.142</span
+              >
+              <span class="evolution-metric-hint" data-i18n="evolution.metric.rougeHint"
+                >0.582 → 0.724</span
+              >
+            </div>
+            <div class="evolution-metric">
+              <span class="evolution-metric-label" data-i18n="evolution.metric.mutants"
+                >Мутанты</span
+              >
+              <span class="evolution-metric-value">10 / 40</span>
+              <span class="evolution-metric-hint" data-i18n="evolution.metric.mutantsHint"
+                >оценено / бюджет</span
+              >
+            </div>
+          </div>
+
+          <div class="evolution-compare">
+            <article class="carl-chain evolution-chain evolution-chain--before">
+              <div class="carl-chain-head">
+                <span
+                  class="evolution-chain-label evolution-chain-label--before"
+                  data-i18n="evolution.before"
+                  >Было</span
+                >
+                <span class="carl-chain-count" data-i18n="evolution.beforeSteps"
+                  >1 шаг</span
+                >
+                <span class="carl-chain-task" data-i18n="evolution.task">
+                  сжать абзац в одно предложение
+                </span>
+              </div>
+              <div class="carl-graph evolution-graph">
+                <div class="carl-phase carl-phase--io" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-step">1</span>
+                    <span class="carl-phase-label" data-i18n="chain.p1">Вход</span>
+                  </div>
+                  <div class="carl-phase-body">
+                    <span class="carl-io-row">
+                      <span class="carl-io-ic" aria-hidden="true">📝</span>
+                      <span class="carl-io-txt" data-i18n="evolution.inputSample"
+                        >абзац из eval.jsonl</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <span class="carl-link" aria-hidden="true"
+                  ><i class="carl-spark"></i
+                ></span>
+                <div class="carl-phase carl-phase--chain" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-label" data-i18n="chain.p2">Цепочка</span>
+                    <span class="carl-phase-count" data-i18n="evolution.beforeSteps"
+                      >1 шаг</span
+                    >
+                  </div>
+                  <div class="carl-phase-body carl-chain-box">
+                    <div class="carl-node carl-node--llm">
+                      <span class="carl-node-idx">1</span>
+                      <span class="carl-node-name">summarize_paragraph</span>
+                      <span class="carl-node-type">llm</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="carl-link" aria-hidden="true"
+                  ><i class="carl-spark"></i
+                ></span>
+                <div class="carl-phase carl-phase--out" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-step carl-phase-step--ok">✓</span>
+                    <span class="carl-phase-label" data-i18n="chain.p3">Результат</span>
+                  </div>
+                  <div class="carl-phase-body">
+                    <span class="carl-io-row">
+                      <span class="carl-io-ic" aria-hidden="true">💬</span>
+                      <span class="carl-io-txt" data-i18n="evolution.beforeResult"
+                        >одно предложение (часто теряет детали)</span
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="evolution-chain-foot" data-i18n="evolution.beforeFoot">
+                Один LLM-шаг: «прочитай и сожми в предложение» — ROUGE-L 0.582
+              </p>
+            </article>
+
+            <div class="evolution-compare-arrow" aria-hidden="true">
+              <span class="evolution-compare-arrow-ico">→</span>
+              <span class="evolution-compare-arrow-label" data-i18n="evolution.arrow"
+                >эволюция</span
+              >
+            </div>
+
+            <article class="carl-chain evolution-chain evolution-chain--after">
+              <div class="carl-chain-head">
+                <span
+                  class="evolution-chain-label evolution-chain-label--after"
+                  data-i18n="evolution.after"
+                  >Стало</span
+                >
+                <span class="carl-chain-count" data-i18n="evolution.afterSteps"
+                  >3 шага</span
+                >
+                <span class="carl-chain-task" data-i18n="evolution.task">
+                  сжать абзац в одно предложение
+                </span>
+              </div>
+              <div class="carl-graph evolution-graph">
+                <div class="carl-phase carl-phase--io" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-step">1</span>
+                    <span class="carl-phase-label" data-i18n="chain.p1">Вход</span>
+                  </div>
+                  <div class="carl-phase-body">
+                    <span class="carl-io-row">
+                      <span class="carl-io-ic" aria-hidden="true">📝</span>
+                      <span class="carl-io-txt" data-i18n="evolution.inputSample"
+                        >абзац из eval.jsonl</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <span class="carl-link" aria-hidden="true"
+                  ><i class="carl-spark"></i
+                ></span>
+                <div class="carl-phase carl-phase--chain" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-label" data-i18n="chain.p2">Цепочка</span>
+                    <span class="carl-phase-count" data-i18n="evolution.afterSteps"
+                      >3 шага</span
+                    >
+                  </div>
+                  <div class="carl-phase-body carl-chain-box">
+                    <div class="carl-node carl-node--llm carl-node--evo">
+                      <span class="carl-node-idx">1</span>
+                      <span class="carl-node-name">analyze_structure</span>
+                      <span class="carl-node-type">llm</span>
+                    </div>
+                    <span class="carl-link carl-link--v" aria-hidden="true"
+                      ><i class="carl-spark"></i
+                    ></span>
+                    <div class="carl-node carl-node--llm carl-node--evo">
+                      <span class="carl-node-idx">2</span>
+                      <span class="carl-node-name">compress_summary</span>
+                      <span class="carl-node-type">llm</span>
+                    </div>
+                    <span class="carl-link carl-link--v" aria-hidden="true"
+                      ><i class="carl-spark"></i
+                    ></span>
+                    <div class="carl-node carl-node--struct carl-node--evo">
+                      <span class="carl-node-idx">3</span>
+                      <span class="carl-node-name">verify_meaning</span>
+                      <span class="carl-node-type">evaluation</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="carl-link" aria-hidden="true"
+                  ><i class="carl-spark"></i
+                ></span>
+                <div class="carl-phase carl-phase--out" role="listitem">
+                  <div class="carl-phase-head">
+                    <span class="carl-phase-step carl-phase-step--ok">✓</span>
+                    <span class="carl-phase-label" data-i18n="chain.p3">Результат</span>
+                  </div>
+                  <div class="carl-phase-body">
+                    <span class="carl-io-row">
+                      <span class="carl-io-ic" aria-hidden="true">💬</span>
+                      <span class="carl-io-txt" data-i18n="evolution.afterResult"
+                        >точное предложение, совпадает с expected</span
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="evolution-chain-foot" data-i18n="evolution.afterFoot">
+                Анализ → сжатие → проверка смысла — ROUGE-L 0.724
+              </p>
+            </article>
+          </div>
+
+          <div class="evolution-terminals">
+            <div class="terminal evolution-terminal">
+              <div class="terminal-bar">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-title">maestro — evolve</span>
+                <span class="terminal-mode" data-i18n="evolution.terminal.mode"
+                  >CLI</span
+                >
+              </div>
+              <div
+                class="terminal-output evolution-terminal-log"
+                aria-live="polite"
+                aria-label="Evolution CLI demo"
+              ></div>
+              <p class="terminal-note" data-i18n="evolution.terminal.logNote">
+                Запуск эволюции и отбор лучшего мутанта
+              </p>
+            </div>
+            <div class="terminal evolution-terminal">
+              <div class="terminal-bar">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-title">maestro — evolution</span>
+                <span class="terminal-mode" data-i18n="demo.mode">Production</span>
+              </div>
+              <div
+                class="terminal-output evolution-terminal-status"
+                aria-live="polite"
+                aria-label="Evolution status demo"
+              ></div>
+              <p class="terminal-note" data-i18n="evolution.terminal.statusNote">
+                Статус прогона и кривая fitness в TUI
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="install" class="install">
       <div class="container">
         <div class="section-header reveal">
@@ -2238,7 +2522,7 @@
       </div>
     </div>
 
-    <script src="i18n.js?v=19"></script>
-    <script src="main.js?v=23"></script>
+    <script src="i18n.js?v=21"></script>
+    <script src="main.js?v=24"></script>
   </body>
 </html>
